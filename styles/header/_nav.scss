@@ -1,0 +1,207 @@
+/*--------------------------
+Navigation Css  
+---------------------------*/
+.mainmenu-nav {
+    ul {
+        &.mainmenu {
+            @extend %liststyle !optional;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+            > li {
+                margin: 0 18px;
+                position: relative;
+                @media #{$laptop-device} {
+                    margin: 0 12px;
+                }
+                @media #{$lg-layout} {
+                    margin: 0 12px;
+                }
+                > a {
+                    font-size: var(--font-size-b2);
+                    line-height: var(--line-height-b2);
+                    color: var(--color-midgray);
+                    font-weight: var(--p-medium);
+                    @extend %transition !optional;
+                    height: 80px;
+                    display: block;
+                    line-height: 80px;
+                    position: relative;
+                    &::after {
+                        position: absolute;
+                        bottom: 2px;
+                        width: 0;
+                        height: 4px;
+                        background: var(--color-primary);
+                        content: "";
+                        @extend %transition !optional;
+                        left: 0;
+                        border-radius: 10px;
+                    }
+                    
+                    &:hover {
+                        @extend %color-primary !optional;
+                    }
+                }
+                &:hover {
+                    > a {
+                        &::after {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                &.menu-item-has-children {
+                    .axil-submenu {
+                        @extend %liststyle !optional;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        background: #ffffff;
+                        z-index: -1;
+                        opacity: 0;
+                        visibility: hidden;
+                        min-width: 240px;
+                        padding: 20px;
+                        border-radius: 0 0 10px 10px;
+                        box-shadow: var(--shadow-primary);
+                        @extend %transition !optional;
+                        li {
+                            a {
+                                font-size: var(--font-size-b2);
+                                line-height: var(--line-height-b2);
+                                color: var(--color-midgray);
+                                font-weight: var(--p-medium);
+                                @extend %transition !optional;
+
+                                &.hover-flip-item-wrapper {
+                                    span {
+                                        &::before {
+                                            color: var(--color-midgray);
+                                        }
+                                        
+                                        &::after {
+                                            color: var(--color-primary);
+                                        }
+                                    }
+                                }
+                            }
+                            &:hover {
+                                > a {
+                                    color: var(--color-primary);
+                                }
+                            }
+                        }
+                    }
+                    &:hover {
+                        .axil-submenu {
+                            opacity: 1;
+                            visibility: visible;
+                            z-index: 9;
+                        }
+                    }
+                }
+
+                // Mega Menu 
+                &.megamenu-wrapper {
+                    position: static;
+                    .megamenu-sub-menu {
+                        @extend %liststyle !optional;
+                        box-sizing: border-box;
+                        position: absolute;
+                        background: #fff;
+                        width: 100%;
+                        left: 0;
+                        right: 0;
+                        opacity: 0;
+                        visibility: hidden;
+                        @extend %transition !optional;
+                        min-width: 1230px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        border-radius: 0 0 10px 10px;
+                        box-shadow: var(--shadow-primary);
+
+                        .megamenu-item {
+                            display: flex;
+                            margin: 0;
+
+                            .axil-vertical-nav {
+                                display: flex;
+                                align-items: center;
+                                min-width: 279px;
+                                width: auto;
+                                border-right: 1px solid #CED0D4;
+                                padding: 30px;
+                                @extend %liststyle !optional;
+                                .vertical-nav-menu {
+                                    width: 100%;
+                                }
+                                .vertical-nav-item {
+                                    margin: 10px 0;
+                                    font-weight: 500;
+                                    a {
+                                        color: var(--color-midgray);
+                                        font-size: 16px;
+                                        line-break: 20px;
+                                        display: block;
+                                        &:hover {
+                                            color: var(--color-primary)
+                                        }
+                                        &.hover-flip-item-wrapper {
+                                            span {
+                                                &::before {
+                                                    color: var(--color-midgray);
+                                                }
+                                                &::after {
+                                                    color: var(--color-primary);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &.active {
+                                        a {
+                                            color: var(--color-primary);
+                                            &.hover-flip-item-wrapper {
+                                                span {
+                                                    &::before {
+                                                        color: var(--color-primary);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &:first-child {
+                                        margin-top: 0;
+                                    }
+                                    &:last-child {
+                                        margin-bottom: 0;
+                                    }
+                                }
+                            }
+
+                            .axil-vertical-nav-content {
+                                width: 83.589%;
+                                padding: 30px;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        .megamenu-sub-menu {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+.axil-vertical-inner {
+    display: none;
+}

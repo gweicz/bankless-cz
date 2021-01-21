@@ -1,0 +1,44 @@
+/* Scroll To Top  */
+
+#backto-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 100%;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s,
+    opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+    cursor: pointer;
+
+    svg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #ffffff;
+        font-size: 2.5rem;
+    }
+}
+
+#backto-top::after {
+    content: "\f106";
+    font-style: normal;
+    color: #fff;
+    font-family: var(--font-awesome);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 48px;
+}
+#backto-top.show {
+    opacity: 1;
+    visibility: visible;
+}
