@@ -29,15 +29,6 @@
     }
 }
 
-#backto-top::after {
-    content: "\f106";
-    font-style: normal;
-    color: #fff;
-    font-family: var(--font-awesome);
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 48px;
-}
 #backto-top.show {
     opacity: 1;
     visibility: visible;

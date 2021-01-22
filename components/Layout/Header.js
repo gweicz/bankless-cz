@@ -8,8 +8,8 @@ const Header = () => {
           <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12">
             <div className="logo">
               <a href="/">
-                <img className="dark-logo" src="/images/logo/logo-black.png" alt="Blogar logo"/>
-                <img className="light-logo" src="/images/logo/logo-white2.png" alt="Blogar logo"/>
+                <img className="dark-logo" src="/images/logo/logo_black_final.png" alt="Cryptohash logo"/>
+                <img className="light-logo" src="/images/logo/logo_white_final.png" alt="Cryptohash logo"/>
               </a>
             </div>
           </div>

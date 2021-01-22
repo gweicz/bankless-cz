@@ -57,7 +57,7 @@
         .logo {
             margin-right: 53px;
             img {
-                max-height: 37px;
+                max-height: 24px;
             }
             @media #{$sm-layout} {
                 flex-basis: 100%;
@@ -131,7 +131,7 @@
         }
         .logo {
             img {
-                max-height: 37px;
+                max-height: 24px;
                 &.white-logo {
                     display: none;
                 }
@@ -173,7 +173,7 @@
     &.footer-variation-three {
         .logo {
             img {
-                max-height: 37px;
+                max-height: 24px;
             }
         }
         .footer-top {

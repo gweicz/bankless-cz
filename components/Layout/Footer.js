@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="col-lg-4 col-md-4">
               <div className="logo">
                 <a href="index.html">
-                  <img className="dark-logo" src="/images/logo/logo-black.png" alt="Logo Images"/>
+                  <img className="dark-logo" src="/images/logo/logo_black_final.png" alt="Cryptohash logo"/>
                 </a>
               </div>
             </div>
