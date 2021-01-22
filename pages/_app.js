@@ -1,6 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faFacebookF, faTwitter, faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons'
-import { faSearch, faBars, faAngleUp } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faBars, faAngleUp, faLink } from '@fortawesome/free-solid-svg-icons'
 
 import Header from "components/Layout/Header";
 import Footer from "components/Layout/Footer";
@@ -13,8 +13,8 @@ import 'styles/globals.scss'
 
 
 library.add(
-  faSearch, faBars,
-  fab, faFacebookF, faTwitter, faInstagram, faDiscord, faAngleUp
+  faSearch, faBars, faLink, faAngleUp,
+  fab, faFacebookF, faTwitter, faInstagram, faDiscord
 );
 
 function MyApp({ Component, pageProps }) {
