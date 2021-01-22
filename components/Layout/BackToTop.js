@@ -9,10 +9,8 @@ const BackToTop = () => {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
         setVisible(true);
-        console.log('visible');
       } else {
         setVisible(false);
-        console.log('not visible');
       }
     })
   };
