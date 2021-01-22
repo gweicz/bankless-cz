@@ -1,6 +1,11 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.scss'
+
 import {getPosts} from "./api/posts";
+import MainBanner from "components/HomePage/MainBanner";
+import PostList from "components/HomePage/PostList/PostList";
+
+import styles from 'styles/Home.module.scss'
+
 
 export const getStaticProps = async ({ params }) => {
 
@@ -27,12 +32,8 @@ const Home = ({ posts }) => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        {posts.map(post => (
-          <li key={post.id}>{post.title} ({post.published_at})</li>
-        ))}
+        <MainBanner />
+        <PostList />
       </main>
     </div>
   )
