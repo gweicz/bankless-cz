@@ -53,6 +53,7 @@ Sidebar Styles
                     margin: 0;
                     flex-basis: 50%;
                     .inner {
+                        height: 100%;
                         background: #FBFBFD;
                         @extend %radius;
                         display: flex;
@@ -60,10 +61,15 @@ Sidebar Styles
                         align-items: center;
                         .thumbnail {
                             width: 50px;
+                            height: 50px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
                             margin-right: 15px;
                             img {
-                                width: 100%;
+                                width: 32px;
                                 border-radius: 100%;
+                                transition: all 0.25s ease-in-out;
                             }
                         }
                         .content {
@@ -74,6 +80,9 @@ Sidebar Styles
                             }
                         }
                         &:hover {
+                            .thumbnail img {
+                                transform: scale(1.1);
+                            }
                             .content {
                                 .title {
                                     color: var(--color-primary); 
