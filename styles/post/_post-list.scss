@@ -585,10 +585,10 @@ Post List Style
             flex-wrap: wrap;
         }
         .post-thumbnail {
-            min-width: 295px;
+            min-width: 180px;
             margin-right: 20px;
             @extend %radius;
-            max-width: 295px;
+            max-width: 180px;
             overflow: hidden;
             img {
                 transition: 0.5s;
@@ -654,7 +654,7 @@ Post List Style
             }
 
             .post-meta-wrapper {
-                margin-top: 46px;
+                //margin-top: 46px;
                 @media #{$lg-layout} {
                     margin-top: 15px;
                 }
@@ -759,6 +759,30 @@ Post List Style
             .title {
                 margin-bottom: 10px;
             }
+        }
+
+        .hash-news {
+          .hash-content {
+            margin: 0;
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+
+            a {
+              font-weight: 500;
+              font-size: 1.5rem;
+              text-decoration: underline;
+              margin-left: .5rem;
+
+              &:hover {
+                text-decoration: line-through;
+              }
+            }
+          }
+
+          .hash-meta {
+            justify-content: flex-end;
+            margin-top: .25rem;
+          }
         }
 
         &.post-medium-border {

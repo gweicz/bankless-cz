@@ -1,16 +1,18 @@
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
 const PostList = () => {
   return (
     <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
-      <div className="container">
+      <div className="container" style={{ maxWidth: "1280px" }}>
         <div className="row">
-          <div className="col-lg-8 col-xl-8">
-            <div className="axil-banner">
-              <div className="thumbnail">
-                <a href="#">
-                  <img className="w-100" src="/images/add-banner/banner-01.png" alt="Banner Images"/>
-                </a>
-              </div>
-            </div>
+          <div className="col-lg-7 col-xl-7">
+            {/*<div className="axil-banner">*/}
+            {/*  <div className="thumbnail">*/}
+            {/*    <a href="#">*/}
+            {/*      <img className="w-100" src="/images/add-banner/banner-01.png" alt="Banner Images"/>*/}
+            {/*    </a>*/}
+            {/*  </div>*/}
+            {/*</div>*/}
 
             <div className="content-block post-list-view axil-control is-active mt--30">
               <div className="post-thumbnail">
@@ -238,7 +240,7 @@ const PostList = () => {
 
 
           </div>
-          <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
+          <div className="col-lg-5 col-xl-5 mt_md--40 mt_sm--40">
 
             <div className="sidebar-inner">
 
@@ -287,72 +289,35 @@ const PostList = () => {
                 </ul>
               </div>
 
-              <div className="axil-single-widget widget widget_search mb--30">
-                <h5 className="widget-title">Search</h5>
-                <form action="#">
-                  <div className="axil-search form-group">
-                    <button type="submit" className="search-button"><i className="fal fa-search"></i></button>
-                    <input type="text" className="form-control" placeholder="Search"/>
-                  </div>
-                </form>
-              </div>
-
               <div className="axil-single-widget widget widget_postlist mb--30">
-                <h5 className="widget-title">Popular on Blogar</h5>
+                <h4 className="widget-title">#Hashovky</h4>
                 <div className="post-medium-block">
 
                   <div className="content-block post-medium mb--20">
-                    <div className="post-thumbnail">
-                      <a href="post-details.html">
-                        <img src="/images/small-images/blog-sm-01.jpg" alt="Post Images"/>
-                      </a>
-                    </div>
-                    <div className="post-content">
-                      <h6 className="title"><a href="post-details.html">The underrated design book that transformed the
-                        way I
-                        work </a></h6>
-                      <div className="post-meta">
+                    <div className="post-content hash-news">
+                      <p className="hash-content">
+                        Metamask: "Pokud máte problém s odesíláním transakcí v naší mobilní aplikaci, zkuste se přepnout na jinou síť a po té zase zpět".
+                        <a href="https://twitter.com/metamask_io/status/1353118291959529472?s=20">Zdroj</a>
+                      </p>
+                      <div className="post-meta hash-meta">
                         <ul className="post-meta-list">
-                          <li>Feb 17, 2019</li>
-                          <li>300k Views</li>
+                          <li>10:07</li>
+                          <li>Led 24, 2021</li>
                         </ul>
                       </div>
                     </div>
                   </div>
 
                   <div className="content-block post-medium mb--20">
-                    <div className="post-thumbnail">
-                      <a href="post-details.html">
-                        <img src="/images/small-images/blog-sm-02.jpg" alt="Post Images"/>
-                      </a>
-                    </div>
-                    <div className="post-content">
-                      <h6 className="title"><a href="post-details.html">Here’s what you should (and shouldn’t) do
-                        when</a>
-                      </h6>
-                      <div className="post-meta">
+                    <div className="post-content hash-news">
+                      <p className="hash-content">
+                        Podle Coingecko tržní kapitalizace DeFi narostla mezi roky 2020 a 2021 o 41 miliard dolarů.
+                        <a href="https://twitter.com/coingecko/status/1353206035763392512?s=20">Více info</a>
+                      </p>
+                      <div className="post-meta hash-meta">
                         <ul className="post-meta-list">
-                          <li>Feb 17, 2019</li>
-                          <li>300k Views</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="content-block post-medium mb--20">
-                    <div className="post-thumbnail">
-                      <a href="post-details.html">
-                        <img src="/images/small-images/blog-sm-03.jpg" alt="Post Images"/>
-                      </a>
-                    </div>
-                    <div className="post-content">
-                      <h6 className="title"><a href="post-details.html">How a developer and designer duo at Deutsche
-                        Bank keep
-                        remote</a></h6>
-                      <div className="post-meta">
-                        <ul className="post-meta-list">
-                          <li>Feb 17, 2019</li>
-                          <li>300k Views</li>
+                          <li>10:07</li>
+                          <li>Led 24, 2021</li>
                         </ul>
                       </div>
                     </div>
@@ -363,7 +328,7 @@ const PostList = () => {
               </div>
 
               <div className="axil-single-widget widget widget_social mb--30">
-                <h5 className="widget-title">Stay In Touch</h5>
+                <h5 className="widget-title">Sledujte nás</h5>
                 <ul className="social-icon md-size justify-content-center">
                   <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
                   <li><a href="#"><i className="fab fa-instagram"></i></a></li>

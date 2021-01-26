@@ -27,7 +27,7 @@ const Home = ({ posts }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Cryptohash.cz | Magazín o kryptoměnách</title>
+        <title>Cryptohash | Ethereum, Bitcoin a jiné krypto</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
 

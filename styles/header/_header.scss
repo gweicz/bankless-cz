@@ -2,10 +2,12 @@
 Header Styles  
 -----------------------*/
 .axil-header {
+    width: 100%;
     padding: 0 60px;
     background: #fff;
-    position: relative;
+    position: fixed;
     z-index: 99;
+    box-shadow: 0px 2px 20px 5px #c8c8c840;
     @media #{$laptop-device} {
         padding: 0 30px;
     }
