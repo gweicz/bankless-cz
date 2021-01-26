@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="footer-top">
         <div className="container">
           <div className="row">
-            <div className="col-lg-4 col-md-4">
+            <div className="col-lg-4 col-md-4 d-flex align-items-center">
               <div className="logo">
                 <a href="index.html">
                   <img className="dark-logo" src="/images/logo/logo_black_final.png" alt="Cryptohash logo"/>

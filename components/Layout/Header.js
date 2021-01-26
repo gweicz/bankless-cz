@@ -21,9 +21,8 @@ const Header = () => {
             <div className="mainmenu-wrapper">
               <nav className="mainmenu-nav">
                 <ul className="mainmenu">
-                  <li className="menu-item-has-children">
-                    <a href="#">Novinky</a>
-                  </li>
+                  <li><a href="#">Novinky</a></li>
+                  <li><a href="#">#Hashovky</a></li>
 
                   <Megamenu menuTitle="Začátečníci" />
 
