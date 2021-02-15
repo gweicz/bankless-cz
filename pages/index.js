@@ -7,6 +7,7 @@ import PostList from "components/HomePage/PostList/PostList";
 import styles from 'styles/Home.module.scss'
 
 
+// Fetch fresh posts
 export const getStaticProps = async ({ params }) => {
 
   const posts = await getPosts();
