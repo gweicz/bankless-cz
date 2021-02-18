@@ -10,7 +10,7 @@ const AuthorDetailPage = () => {
   return (
     <div>
     <div className="axil-author-area axil-author-banner bg-color-grey" >
-     <div className="container">
+     <div className="container"  style={{maxWidth: "1280px"}}>
              <div className="col-lg-12">
                  <div className="about-author" style={{padding : "75px 0px 50px 0px"}}>
                      <div className="media" style={{margin: "80px 0px 28px 0px"}}>
