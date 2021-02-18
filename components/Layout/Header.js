@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Megamenu from "components/Megamenu/Megamenu";
 
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className="header axil-header  header-light header-sticky ">
       <div className="header-wrap">
@@ -48,6 +48,22 @@ const Header = () => {
               </div>
             </div>
           </div>
+
+          <div className="col-xl-12 d-none d-xl-block">
+            <div className="mainmenu-wrapper">
+              <nav className="mainmenu-nav">
+                <ul className="mainmenu" style= {{marginBottom: '10px'}}>
+                  <img src= "/images/icons/bitcoin.webp" style= {{maxWidth: "30px", maxHeight: "30px"}} />
+                  <li style={{color:'#878787', fontSize: '20px'}}>${props.btc_price}</li>
+                  <img src= "/images/icons/ethereum.webp" style= {{maxWidth: "30px", maxHeight: "30px"}} />
+                  <li style={{color:'#878787', fontSize: '20px'}}>${props.eth_price}</li>
+                  <img src= "/images/icons/polkadot.webp" style= {{maxWidth: "30px", maxHeight: "30px"}} />
+                  <li style={{color:'#878787', fontSize: '20px'}}>${props.dot_price}</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
         </div>
       </div>
     </header>
