@@ -23,11 +23,11 @@ const MainBanner = () => {
                   <div className="post-content">
                     <div className="post-cat">
                       <div className="post-cat-list">
-                        <a className="hover-flip-item-wrapper" href="#">
-                          <span className="hover-flip-item">
-                            <span data-text="ETHEREUM">ETHEREUM</span>
-                          </span>
-                        </a>
+                        {/* <a className="hover-flip-item-wrapper"> */}
+                        <span className="hover-flip-item d-flex">
+                          <span data-text="ETHEREUM">ETHEREUM</span>
+                        </span>
+                        {/* </a> */}
                       </div>
                     </div>
                     <h2 className="title">
@@ -35,24 +35,26 @@ const MainBanner = () => {
                         <a>Co je Ethereum 2.0 a co nám přinese?</a>
                       </Link>
                     </h2>
-                    <div className="post-meta-wrapper with-button">
-                      <div className="post-meta">
-                        <div className="post-author-avatar border-rounded">
+                    <div className="post-meta-wrapper with-button ">
+                      <div className="post-meta w-100">
+                        {/* <div className="post-author-avatar border-rounded">
                           <img
                             src="/images/post-images/author/author-image-3.png"
                             alt="Author Images"
                           />
-                        </div>
+                        </div> */}
                         <div className="content">
                           <h6 className="post-author-name">
-                            <a
-                              className="hover-flip-item-wrapper"
-                              href="author.html"
-                            >
-                              <span className="hover-flip-item">
-                                <span data-text="rixcian">rixcian</span>
-                              </span>
-                            </a>
+                            {/* <Link href="/authors/rixian">
+                              <a
+                                className="hover-flip-item-wrapper"
+                                href="author.html"
+                              > */}
+                            <span className="hover-flip-item d-flex">
+                              <span data-text="rixcian">rixcian</span>
+                            </span>
+                            {/* </a>
+                            </Link> */}
                           </h6>
                           <ul className="post-meta-list">
                             <li>Led 22, 2021</li>
@@ -61,7 +63,7 @@ const MainBanner = () => {
                         </div>
                       </div>
                       <ul className="social-share-transparent justify-content-end">
-                        <li>
+                        {/* <li>
                           <a href="#">
                             <FontAwesomeIcon icon={['fab', 'facebook-f']} />
                           </a>
@@ -75,7 +77,7 @@ const MainBanner = () => {
                           <a href="#">
                             <FontAwesomeIcon icon="link" />
                           </a>
-                        </li>
+                        </li> */}
                       </ul>
                       <div className="read-more-button cerchio">
                         <Link href="/novinky/test1">

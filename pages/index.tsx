@@ -30,8 +30,8 @@ const Home = ({ posts }) => {
 
       <main className={styles.main}>
         <MainBanner />
-        <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
-          <div className="container" style={{ maxWidth: '1280px' }}>
+        <div className="container">
+          <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
             <div className="row">
               <PostList />
               <SideBar />

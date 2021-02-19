@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
+import SocInvite from 'components/SocInvite'
 
 const SideBar = () => {
   return (
@@ -92,7 +93,7 @@ const SideBar = () => {
           </ul>
         </div> */}
 
-        <div className="axil-single-widget widget widget_postlist mb--30">
+        {/* <div className="axil-single-widget widget widget_postlist mb--30">
           <h4 className="widget-title">#Hashovky</h4>
           <div className="post-medium-block">
             <div className="content-block post-medium mb--20">
@@ -132,32 +133,11 @@ const SideBar = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="axil-single-widget widget widget_social mb--30">
           <h5 className="widget-title">Sledujte nás</h5>
-          <ul className="social-icon md-size justify-content-center">
-            {/* <li>
-              <a href="#">
-                <FontAwesomeIcon icon={['fab', 'facebook-f']} />
-              </a>
-            </li> */}
-            <li>
-              <a href="#">
-                <FontAwesomeIcon icon={['fab', 'twitter']} />
-              </a>
-            </li>
-            {/* <li>
-              <a href="#">
-                <FontAwesomeIcon icon={['fab', 'instagram']} />
-              </a>
-            </li> */}
-            <li>
-              <a href="#">
-                <FontAwesomeIcon icon={['fab', 'discord']} />
-              </a>
-            </li>
-          </ul>
+          <SocInvite />
         </div>
 
         {/* <div className="axil-single-widget widget widget_instagram mb--30">

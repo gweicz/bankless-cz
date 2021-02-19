@@ -35,11 +35,11 @@ const Header = () => {
                       <a>Novinky</a>
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <a href="#">#Hashovky</a>
                   </li>
 
-                  <Megamenu menuTitle="Začátečníci" />
+                  <Megamenu menuTitle="Začátečníci" /> */}
 
                   {/* <li>
                     <a href="home-lifestyle-blog.html">Grafy</a>

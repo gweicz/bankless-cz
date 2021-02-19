@@ -37,11 +37,15 @@ const PostList = () => {
         <div className="post-content">
           <div className="post-cat">
             <div className="post-cat-list">
-              <a className="hover-flip-item-wrapper" href="#">
-                <span className="hover-flip-item">
+              {/* <a className="hover-flip-item-wrapper" href="#"> */}
+              <a className="hover-flip-item-wrapper">
+                {/* <span className="hover-flip-item"> */}
+                <span className="text-dark cursor-default">
                   <span data-text="BLOCKCHAIN">BLOCKCHAIN</span>
                 </span>
+                {/* </span> */}
               </a>
+              {/* </a> */}
             </div>
           </div>
           <h4 className="title">
@@ -53,7 +57,7 @@ const PostList = () => {
             </Link>
           </h4>
           <div className="post-meta-wrapper">
-            <ul className="social-share-transparent justify-content-end">
+            {/* <ul className="social-share-transparent justify-content-end">
               <li>
                 <a href="#">
                   <FontAwesomeIcon icon={['fab', 'facebook-f']} />
@@ -69,15 +73,18 @@ const PostList = () => {
                   <FontAwesomeIcon icon="link" />
                 </a>
               </li>
-            </ul>
+            </ul> */}
             <div className="post-meta">
               <div className="content">
                 <h6 className="post-author-name">
-                  <a className="hover-flip-item-wrapper" href="author.html">
-                    <span className="hover-flip-item">
-                      <span data-text="rixcian">rixcian</span>
-                    </span>
-                  </a>
+                  {/* <Link href="authors/rixian">
+                  
+                  <a className="hover-flip-item-wrapper" href="author.html"> */}
+                  <span className="hover-flip-item">
+                    <span data-text="rixcian">rixcian</span>
+                  </span>
+                  {/* </a>
+                  </Link> */}
                 </h6>
                 <ul className="post-meta-list">
                   <li>Led 26, 2021</li>

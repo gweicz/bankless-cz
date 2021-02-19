@@ -1,105 +1,30 @@
+import AboutAuthor from 'components/ArticleDetail/AboutAuthor'
+import Banner from 'components/ArticleDetail/Banner'
 import Image from 'next/image'
 import SideBar from 'components/Layout/SideBar'
+import SocialShareBlock from 'components/ArticleDetail/SocialShareBlock'
 
 export default function Test1() {
   return (
     <div className="main-wrapper">
-      {/* <!-- Start Banner Area --> */}
-      <div className="banner banner-single-post post-formate post-standard alignwide">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              {/* <!-- Start Single Slide  --> */}
-              <div className="content-block">
-                {/* <!-- Start Post Thumbnail  --> */}
-                <div className="post-thumbnail">
-                  <img
-                    src="/images/post-single/post-single-01.jpg"
-                    alt="Post Images"
-                  />
-                  {/* <Image
-              priority
-              src="/images/profile.jpg"
-              // className={utilStyles.borderCircle}
-              // height={144}
-              // width={144}
-            
-              // alt={name} />*/}
-                </div>
-                {/* <!-- End Post Thumbnail  --> */}
-                {/* <!-- Start Post Content  --> */}
-                <div className="post-content">
-                  <div className="post-cat">
-                    <div className="post-cat-list">
-                      <a className="hover-flip-item-wrapper" href="#">
-                        <span className="hover-flip-item">
-                          <span data-text="FEATURED POST">FEATURED POST</span>
-                        </span>
-                      </a>
-                    </div>
-                  </div>
-                  <h1 className="title">
-                    Apple honors eight developers with annual Apple Design
-                    Awards
-                  </h1>
-                  {/* <!-- Post Meta  --> */}
-                  <div className="post-meta-wrapper">
-                    <div className="post-meta">
-                      <div className="post-author-avatar border-rounded">
-                        <img
-                          src="/images/post-images/author/author-image-3.png"
-                          alt="Author Images"
-                        />
-                      </div>
-                      <div className="content">
-                        <h6 className="post-author-name">
-                          <a
-                            className="hover-flip-item-wrapper"
-                            href="author.html"
-                          >
-                            <span className="hover-flip-item">
-                              <span data-text="Ismat Jahan">Ismat Jahan</span>
-                            </span>
-                          </a>
-                        </h6>
-                        <ul className="post-meta-list">
-                          <li>Feb 17, 2019</li>
-                          <li>300k Views</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <ul className="social-share-transparent justify-content-end">
-                      <li>
-                        <a href="#">
-                          <i className="fab fa-facebook-f"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fab fa-instagram"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fab fa-twitter"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fas fa-link"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                {/* <!-- End Post Content  --> */}
-              </div>
-              {/* <!-- End Single Slide  --> */}
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <!-- End Banner Area --> */}
+      <Banner
+        img={{
+          url:
+            'https://cdn.decrypt.co/resize/1400/wp-content/uploads/2020/07/ethereum-2-defi-hacks-gID_6.jpg',
+          alt: 'Post Images',
+        }}
+        title={'Co je Ethereum 2.0 a co nám přinese?'}
+        date={'Led 17, 2020'}
+        author={{
+          name: 'rixian',
+          img: {
+            url: '/images/post-images/author/author-image-3.png',
+            alt: 'autor',
+          },
+          // profileLink: '/author',
+        }}
+      />
+
       <div className="post-single-wrapper axil-section-gap bg-color-white">
         <div className="container">
           <div className="row">
@@ -257,100 +182,18 @@ export default function Test1() {
         <a href="#">Life Style</a>
       </div> */}
 
-                <div className="social-share-block">
-                  <div className="post-like">
-                    <a href="#">
-                      <i className="fal fa-thumbs-up"></i>
-                      <span>2.2k Like</span>
-                    </a>
-                  </div>
-                  <ul className="social-icon icon-rounded-transparent md-size">
-                    <li>
-                      <a href="#">
-                        <i className="fab fa-facebook-f"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i className="fab fa-instagram"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i className="fab fa-twitter"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i className="fab fa-linkedin-in"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* <!-- Start Author  --> */}
-                <div className="about-author">
-                  <div className="media">
-                    <div className="thumbnail">
-                      {/* <a href="#"> */}
-                      <img
-                        src="/images/post-images/author/author-b1.png"
-                        alt="Author Images"
-                      />
-                      {/* </a> */}
-                    </div>
-                    <div className="media-body">
-                      <div className="author-info">
-                        <h5 className="title">
-                          <a className="hover-flip-item-wrapper" href="#">
-                            <span className="hover-flip-item">
-                              <span data-text="Rahabi Ahmed Khan">
-                                Rahabi Ahmed Khan
-                              </span>
-                            </span>
-                          </a>
-                        </h5>
-                        <span className="b3 subtitle">Sr. UX Designer</span>
-                      </div>
-                      <div className="content">
-                        <p className="b1 description">
-                          At 29 years old, my favorite compliment is being told
-                          that I look like my mom. Seeing myself in her image,
-                          like this daughter up top, makes me so proud of how
-                          far I’ve come, and so thankful for where I come from.
-                        </p>
-                        <ul className="social-share-transparent size-md">
-                          <li>
-                            <a href="#">
-                              <i className="fab fa-facebook-f"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i className="fab fa-instagram"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i className="fab fa-twitter"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i className="far fa-envelope"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i className="fab fa-linkedin-in"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- End Author  --> */}
+                <SocialShareBlock />
+                <AboutAuthor
+                  name={'rixian'}
+                  description={
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                  }
+                  img={{
+                    url: '/images/post-images/author/author-b1.png',
+                    alt: 'autor',
+                  }}
+                  // profileLink={'/author'}
+                />
               </div>
             </div>
             <SideBar />

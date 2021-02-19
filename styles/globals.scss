@@ -41,9 +41,6 @@
 @import 'default/common';
 @import 'default/forms';
 
-
-
-
 /**************************************
 	Elements Styles
 ***************************************/
@@ -59,9 +56,6 @@
 @import 'elements/breadcrumb';
 @import 'elements/contact';
 
-
-
-
 /**************************************
 	Header Styles
 ***************************************/
@@ -69,9 +63,6 @@
 @import 'header/nav';
 @import 'header/subscribe';
 @import 'header/mobilemenu';
-
-
-
 
 /**************************************
 	Post Styles
@@ -82,7 +73,6 @@
 @import 'post/post-format';
 @import 'post/post-stories';
 @import 'post/comment';
-
 
 /**************************************
 	Template Styles
@@ -95,10 +85,13 @@
 @import 'template/error';
 @import 'template/maintanence';
 
-
-
 /**************************************
 	Footer Styles
 ***************************************/
 @import 'footer/footer';
 @import 'footer/dark';
+
+/*//////////////////////////////
+	Custom Styles
+//////////////////////////////*/
+@import 'custom/cursor';
