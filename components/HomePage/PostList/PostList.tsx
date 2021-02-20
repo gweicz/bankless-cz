@@ -10,7 +10,7 @@ const PostList = () => {
   return (
     <div className="col-lg-8 col-xl-8">
       {posts.map((postData) => (
-        <Post data={postData} />
+        <Post data={postData} key={postData.detailUrl} />
       ))}
     </div>
   )

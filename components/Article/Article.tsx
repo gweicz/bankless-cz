@@ -1,6 +1,7 @@
 import AboutAuthor from './AboutAuthor'
 import Banner from './Banner'
 import SideBar from 'components/Layout/SideBar'
+import SocShare from 'components/SocShare'
 import SocialShareBlock from './SocialShareBlock'
 
 interface ArticleTypes {
@@ -9,10 +10,11 @@ interface ArticleTypes {
 }
 
 export default function Article({ data, children }: ArticleTypes) {
-  const { frontImg, author, date, title } = data || {}
+  const { frontImg, author, date, title, detailUrl } = data || {}
   return (
     <div className="main-wrapper">
       <Banner
+        detailUrl={detailUrl}
         img={{
           url: frontImg.url,
           alt: frontImg.alt,
@@ -34,7 +36,10 @@ export default function Article({ data, children }: ArticleTypes) {
             <div className="col-lg-8">
               <div className="axil-post-details">
                 {children}
-                <SocialShareBlock />
+                {/* <SocialShareBlock /> */}
+                <div className="social-share-block justify-content-end p-b-2">
+                  <SocShare urlToShare={detailUrl} />
+                </div>
                 <AboutAuthor
                   name={author.name}
                   description={author.description}

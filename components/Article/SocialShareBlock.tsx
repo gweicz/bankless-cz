@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SocShare from 'components/SocShare'
 
 export default function SocialShateBlock() {
   return (
@@ -31,6 +32,7 @@ export default function SocialShateBlock() {
                       </a>
                     </li>
                   </ul> */}
+      {/* <SocShare urlToShare={}/> */}
     </div>
   )
 }

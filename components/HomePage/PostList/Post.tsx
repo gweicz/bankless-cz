@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
+import SocShare from 'components/SocShare'
 
 interface PostTypes {
   data: {
@@ -18,6 +19,42 @@ interface PostTypes {
     readTime: string
   }
 }
+
+// const SocShare = () => {
+//   return (
+//     <ul className="social-share-transparent justify-content-end">
+//       <li>
+//         <a href="#">
+//           <FontAwesomeIcon icon={['fab', 'facebook-f']} />
+//         </a>
+//       </li>
+//       <li>
+//         {/* <a href="#"> */}
+//         <a
+//           href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+//           // className="twitter-share-button"
+//           data-related="@gweicz"
+//           target="_blank"
+//           data-show-count="false"
+//         >
+//           {/* Tweet */}
+//           <FontAwesomeIcon icon={['fab', 'twitter']} />
+//         </a>
+//         {/* <script
+//         async
+//         src="https://platform.twitter.com/widgets.js"
+//         charSet="utf-8"
+//       ></script> */}
+//         {/* </a> */}
+//       </li>
+//       {/* <li>
+//       <a href="#">
+//         <FontAwesomeIcon icon="link" />
+//       </a>
+//     </li> */}
+//     </ul>
+//   )
+// }
 
 export default function Post({ data }: PostTypes) {
   const { detailUrl, frontImg, category, title, author, date, readTime } =
@@ -53,15 +90,29 @@ export default function Post({ data }: PostTypes) {
         </a>
       </li>
       <li>
-        <a href="#">
+        {/* <a href="#"> */}
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          // className="twitter-share-button"
+          data-related="@gweicz"
+          target="_blank"
+          data-show-count="false"
+        >
+          {/* Tweet */}
           <FontAwesomeIcon icon={['fab', 'twitter']} />
         </a>
+        {/* <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charSet="utf-8"
+        ></script> */}
+        {/* </a> */}
       </li>
-      <li>
+      {/* <li>
         <a href="#">
           <FontAwesomeIcon icon="link" />
         </a>
-      </li>
+      </li> */}
     </ul>
   )
 
@@ -92,10 +143,7 @@ export default function Post({ data }: PostTypes) {
   )
 
   return (
-    <div
-      key={detailUrl}
-      className="content-block post-list-view axil-control is-active mt--30"
-    >
+    <div className="content-block post-list-view axil-control is-active mt--30">
       {_postImg()}
       <div className="post-content">
         {_category()}
@@ -107,6 +155,8 @@ export default function Post({ data }: PostTypes) {
         </h4>
         <div className="post-meta-wrapper">
           {/* {_socShare()} */}
+
+          <SocShare urlToShare={detailUrl} />
           <div className="post-meta">
             <div className="content">
               {_authorName(author)}

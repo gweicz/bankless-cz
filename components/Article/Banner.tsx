@@ -1,7 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
+import SocShare from 'components/SocShare'
 import styles from './Banner.module.scss'
 type Props = {
+  detailUrl: string
   img: {
     url: string
     alt: string
@@ -17,7 +19,7 @@ type Props = {
   }
   date: string
 }
-export default function Banner({ img, title, author, date }: Props) {
+export default function Banner({ img, title, author, date, detailUrl }: Props) {
   const _authorName = () => (
     <>
       {author.profileUrl ? (
@@ -38,46 +40,19 @@ export default function Banner({ img, title, author, date }: Props) {
     </>
   )
 
-  const _socShare = () => (
-    <ul className="social-share-transparent justify-content-end">
-      <li>
-        <a href="#">
-          <FontAwesomeIcon icon={['fab', 'facebook-f']} />
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <FontAwesomeIcon icon={['fab', 'instagram']} />
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <FontAwesomeIcon icon={['fab', 'twitter']} />
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <FontAwesomeIcon icon={['fas', 'link']} />
-        </a>
-      </li>
-    </ul>
-  )
-
   const _authorBox = () => (
-    <div className="post-meta-wrapper">
-      <div className="post-meta m-0">
-        {author.img.url && (
-          <div className="post-author-avatar border-rounded">
-            <img src={author.img.url} alt={author.name} />
-          </div>
-        )}
-        <div className={`{content ${styles.authorBox}`}>
-          {_authorName()}
-          <ul className="post-meta-list">
-            <li>{date}</li>
-            {/* <li>300k Views</li> */}
-          </ul>
+    <div className="post-meta m-0">
+      {author.img.url && (
+        <div className="post-author-avatar border-rounded">
+          <img src={author.img.url} alt={author.name} />
         </div>
+      )}
+      <div className={`{content ${styles.authorBox}`}>
+        {_authorName()}
+        <ul className="post-meta-list">
+          <li>{date}</li>
+          {/* <li>300k Views</li> */}
+        </ul>
       </div>
     </div>
   )
@@ -107,8 +82,10 @@ export default function Banner({ img, title, author, date }: Props) {
               <div className="post-content">
                 {/* {_featuredPost()} */}
                 <h1 className={`title ${styles.title}`}>{title}</h1>
-                {_authorBox()}
-                {/* {_socShare()} */}
+                <div className="post-meta-wrapper">
+                  {_authorBox()}
+                  <SocShare urlToShare={detailUrl} />
+                </div>
               </div>
             </div>
             {/* <!-- End Single Slide  --> */}

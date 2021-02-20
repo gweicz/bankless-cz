@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
+import SocShare from 'components/SocShare'
 
 const MainBanner = ({ data }: { data?: any }) => {
   const { frontImg, detailUrl, category, author, date, title, readTime } =
@@ -53,26 +54,6 @@ const MainBanner = ({ data }: { data?: any }) => {
     </div>
   )
 
-  const _socShare = () => (
-    <ul className="social-share-transparent justify-content-end">
-      {/* <li>
-                          <a href="#">
-                            <FontAwesomeIcon icon={['fab', 'facebook-f']} />
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <FontAwesomeIcon icon={['fab', 'twitter']} />
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <FontAwesomeIcon icon="link" />
-                          </a>
-                        </li> */}
-    </ul>
-  )
-
   return (
     <div className="slider-area bg-color-grey">
       <div className="axil-slide slider-style-1">
@@ -97,13 +78,7 @@ const MainBanner = ({ data }: { data?: any }) => {
                       </Link>
                     </h2>
                     <div className="post-meta-wrapper with-button ">
-                      <div className="post-meta w-100">
-                        {/* <div className="post-author-avatar border-rounded">
-                          <img
-                            src="/images/post-images/author/author-image-3.png"
-                            alt="Author Images"
-                          />
-                        </div> */}
+                      <div className="post-meta w-100 justify-content-between">
                         <div className="content">
                           {_authorName()}
                           <ul className="post-meta-list">
@@ -111,8 +86,9 @@ const MainBanner = ({ data }: { data?: any }) => {
                             <li>{readTime}</li>
                           </ul>
                         </div>
+                        <SocShare urlToShare={detailUrl} />
                       </div>
-                      {_socShare()}
+
                       {_readBtn()}
                     </div>
                   </div>
