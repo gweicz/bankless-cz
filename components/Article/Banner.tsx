@@ -101,7 +101,7 @@ export default function Banner({ img, title, author, date }: Props) {
             {/* <!-- Start Single Slide  --> */}
             <div className="content-block">
               <div className="post-thumbnail">
-                <img src={img.url} alt={img.alt} />
+                <img className="w-100" src={img.url} alt={img.alt} />
               </div>
 
               <div className="post-content">

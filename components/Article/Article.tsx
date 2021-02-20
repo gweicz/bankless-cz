@@ -9,13 +9,13 @@ interface ArticleTypes {
 }
 
 export default function Article({ data, children }: ArticleTypes) {
-  const { bannerImg, author, date, title } = data || {}
+  const { frontImg, author, date, title } = data || {}
   return (
     <div className="main-wrapper">
       <Banner
         img={{
-          url: bannerImg.url,
-          alt: bannerImg.alt,
+          url: frontImg.url,
+          alt: frontImg.alt,
         }}
         title={title}
         date={date}

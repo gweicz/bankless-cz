@@ -4,12 +4,12 @@ import Link from 'next/link'
 interface PostTypes {
   data: {
     detailUrl: string
-    img: {
+    frontImg: {
       url: string
       alt: string
     }
     category: string
-    text: string
+    title: string
     author: {
       name: string
       profileUrl?: string
@@ -20,7 +20,8 @@ interface PostTypes {
 }
 
 export default function Post({ data }: PostTypes) {
-  const { detailUrl, img, category, text, author, date, readTime } = data || {}
+  const { detailUrl, frontImg, category, title, author, date, readTime } =
+    data || {}
 
   const _authorName = (author) => {
     return (
@@ -84,7 +85,7 @@ export default function Post({ data }: PostTypes) {
     <div className="post-thumbnail">
       <Link href={detailUrl}>
         <a>
-          <img src={img.url} alt={img?.alt} />
+          <img src={frontImg.url} alt={frontImg?.alt} />
         </a>
       </Link>
     </div>
@@ -101,7 +102,7 @@ export default function Post({ data }: PostTypes) {
 
         <h4 className="title">
           <Link href={detailUrl}>
-            <a>{text}</a>
+            <a>{title}</a>
           </Link>
         </h4>
         <div className="post-meta-wrapper">

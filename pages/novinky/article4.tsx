@@ -1,15 +1,19 @@
 import Article from 'components/Article/Article'
 
-const articleData = {
-  detailUrl: '/',
-  bannerImg: {
+export const article4Data = {
+  detailUrl: '/novinky/article4',
+  frontImg: {
     url:
-      'https://cdn.decrypt.co/resize/1400/wp-content/uploads/2020/07/ethereum-2-defi-hacks-gID_6.jpg',
+      'https://cdn.decrypt.co/resize/1400/wp-content/uploads/2020/12/Hack-1-gID_5.jpg',
     alt: 'Post Images',
   },
-  title: 'Co je Ethereum 2.0 a co nám přinese?',
+  category: 'BITCOIN',
+  title:
+    'Hackeři využili zranitelnost v platformě na ukládání souborů k těžení Bitcoinu',
+  date: 'Led 23, 2021',
+  readTime: '5 minuty čtení',
   author: {
-    name: 'rixian',
+    name: 'rixcian',
     img: {
       url: '/images/post-images/author/author-b1.png',
       alt: 'autor',
@@ -22,16 +26,14 @@ const articleData = {
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     profileUrl: '/author/rixian',
   },
-  date: 'Led 17, 2020',
-  readTime: '20 Led 2021',
 }
 
-export default function Test1() {
+export default function Article4() {
   return (
-    <Article data={articleData}>
+    <Article data={article4Data}>
       <p className="has-medium-font-size">
-        Winners are recognized for outstanding app design, innovation,
-        ingenuity, and technical achievement
+        Hackeři využili zranitelnost v platformě na ukládání souborů k těžení
+        Bitcoinu
       </p>
       <figure className="wp-block-image">
         <img src="/images/post-single/post-single-02.jpg" alt="Post Images" />
