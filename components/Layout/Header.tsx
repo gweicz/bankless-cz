@@ -3,28 +3,31 @@ import Link from 'next/link'
 import Megamenu from 'components/Megamenu/Megamenu'
 
 const Header = () => {
+  const _logo = () => (
+    <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12">
+      <div className="logo">
+        <Link href="/">
+          <a>
+            <img
+              className="dark-logo"
+              src="/images/logo/logo_black_final.png"
+              alt="Cryptohash logo"
+            />
+            <img
+              className="light-logo"
+              src="/images/logo/logo_white_final.png"
+              alt="Cryptohash logo"
+            />
+          </a>
+        </Link>
+      </div>
+    </div>
+  )
   return (
     <header className="header axil-header  header-light header-sticky ">
       <div className="header-wrap">
         <div className="row justify-content-between align-items-center">
-          <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12">
-            <div className="logo">
-              <Link href="/">
-                <a>
-                  <img
-                    className="dark-logo"
-                    src="/images/logo/logo_black_final.png"
-                    alt="Cryptohash logo"
-                  />
-                  <img
-                    className="light-logo"
-                    src="/images/logo/logo_white_final.png"
-                    alt="Cryptohash logo"
-                  />
-                </a>
-              </Link>
-            </div>
-          </div>
+          {_logo()}
 
           <div className="col-xl-6 d-none d-xl-block">
             <div className="mainmenu-wrapper">
@@ -35,11 +38,11 @@ const Header = () => {
                       <a>Novinky</a>
                     </Link>
                   </li>
-                  {/* <li>
+                  <li>
                     <a href="#">#Hashovky</a>
                   </li>
 
-                  <Megamenu menuTitle="Začátečníci" /> */}
+                  <Megamenu menuTitle="Začátečníci" />
 
                   {/* <li>
                     <a href="home-lifestyle-blog.html">Grafy</a>

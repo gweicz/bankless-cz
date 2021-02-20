@@ -2,7 +2,7 @@ import Head from 'next/head'
 import MainBanner from 'components/HomePage/MainBanner'
 import PostList from 'components/HomePage/PostList/PostList'
 import SideBar from 'components/Layout/SideBar'
-import { article1Data } from 'pages/novinky/article1'
+import { article2Data } from 'pages/novinky/article2'
 import { getPosts } from './api/posts'
 import styles from 'styles/Home.module.scss'
 // Fetch fresh posts
@@ -29,7 +29,7 @@ const Home = ({ posts }) => {
       </Head>
 
       <main className={styles.main}>
-        <MainBanner data={article1Data} />
+        <MainBanner data={article2Data} />
         <div className="container">
           <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
             <div className="row">
