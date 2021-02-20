@@ -9,7 +9,7 @@ type Props = {
   title: string
   author: {
     name: string
-    profileLink?: string
+    profileUrl?: string
     img?: {
       url: string
       alt?: string
@@ -20,9 +20,9 @@ type Props = {
 export default function Banner({ img, title, author, date }: Props) {
   const _authorName = () => (
     <>
-      {author.profileLink ? (
+      {author.profileUrl ? (
         <h6 className="post-author-name">
-          <Link href={author.profileLink}>
+          <Link href={author.profileUrl}>
             <a className="hover-flip-item-wrapper">
               <span className="hover-flip-item text-left">
                 <span data-text={author.name}>{author.name}</span>

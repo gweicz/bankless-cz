@@ -8,7 +8,7 @@ type Props = {
   name: string
   description: string
   job?: string
-  profileLink?: string
+  profileUrl?: string
 }
 
 export default function AboutAuthor({
@@ -16,7 +16,7 @@ export default function AboutAuthor({
   description,
   img,
   job,
-  profileLink,
+  profileUrl,
 }: Props) {
   const _socFollow = () => (
     <ul className="social-share-transparent size-md">
@@ -50,9 +50,9 @@ export default function AboutAuthor({
 
   const _name = () => (
     <>
-      {profileLink ? (
+      {profileUrl ? (
         <h5 className="title">
-          <Link href={profileLink}>
+          <Link href={profileUrl}>
             <a className="hover-flip-item-wrapper">
               <span className="hover-flip-item">
                 <span data-text={name}>{name}</span>
