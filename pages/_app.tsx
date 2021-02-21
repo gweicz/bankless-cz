@@ -8,6 +8,7 @@ import {
   faGlobe,
   faLink,
   faSearch,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faDiscord,
@@ -24,6 +25,7 @@ import Footer from 'components/Layout/Footer'
 import Header from 'components/Layout/Header'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { useContext } from 'react'
 
 library.add(
   faSearch,
@@ -37,15 +39,18 @@ library.add(
   faInstagram,
   faDiscord,
   faReddit,
+  faTimes,
 )
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SimpleReactLightbox>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
-      <BackToTop />
+      <div id="mobile-menu-show">
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+        <BackToTop />
+      </div>
     </SimpleReactLightbox>
   )
 }
