@@ -22,6 +22,7 @@ import { AppProps } from 'next/app'
 import BackToTop from 'components/Layout/BackToTop'
 import Footer from 'components/Layout/Footer'
 import Header from 'components/Layout/Header'
+import SimpleReactLightbox from 'simple-react-lightbox'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 library.add(
@@ -40,12 +41,12 @@ library.add(
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <SimpleReactLightbox>
       <Header />
       <Component {...pageProps} />
       <Footer />
       <BackToTop />
-    </>
+    </SimpleReactLightbox>
   )
 }
 

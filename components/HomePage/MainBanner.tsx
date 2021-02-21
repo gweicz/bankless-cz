@@ -118,9 +118,9 @@ l178.494 178.494h-375.887c-6.62695 0 -12 5.37305 -12 12v10c0 6.62695 5.37305 12 
           <div className="row">
             <div className="col-lg-12">
               <div className="slider-activation axil-slick-arrow">
-                <div className="content-block">
+                <div className={`content-block ${style.disableHover}`}>
                   {_sliderBtns()}
-                  <div className="post-thumbnail">
+                  <div className={`post-thumbnail ${style.thumbnailHover}`}>
                     <Link href={detailUrl}>
                       <a>
                         <img src={frontImg.url} alt={frontImg.alt} />

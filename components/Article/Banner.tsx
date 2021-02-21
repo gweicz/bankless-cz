@@ -27,9 +27,9 @@ export default function Banner({ articleData }: { articleData: ArticleTypes }) {
 
   const _authorBox = () => (
     <div className="post-meta m-0">
-      {author?.img?.url && (
+      {author?.imgSmall?.url && (
         <div className="post-author-avatar border-rounded">
-          <img src={author.img.url} alt={author.name} />
+          <img src={author.imgSmall.url} alt={author.name} />
         </div>
       )}
       <div className={`{content ${styles.authorBox}`}>

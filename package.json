@@ -17,7 +17,8 @@
     "next": "10.0.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "sass": "^1.32.5"
+    "sass": "^1.32.5",
+    "simple-react-lightbox": "^3.6.3"
   },
   "devDependencies": {
     "@types/node": "^14.14.28",

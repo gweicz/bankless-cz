@@ -2,6 +2,7 @@ import AboutAuthor from './AboutAuthor'
 import { ArticleTypes } from 'components/Types/ArticleTypes'
 import Banner from './Banner'
 import MoreStories from './MoreStories'
+import { SRLWrapper } from 'simple-react-lightbox'
 import SideBar from 'components/Layout/SideBar'
 import SocShare from 'components/SocShare'
 import SocialShareBlock from './SocialShareBlock'
@@ -17,7 +18,12 @@ export default function Article({
   articleData: ArticleTypes
   children: any
 }) {
-  const { frontImg, author, date, title, detailUrl } = articleData || {}
+  const lastArticles = [article1Data, article2Data, article3Data, article4Data]
+  const { author, detailUrl } = articleData || {}
+  const moreStoriesData = lastArticles.filter(
+    (item) => item.detailUrl !== detailUrl,
+  )
+  console.log('moreStoriesData: ', moreStoriesData)
   return (
     <div className="main-wrapper">
       <Banner articleData={articleData} />
@@ -26,7 +32,7 @@ export default function Article({
           <div className="row">
             <div className="col-lg-8">
               <div className="axil-post-details">
-                {children}
+                <SRLWrapper>{children}</SRLWrapper>
                 {/* <SocialShareBlock /> */}
                 <div className="social-share-block justify-content-end">
                   <SocShare urlToShare={detailUrl} isRoundedIcons />
@@ -46,9 +52,7 @@ export default function Article({
           </div>
         </div>
       </div>
-      <MoreStories
-        articles={[article1Data, article2Data, article3Data, article4Data]}
-      />
+      <MoreStories articles={moreStoriesData} />
     </div>
   )
 }
