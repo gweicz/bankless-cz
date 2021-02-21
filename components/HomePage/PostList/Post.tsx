@@ -153,9 +153,7 @@ export default function Post({ data }: PostTypes) {
             <a>{title}</a>
           </Link>
         </h4>
-        <div className="post-meta-wrapper">
-          {/* {_socShare()} */}
-
+        <div className="post-meta-wrapper d-flex">
           <SocShare urlToShare={detailUrl} />
           <div className="post-meta">
             <div className="content">

@@ -1,48 +1,61 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import SocInvite from 'components/SocInvite'
 
 const SideBar = () => {
-  const _hashovky = () => (
-    <div className="axil-single-widget widget widget_postlist mb--30">
-      <h4 className="widget-title">#Hashovky</h4>
-      <div className="post-medium-block">
-        <div className="content-block post-medium mb--20">
-          <div className="post-content hash-news">
-            <p className="hash-content">
-              Metamask: "Pokud máte problém s odesíláním transakcí v naší
-              mobilní aplikaci, zkuste se přepnout na jinou síť a po té zase
-              zpět".
-              <a href="https://twitter.com/metamask_io/status/1353118291959529472?s=20">
-                Zdroj
-              </a>
-            </p>
-            <div className="post-meta hash-meta">
-              <ul className="post-meta-list">
-                <li>10:07</li>
-                <li>Led 24, 2021</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="content-block post-medium mb--20">
-          <div className="post-content hash-news">
-            <p className="hash-content">
-              Podle Coingecko tržní kapitalizace DeFi narostla mezi roky 2020 a
-              2021 o 41 miliard dolarů.
-              <a href="https://twitter.com/coingecko/status/1353206035763392512?s=20">
-                Více info
-              </a>
-            </p>
-            <div className="post-meta hash-meta">
-              <ul className="post-meta-list">
-                <li>10:07</li>
-                <li>Led 24, 2021</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+  const _instagram = () => (
+    <div className="axil-single-widget widget widget_instagram mb--30">
+      <h5 className="widget-title">Instagram</h5>
+      <ul className="instagram-post-list-wrapper">
+        <li className="instagram-post-list">
+          <a href="#">
+            <img
+              src="/images/small-images/instagram-01.jpg"
+              alt="Instagram Images"
+            />
+          </a>
+        </li>
+        <li className="instagram-post-list">
+          <a href="#">
+            <img
+              src="/images/small-images/instagram-02.jpg"
+              alt="Instagram Images"
+            />
+          </a>
+        </li>
+        <li className="instagram-post-list">
+          <a href="#">
+            <img
+              src="/images/small-images/instagram-03.jpg"
+              alt="Instagram Images"
+            />
+          </a>
+        </li>
+        <li className="instagram-post-list">
+          <a href="#">
+            <img
+              src="/images/small-images/instagram-04.jpg"
+              alt="Instagram Images"
+            />
+          </a>
+        </li>
+        <li className="instagram-post-list">
+          <a href="#">
+            <img
+              src="/images/small-images/instagram-05.jpg"
+              alt="Instagram Images"
+            />
+          </a>
+        </li>
+        <li className="instagram-post-list">
+          <a href="#">
+            <img
+              src="/images/small-images/instagram-06.jpg"
+              alt="Instagram Images"
+            />
+          </a>
+        </li>
+      </ul>
     </div>
   )
 
@@ -132,63 +145,51 @@ const SideBar = () => {
     </div>
   )
 
-  const _instagram = () => (
-    <div className="axil-single-widget widget widget_instagram mb--30">
-      <h5 className="widget-title">Instagram</h5>
-      <ul className="instagram-post-list-wrapper">
-        <li className="instagram-post-list">
-          <a href="#">
-            <img
-              src="/images/small-images/instagram-01.jpg"
-              alt="Instagram Images"
-            />
-          </a>
-        </li>
-        <li className="instagram-post-list">
-          <a href="#">
-            <img
-              src="/images/small-images/instagram-02.jpg"
-              alt="Instagram Images"
-            />
-          </a>
-        </li>
-        <li className="instagram-post-list">
-          <a href="#">
-            <img
-              src="/images/small-images/instagram-03.jpg"
-              alt="Instagram Images"
-            />
-          </a>
-        </li>
-        <li className="instagram-post-list">
-          <a href="#">
-            <img
-              src="/images/small-images/instagram-04.jpg"
-              alt="Instagram Images"
-            />
-          </a>
-        </li>
-        <li className="instagram-post-list">
-          <a href="#">
-            <img
-              src="/images/small-images/instagram-05.jpg"
-              alt="Instagram Images"
-            />
-          </a>
-        </li>
-        <li className="instagram-post-list">
-          <a href="#">
-            <img
-              src="/images/small-images/instagram-06.jpg"
-              alt="Instagram Images"
-            />
-          </a>
-        </li>
-      </ul>
+  const _hashovky = () => (
+    <div className="axil-single-widget widget widget_postlist mb--30">
+      <h4 className="widget-title">#Hashovky</h4>
+      <div className="post-medium-block">
+        <div className="content-block post-medium mb--20">
+          <div className="post-content hash-news">
+            <p className="hash-content">
+              Metamask: "Pokud máte problém s odesíláním transakcí v naší
+              mobilní aplikaci, zkuste se přepnout na jinou síť a po té zase
+              zpět".
+              <a href="https://twitter.com/metamask_io/status/1353118291959529472?s=20">
+                Zdroj
+              </a>
+            </p>
+            <div className="post-meta hash-meta">
+              <ul className="post-meta-list">
+                <li>10:07</li>
+                <li>Led 24, 2021</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="content-block post-medium mb--20">
+          <div className="post-content hash-news">
+            <p className="hash-content">
+              Podle Coingecko tržní kapitalizace DeFi narostla mezi roky 2020 a
+              2021 o 41 miliard dolarů.
+              <a href="https://twitter.com/coingecko/status/1353206035763392512?s=20">
+                Více info
+              </a>
+            </p>
+            <div className="post-meta hash-meta">
+              <ul className="post-meta-list">
+                <li>10:07</li>
+                <li>Led 24, 2021</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 
-  const _followAs = () => (
+  const _socFollow = () => (
     <div className="axil-single-widget widget widget_social mb--30">
       <h5 className="widget-title">Sledujte nás</h5>
       <SocInvite />
@@ -202,7 +203,7 @@ const SideBar = () => {
 
         {_hashovky()}
 
-        {_followAs()}
+        {_socFollow()}
 
         {_instagram()}
       </div>

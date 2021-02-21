@@ -1,10 +1,16 @@
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import SocShare from 'components/SocShare'
+import style from './MainBanner.module.scss'
+import { useState } from 'react'
 
 const MainBanner = ({ data }: { data?: any }) => {
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0)
+
   const { frontImg, detailUrl, category, author, date, title, readTime } =
-    data || {}
+    data[activeSlideIndex] || {}
 
   const _authorName = () => (
     <>
@@ -27,7 +33,7 @@ const MainBanner = ({ data }: { data?: any }) => {
   )
 
   const _readBtn = () => (
-    <div className="read-more-button cerchio">
+    <div className={`read-more-button cerchio ${style.readPostBtn}`}>
       <Link href={detailUrl}>
         <a className="axil-button button-rounded hover-flip-item-wrapper">
           <span className="hover-flip-item">
@@ -54,6 +60,58 @@ const MainBanner = ({ data }: { data?: any }) => {
     </div>
   )
 
+  const changeSlide = ({ isNext }) => {
+    console.log('data.length: ', data.length)
+    if (isNext) {
+      setActiveSlideIndex(
+        activeSlideIndex === data.length - 1 ? 0 : activeSlideIndex + 1,
+      )
+    } else {
+      setActiveSlideIndex(
+        activeSlideIndex === 0 ? data.length - 1 : activeSlideIndex - 1,
+      )
+    }
+  }
+
+  const _leftArrowSvg = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-220 -30 900 520">
+      <g fill="#878787" stroke="#878787">
+        <path
+          d="M231.536 -27.5352c-4.68652 -4.68652 -12.2842 -4.68652 -16.9697 -0.000976562l-211.052 211.05c-4.68555 4.6875 -4.68555 12.2852 0 16.9717l211.052 211.05c4.68555 4.68555 12.2832 4.68555 16.9697 0l7.07129 -7.07031
+c4.68555 -4.68652 4.68555 -12.2852 0 -16.9707l-178.494 -178.494h375.887c6.62695 0 12 -5.37305 12 -12v-10c0 -6.62695 -5.37305 -12 -12 -12h-375.887l178.494 -178.494c4.68555 -4.68652 4.68555 -12.2852 0 -16.9707z"
+        />
+      </g>
+    </svg>
+  )
+
+  const _rightArrowSvg = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-220 -30 900 520">
+      <g fill="#878787" stroke="#878787">
+        <path
+          d="M216.464 411.535c4.68652 4.68652 12.2842 4.68652 16.9697 0l211.052 -211.049c4.68555 -4.6875 4.68555 -12.2852 0 -16.9717l-211.052 -211.05c-4.68555 -4.68555 -12.2832 -4.68555 -16.9697 0l-7.07129 7.07031c-4.68555 4.68652 -4.68555 12.2852 0 16.9707
+l178.494 178.494h-375.887c-6.62695 0 -12 5.37305 -12 12v10c0 6.62695 5.37305 12 12 12h375.887l-178.494 178.494c-4.68555 4.68652 -4.68555 12.2852 0 16.9707z"
+        />
+      </g>
+    </svg>
+  )
+
+  const _sliderBtns = () => (
+    <>
+      <button
+        onClick={() => changeSlide({ isNext: false })}
+        className="slide-arrow prev-arrow slick-arrow"
+      >
+        {_leftArrowSvg()}
+      </button>
+      <button
+        onClick={() => changeSlide({ isNext: true })}
+        className="slide-arrow next-arrow slick-arrow"
+      >
+        {_rightArrowSvg()}
+      </button>
+    </>
+  )
+
   return (
     <div className="slider-area bg-color-grey">
       <div className="axil-slide slider-style-1">
@@ -62,6 +120,7 @@ const MainBanner = ({ data }: { data?: any }) => {
             <div className="col-lg-12">
               <div className="slider-activation axil-slick-arrow">
                 <div className="content-block">
+                  {_sliderBtns()}
                   <div className="post-thumbnail">
                     <Link href={detailUrl}>
                       <a>
