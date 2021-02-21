@@ -60,8 +60,7 @@ const MainBanner = ({ data }: { data?: any }) => {
     </div>
   )
 
-  const changeSlide = ({ isNext }) => {
-    console.log('data.length: ', data.length)
+  const changeSlide = ({ isNext }: { isNext: boolean }) => {
     if (isNext) {
       setActiveSlideIndex(
         activeSlideIndex === data.length - 1 ? 0 : activeSlideIndex + 1,

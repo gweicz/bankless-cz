@@ -30,7 +30,7 @@ export const article3Data = {
 
 export default function Article3() {
   return (
-    <Article data={article3Data}>
+    <Article articleData={article3Data}>
       <p className="has-medium-font-size">
         Tržní kapitalizace DeFi se vyšplahala až na 45 milionů dolarů
       </p>

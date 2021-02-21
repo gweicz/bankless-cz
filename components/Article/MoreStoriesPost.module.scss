@@ -1,0 +1,28 @@
+.img {
+  object-fit: cover;
+  height: 170px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .img {
+    height: 140px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .img {
+    height: 220px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .img {
+    height: 160px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .img {
+    height: calc((100vw - 30px) / 1.5);
+  }
+}

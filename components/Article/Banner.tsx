@@ -1,25 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ArticleTypes } from 'components/Types/ArticleTypes'
 import Link from 'next/link'
 import SocShare from 'components/SocShare'
 import styles from './Banner.module.scss'
-type Props = {
-  detailUrl: string
-  img: {
-    url: string
-    alt: string
-  }
-  title: string
-  author: {
-    name: string
-    profileUrl?: string
-    img?: {
-      url: string
-      alt?: string
-    }
-  }
-  date: string
-}
-export default function Banner({ img, title, author, date, detailUrl }: Props) {
+
+export default function Banner({ articleData }: { articleData: ArticleTypes }) {
+  const { frontImg, title, author, date, detailUrl } = articleData || {}
   const _authorName = () => (
     <>
       {author.profileUrl ? (
@@ -42,7 +27,7 @@ export default function Banner({ img, title, author, date, detailUrl }: Props) {
 
   const _authorBox = () => (
     <div className="post-meta m-0">
-      {author.img.url && (
+      {author?.img?.url && (
         <div className="post-author-avatar border-rounded">
           <img src={author.img.url} alt={author.name} />
         </div>
@@ -76,7 +61,7 @@ export default function Banner({ img, title, author, date, detailUrl }: Props) {
             {/* <!-- Start Single Slide  --> */}
             <div className="content-block">
               <div className="post-thumbnail">
-                <img className="w-100" src={img.url} alt={img.alt} />
+                <img className="w-100" src={frontImg.url} alt={frontImg.alt} />
               </div>
 
               <div className="post-content">

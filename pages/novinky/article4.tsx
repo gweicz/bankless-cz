@@ -30,7 +30,7 @@ export const article4Data = {
 
 export default function Article4() {
   return (
-    <Article data={article4Data}>
+    <Article articleData={article4Data}>
       <p className="has-medium-font-size">
         Hackeři využili zranitelnost v platformě na ukládání souborů k těžení
         Bitcoinu

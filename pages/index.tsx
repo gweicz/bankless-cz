@@ -8,7 +8,7 @@ import { article3Data } from 'pages/novinky/article3'
 import { getPosts } from './api/posts'
 import styles from 'styles/Home.module.scss'
 // Fetch fresh posts
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async ({ params }: { params: any }) => {
   const posts = await getPosts()
 
   if (!posts) {
@@ -22,7 +22,7 @@ export const getStaticProps = async ({ params }) => {
   }
 }
 
-const Home = ({ posts }) => {
+const Home = ({ posts }: { posts: any }) => {
   return (
     <div className={styles.container}>
       <Head>

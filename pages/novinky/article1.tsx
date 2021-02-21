@@ -30,7 +30,7 @@ export const article1Data = {
 
 export default function Article1() {
   return (
-    <Article data={article1Data}>
+    <Article articleData={article1Data}>
       <p className="has-medium-font-size">
         Winners are recognized for outstanding app design, innovation,
         ingenuity, and technical achievement

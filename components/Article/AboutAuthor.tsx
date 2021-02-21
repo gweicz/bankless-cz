@@ -54,7 +54,7 @@ export default function AboutAuthor({
         <h5 className="title">
           <Link href={profileUrl}>
             <a className="hover-flip-item-wrapper">
-              <span className="hover-flip-item">
+              <span className="hover-flip-item text-left">
                 <span data-text={name}>{name}</span>
               </span>
             </a>
@@ -68,16 +68,28 @@ export default function AboutAuthor({
     </>
   )
 
+  const _profileImg = () =>
+    img?.url && (
+      <div className="thumbnail">
+        {profileUrl ? (
+          <Link href={profileUrl}>
+            <a href="#">
+              <img src={img?.url} alt={img?.alt} />
+            </a>
+          </Link>
+        ) : (
+          <a>
+            <img src={img.url} alt={img.alt} />
+          </a>
+        )}
+      </div>
+    )
+
   return (
     <div className="about-author">
       <div className="media">
-        {img?.url && (
-          <div className="thumbnail">
-            <a href="#">
-              <img src={img.url} alt={img.alt} />
-            </a>
-          </div>
-        )}
+        {_profileImg()}
+
         <div className="media-body">
           <div className="author-info">
             {_name()}

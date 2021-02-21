@@ -29,7 +29,7 @@ export const article2Data = {
 
 export default function Article2() {
   return (
-    <Article data={article2Data}>
+    <Article articleData={article2Data}>
       <p className="has-medium-font-size">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </p>
