@@ -1,8 +1,15 @@
+import { MouseEvent, useEffect, useState } from 'react'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import SocInvite from 'components/SocInvite'
+import useCopyToClipboard from 'components/helpers/useCopyToClipboard'
 
 const Footer = () => {
+  const redactionEmailAdsress = 'redakce@cryptohash.cz'
+
+  const { copyLink, isCopiedTooltip } = useCopyToClipboard()
+
   return (
     <div className="axil-footer-area axil-footer-style-1 footer-variation-2">
       <div className="container">
@@ -22,12 +29,12 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* <div className="col-lg-8 col-md-8">
+            <div className="col-lg-8 col-md-8">
               <div className="d-flex justify-content-start mt_sm--15 justify-content-md-end align-items-center flex-wrap">
                 <h5 className="follow-title mb--0 mr--20">Sledujte nás</h5>
                 <SocInvite />
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
@@ -39,13 +46,16 @@ const Footer = () => {
               <div className="copyright-left">
                 <ul className="mainmenu justify-content-start">
                   <li>
-                    {/* <a className="hover-flip-item-wrapper" href="#">
-                      <span className="hover-flip-item">
-                        <span data-text="redakce@cryptohash.cz">
-                          redakce@cryptohash.cz
-                        </span>
-                      </span>
-                    </a> */}
+                    <a
+                      href="#"
+                      className="hover-text-black cursor-copy"
+                      onClick={(event) =>
+                        copyLink({ event, textToCopy: redactionEmailAdsress })
+                      }
+                    >
+                      {isCopiedTooltip()}
+                      {redactionEmailAdsress}
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -65,3 +75,12 @@ const Footer = () => {
 }
 
 export default Footer
+
+//// origin from template
+// <a className="hover-flip-item-wrapper" href="#">
+//   <span className="hover-flip-item">
+//     <span data-text="redakce@cryptohash.cz">
+//       redakce@cryptohash.cz
+//     </span>
+//     </span>
+//     </a>

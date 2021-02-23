@@ -4,6 +4,10 @@
   border-radius: 6px;
 }
 
+.frontImg {
+  filter: brightness(0.5);
+}
+
 .title {
   text-shadow: 0 0 3px #000000, 0 0 5px #000000, 0 0 10px #000000;
 }

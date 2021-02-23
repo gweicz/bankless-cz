@@ -2,6 +2,7 @@ import { MouseEvent, useEffect, useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './SocShare.module.scss'
+import useCopyToClipboard from './helpers/useCopyToClipboard'
 
 export default function SocShare({
   urlToShare,
@@ -12,24 +13,10 @@ export default function SocShare({
 }) {
   const defaultText = 'Cryptohash | Ethereum, Bitcoin a jiné krypto'
 
-  const baseUrl = 'https://cryptohash.vercel.app/'
-  const [isCopied, setIsCopied] = useState(false)
+  const baseUrl = 'https://cryptohash.vercel.app'
+  const urlForClipboard = `${baseUrl}${urlToShare}`
 
-  const copyLink = (
-    event: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>,
-  ) => {
-    event.preventDefault()
-    setIsCopied(true)
-    navigator.clipboard.writeText(`${baseUrl}${urlToShare}`)
-  }
-
-  useEffect(() => {
-    if (isCopied) {
-      setTimeout(function () {
-        setIsCopied(false)
-      }, 3000)
-    }
-  }, [isCopied])
+  const { copyLink, isCopiedTooltip } = useCopyToClipboard()
 
   return (
     <ul
@@ -60,8 +47,11 @@ export default function SocShare({
         </a>
       </li>
       <li className={styles.copyLink}>
-        <a href="#" onClick={copyLink}>
-          {isCopied && <div className={styles.copied}>Zkopírováno</div>}
+        <a
+          href="#"
+          onClick={(event) => copyLink({ event, textToCopy: urlForClipboard })}
+        >
+          {isCopiedTooltip()}
           <FontAwesomeIcon icon="link" />
         </a>
       </li>

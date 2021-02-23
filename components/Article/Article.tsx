@@ -32,9 +32,11 @@ export default function Article({
           <div className="row">
             <div className="col-lg-8">
               <div className="axil-post-details">
-                <SRLWrapper>{children}</SRLWrapper>
+                <SRLWrapper>
+                  <div className="article-content">{children}</div>
+                </SRLWrapper>
                 {/* <SocialShareBlock /> */}
-                <div className="social-share-block justify-content-end">
+                <div className="social-share-block justify-content-end m-t-5">
                   <SocShare urlToShare={detailUrl} isRoundedIcons />
                 </div>
                 <AboutAuthor

@@ -121,26 +121,44 @@ const Header = (props: any) => {
     <div className="col-xl-12 d-none d-xl-block">
       <div className="mainmenu-wrapper">
         <nav className="mainmenu-nav">
-          <ul className="mainmenu" style={{ marginBottom: '10px' }}>
+          <ul className="mainmenu" style={{ margin: '5px 0 -20px 0' }}>
             <img
               src="/images/icons/bitcoin.webp"
-              style={{ maxWidth: '30px', maxHeight: '30px' }}
+              style={{ maxWidth: '25px', maxHeight: '25px' }}
             />
-            <li style={{ color: '#878787', fontSize: '20px' }}>
+            <li
+              style={{
+                color: '#878787',
+                fontSize: '16px',
+                margin: '0px 12px 5px 6px',
+              }}
+            >
               ${props.btc_price}
             </li>
             <img
               src="/images/icons/ethereum.webp"
-              style={{ maxWidth: '30px', maxHeight: '30px' }}
+              style={{ maxWidth: '25px', maxHeight: '25px' }}
             />
-            <li style={{ color: '#878787', fontSize: '20px' }}>
+            <li
+              style={{
+                color: '#878787',
+                fontSize: '16px',
+                margin: '0px 10px 5px 0',
+              }}
+            >
               ${props.eth_price}
             </li>
             <img
               src="/images/icons/polkadot.webp"
-              style={{ maxWidth: '30px', maxHeight: '30px' }}
+              style={{ maxWidth: '25px', maxHeight: '25px' }}
             />
-            <li style={{ color: '#878787', fontSize: '20px' }}>
+            <li
+              style={{
+                color: '#878787',
+                fontSize: '16px',
+                margin: '0px 10px 5px 0',
+              }}
+            >
               ${props.dot_price}
             </li>
           </ul>
@@ -182,7 +200,10 @@ const Header = (props: any) => {
           <div className="row justify-content-between align-items-center">
             {_logo()}
 
-            <div className="col-xl-6 d-none d-xl-block">{_mainMenu()}</div>
+            <div className="col-xl-6 d-none d-xl-block">
+              {_cryptoPrices()}
+              {_mainMenu()}
+            </div>
 
             <div className="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
               <div className="header-search text-right d-flex align-items-center">
@@ -190,8 +211,6 @@ const Header = (props: any) => {
                 {_hamburgerMenu()}
               </div>
             </div>
-
-            {_cryptoPrices()}
           </div>
         </div>
       </header>

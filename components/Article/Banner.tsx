@@ -32,7 +32,7 @@ export default function Banner({ articleData }: { articleData: ArticleTypes }) {
           <img src={author.imgSmall.url} alt={author.name} />
         </div>
       )}
-      <div className={`{content ${styles.authorBox}`}>
+      <div className="content">
         {_authorName()}
         <ul className="post-meta-list">
           <li>{date}</li>
@@ -60,7 +60,7 @@ export default function Banner({ articleData }: { articleData: ArticleTypes }) {
           <div className="col-lg-12">
             {/* <!-- Start Single Slide  --> */}
             <div className="content-block">
-              <div className="post-thumbnail">
+              <div className={`post-thumbnail ${styles.frontImg}`}>
                 <img className="w-100" src={frontImg.url} alt={frontImg.alt} />
               </div>
 
