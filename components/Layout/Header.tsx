@@ -124,13 +124,17 @@ const Header = (props: any) => {
           <ul className="mainmenu" style={{ margin: '5px 0 -20px 0' }}>
             <img
               src="/images/icons/bitcoin.webp"
-              style={{ maxWidth: '25px', maxHeight: '25px' }}
+              style={{
+                maxWidth: '25px',
+                maxHeight: '25px',
+                marginLeft: '10px',
+              }}
             />
             <li
               style={{
                 color: '#878787',
                 fontSize: '16px',
-                margin: '0px 12px 5px 6px',
+                margin: '0px 20px 5px 5px',
               }}
             >
               ${props.btc_price}
@@ -143,7 +147,7 @@ const Header = (props: any) => {
               style={{
                 color: '#878787',
                 fontSize: '16px',
-                margin: '0px 10px 5px 0',
+                margin: '0px 17px 5px 0px',
               }}
             >
               ${props.eth_price}
@@ -156,7 +160,7 @@ const Header = (props: any) => {
               style={{
                 color: '#878787',
                 fontSize: '16px',
-                margin: '0px 10px 5px 0',
+                margin: '0px 10px 5px -3px',
               }}
             >
               ${props.dot_price}
