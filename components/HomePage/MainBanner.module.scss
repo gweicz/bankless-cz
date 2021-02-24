@@ -1,0 +1,22 @@
+@media only screen and (max-width: 767px) {
+  .readPostBtn {
+    display: flex !important;
+    justify-content: flex-end !important;
+  }
+}
+
+.disableHover:hover {
+  -webkit-transform: scale(1) !important;
+  -moz-transform: scale(1) !important;
+  transform: scale(1) !important;
+}
+
+.thumbnailHover:hover {
+  -webkit-transform: scale(1.01);
+  -moz-transform: scale(1.01);
+  transform: scale(1.01);
+}
+
+.thumbnailHover {
+  transition: all 0.25s ease-in-out;
+}

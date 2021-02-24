@@ -139,3 +139,9 @@ Slick Style
 .slick-initialized .slick-slide {
     outline: none;
 }
+
+@media screen and (max-width: 575px){
+    .slider-style-1 .slider-activation {
+        margin-top: 13rem;
+    }
+}
