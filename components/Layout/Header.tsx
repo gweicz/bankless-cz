@@ -59,9 +59,6 @@ const Header = (props: any) => {
           </div>
           <div className="mobile-close" onClick={closeMobileMenu}>
             <FontAwesomeIcon icon="times" />
-            {/* <div className="icon">
-            <i className="fal fa-times"></i>
-          </div> */}
           </div>
         </div>
         <ul className="mainmenu list-unstyled">
@@ -81,8 +78,6 @@ const Header = (props: any) => {
               <a>Začátečníci</a>
             </li>
           </Link>
-
-          {/* <Megamenu menuTitle="Začátečníci" /> */}
         </ul>
       </div>
       <div className={style.closeMobileMenu} onClick={closeMobileMenu} />
@@ -102,69 +97,38 @@ const Header = (props: any) => {
     </div>
   )
 
-  const _search = () => (
-    <form className="header-search-form">
-      {/* <div className="axil-search form-group">
-                  <button type="submit" className="search-button">
-                    <FontAwesomeIcon icon="search" />
-                  </button>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Hledat"
-                  />
-                </div> */}
-    </form>
-  )
-
   const _cryptoPrices = () => (
-    <div className="col-xl-12 d-none d-xl-block">
+    <div className="col-xl-12 d-none d-xl-block crypto-prices">
       <div className="mainmenu-wrapper">
         <nav className="mainmenu-nav">
-          <ul className="mainmenu" style={{ margin: '5px 0 -20px 0' }}>
-            <img
-              src="/images/icons/bitcoin.webp"
-              style={{
-                maxWidth: '25px',
-                maxHeight: '25px',
-                marginLeft: '10px',
-              }}
-            />
-            <li
-              style={{
-                color: '#878787',
-                fontSize: '16px',
-                margin: '0px 20px 5px 5px',
-              }}
-            >
-              ${props.btc_price}
-            </li>
-            <img
-              src="/images/icons/ethereum.webp"
-              style={{ maxWidth: '25px', maxHeight: '25px' }}
-            />
-            <li
-              style={{
-                color: '#878787',
-                fontSize: '16px',
-                margin: '0px 17px 5px 0px',
-              }}
-            >
-              ${props.eth_price}
-            </li>
-            <img
-              src="/images/icons/polkadot.webp"
-              style={{ maxWidth: '25px', maxHeight: '25px' }}
-            />
-            <li
-              style={{
-                color: '#878787',
-                fontSize: '16px',
-                margin: '0px 10px 5px -3px',
-              }}
-            >
-              ${props.dot_price}
-            </li>
+          <ul className="mainmenu">
+            <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp"/>
+            <li>${props.btc_price}</li>
+
+            <img id="ethereum-price-logo" src="/images/icons/ethereum.webp"/>
+            <li>${props.eth_price}</li>
+
+            <img id="polkadot-price-logo" src="/images/icons/polkadot.webp"/>
+            <li>${props.dot_price}</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  )
+
+  const _mobileCryptoPrices = () => (
+    <div className="mobile-crypto-prices">
+      <div className="mainmenu-wrapper">
+        <nav className="mainmenu-nav">
+          <ul className="mainmenu">
+            <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp"/>
+            <li>${props.btc_price}</li>
+
+            <img id="ethereum-price-logo" src="/images/icons/ethereum.webp"/>
+            <li>${props.eth_price}</li>
+
+            <img id="polkadot-price-logo" src="/images/icons/polkadot.webp"/>
+            <li>${props.dot_price}</li>
           </ul>
         </nav>
       </div>
@@ -185,13 +149,6 @@ const Header = (props: any) => {
           </li>
 
           <Megamenu menuTitle="Začátečníci" />
-
-          {/* <li>
-            <a href="home-lifestyle-blog.html">Grafy</a>
-          </li>
-          <li>
-            <a href="home-tech-blog.html">Podcast</a>
-          </li> */}
         </ul>
       </nav>
     </div>
@@ -205,16 +162,18 @@ const Header = (props: any) => {
             {_logo()}
 
             <div className="col-xl-6 d-none d-xl-block">
-              {_cryptoPrices()}
               {_mainMenu()}
             </div>
 
             <div className="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
-              <div className="header-search text-right d-flex align-items-center">
-                {_search()}
+              <div className="header-search text-right d-flex align-items-center justify-content-end">
+                {_mobileCryptoPrices()}
                 {_hamburgerMenu()}
               </div>
             </div>
+          </div>
+          <div className="row justify-content-center align-items-center">
+            {_cryptoPrices()}
           </div>
         </div>
       </header>
