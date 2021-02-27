@@ -1,13 +1,6 @@
 import { GhostContentAPIOptions, Params } from 'tryghost__content-api'
 
-import GhostContentAPI from '@tryghost/content-api'
-
-// Create API instance with site credentials
-const api = new GhostContentAPI({
-  url: process.env.GHOST_URL || '',
-  key: process.env.GHOST_CONTENT_API_KEY || '',
-  version: process.env.GHOST_API_VERSION as GhostContentAPIOptions['version'],
-})
+import { api } from './init'
 
 export const getPosts = async ({
   include,
@@ -34,14 +27,10 @@ export const getPosts = async ({
 }
 
 export async function getSinglePost(postSlug: string) {
-  return await api.posts
-    .read(
-      {
-        slug: postSlug,
-      },
-      { include: 'count.posts' },
-    )
-    .catch((err) => {
-      console.error(err)
-    })
+  return await api.posts.read(
+    {
+      slug: postSlug,
+    },
+    { include: 'count.posts' },
+  )
 }
