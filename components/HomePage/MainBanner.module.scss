@@ -20,3 +20,28 @@
 .thumbnailHover {
   transition: all 0.25s ease-in-out;
 }
+
+.frontImg {
+  max-height: 630px;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 1199px) {
+  .frontImg {
+    max-height: 500px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .frontImg {
+    height: 430px;
+    object-fit: cover;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .frontImg {
+    height: 350px;
+    object-fit: cover;
+  }
+}
