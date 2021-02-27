@@ -10,16 +10,13 @@ import SideBar from 'components/Layout/SideBar'
 import { getPosts } from './api/posts'
 import styles from 'styles/Home.module.scss'
 
-const PAGE_LIMIT = 5
+export const POSTS_ON_PAGE_LIMIT = 15
 
 // Fetch posts
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { query } = context
-  const page = Number(query?.page) || 1
-
+export const getStaticProps: GetStaticProps = async (context) => {
   const posts = await getPosts({
-    limit: PAGE_LIMIT,
-    page,
+    limit: POSTS_ON_PAGE_LIMIT,
+    page: 1,
     include: ['tags', 'authors'],
   })
 
@@ -30,40 +27,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: { posts }, // will be passed to the page component as props
+    props: { posts }, // will be passed to the this page component as props
   }
 }
 
-// export const getStaticProps = async (context: any) => {
-//   console.log('context: ', context)
-//   const posts = await getPosts({
-//     limit: 3,
-//     page: 1,
-//     include: ['tags', 'authors'],
-//   })
-
-//   if (!posts) {
-//     return {
-//       notFound: true,
-//     }
-//   }
-
-//   return {
-//     props: { posts },
-//   }
-// }
-
 const Home = ({ posts }: { posts?: PostOrPage[] }) => {
-  console.log('posts: ', posts)
-  const [postsState, setPostsState] = useState<PostOrPage[]>([])
-  const [nextPage, setNextPage] = useState(1)
-
-  useEffect(() => {
-    if (!posts) return
-    setPostsState([...postsState, ...posts])
-    setNextPage(nextPage + 1)
-  }, [posts])
-
   return (
     <div className={styles.container}>
       <Head>
@@ -71,15 +39,11 @@ const Home = ({ posts }: { posts?: PostOrPage[] }) => {
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <main className={styles.main}>
-        {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
+        {posts && <MainBanner data={posts?.slice(0, 3) || []} />}
         <div className="container">
           <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
             <div className="row">
-              <PostList
-                posts={postsState}
-                nextPage={nextPage}
-                isLastPage={posts?.length !== PAGE_LIMIT}
-              />
+              {posts && <PostList posts={posts.slice(3)} />}
               <SideBar />
             </div>
           </div>

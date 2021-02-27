@@ -12,7 +12,7 @@ export const formatGhostDataForArticlePost = (data: PostOrPage) => {
     reading_time,
   } = data || {}
 
-  const detailUrl = slug ? `posts/${slug}` : '/'
+  const detailUrl = slug ? `novinky/${slug}` : '/'
   const category = tags && tags[0].name
   const frontImg = {
     url: feature_image,
@@ -21,6 +21,10 @@ export const formatGhostDataForArticlePost = (data: PostOrPage) => {
   const author = {
     name: primary_author?.name,
     profileUrl: primary_author?.slug ? `authors/${primary_author?.slug}` : '/',
+    img: {
+      url: primary_author?.profile_image,
+    },
+    description: primary_author?.bio,
   }
   const readTime = `${reading_time} minut`
   const date = published_at && formatDate(published_at)

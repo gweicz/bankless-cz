@@ -31,6 +31,6 @@ export async function getSinglePost(postSlug: string) {
     {
       slug: postSlug,
     },
-    { include: 'count.posts' },
+    { include: ['count.posts', 'authors'] },
   )
 }
