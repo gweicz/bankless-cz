@@ -15,9 +15,7 @@ const PAGE_LIMIT = 5
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
-  console.log('query: ', query)
   const page = Number(query?.page) || 1
-  console.log('page: ', page)
 
   const posts = await getPosts({
     limit: PAGE_LIMIT,
@@ -56,6 +54,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 // }
 
 const Home = ({ posts }: { posts?: PostOrPage[] }) => {
+  console.log('posts: ', posts)
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [nextPage, setNextPage] = useState(1)
 
