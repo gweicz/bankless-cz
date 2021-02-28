@@ -1,17 +1,20 @@
+import { getPosts, getSinglePost } from 'pages/api/posts'
+
 import Article from 'components/Article/Article'
 import { GetServerSideProps } from 'next'
 import { PostOrPage } from '@tryghost/content-api'
-import { getSinglePost } from 'pages/api/posts'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
   let postId
 
-  if (Array.isArray(query?.postId)) {
-    postId = query?.postId[0]
+  if (Array.isArray(query?.id)) {
+    postId = query?.id[0]
   } else {
-    postId = query?.postId
+    postId = query?.id
   }
+
+  const moreStories = await getPosts({})
 
   if (!postId) {
     return {

@@ -23,15 +23,7 @@ export default function Article({
   const lastArticles = [article1Data, article2Data, article3Data, article4Data]
   // const { author, detailUrl } = articleData || {}
 
-  const {
-    detailUrl,
-    category,
-    frontImg,
-    author,
-    readTime,
-    date,
-    title,
-  } = formatGhostDataForArticlePost(articleData)
+  const { detailUrl, author } = formatGhostDataForArticlePost(articleData)
 
   const moreStoriesData = lastArticles.filter(
     (item) => item.detailUrl !== detailUrl,
