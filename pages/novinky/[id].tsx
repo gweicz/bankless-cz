@@ -6,12 +6,13 @@ import { PostOrPage } from '@tryghost/content-api'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
+  console.log('query: ', query)
   let postId
 
-  if (Array.isArray(query?.id)) {
-    postId = query?.id[0]
+  if (Array.isArray(query.id)) {
+    postId = query.id[0]
   } else {
-    postId = query?.id
+    postId = query.id
   }
 
   if (!postId) {

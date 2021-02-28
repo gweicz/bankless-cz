@@ -3,7 +3,6 @@ import { PostOrPage } from '@tryghost/content-api'
 import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
 
 export default function MoreStories({ articles }: { articles?: PostOrPage[] }) {
-  console.log('articles: ', articles)
   if (!articles) return null
 
   return (
