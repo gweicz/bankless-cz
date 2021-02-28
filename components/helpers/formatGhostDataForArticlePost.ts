@@ -37,6 +37,7 @@ export const formatGhostDataForArticlePost = (data: PostOrPage) => {
     readTime,
     date,
     title,
+    slug,
   }
 
   return formatedGhostData

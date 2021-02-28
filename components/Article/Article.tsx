@@ -15,9 +15,11 @@ import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDat
 
 export default function Article({
   articleData,
+  moreStories,
   children,
 }: {
   articleData: PostOrPage
+  moreStories?: PostOrPage[]
   children: any
 }) {
   const lastArticles = [article1Data, article2Data, article3Data, article4Data]
@@ -59,7 +61,7 @@ export default function Article({
           </div>
         </div>
       </div>
-      <MoreStories articles={moreStoriesData} />
+      <MoreStories articles={moreStories} />
     </div>
   )
 }

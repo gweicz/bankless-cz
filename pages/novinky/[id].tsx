@@ -27,18 +27,31 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
+  const moreStories = await getPosts({
+    limit: 4,
+    page: 1,
+    filter: `id:-${articlePost.id}`,
+    include: ['tags', 'authors'],
+  })
+
   return {
-    props: { articlePost }, // will be passed to the page component as props
+    props: { articlePost, moreStories: moreStories || null }, // will be passed to the page component as props
   }
 }
 
-export default function Novinka({ articlePost }: { articlePost?: PostOrPage }) {
+export default function Novinka({
+  articlePost,
+  moreStories,
+}: {
+  articlePost?: PostOrPage
+  moreStories?: PostOrPage[]
+}) {
   const articleData = articlePost
 
   if (!articleData) return null
 
   return (
-    <Article articleData={articleData}>
+    <Article articleData={articleData} moreStories={moreStories}>
       <h1>{articleData.title}</h1>
       {articleData.html && (
         <div

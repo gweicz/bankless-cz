@@ -1,11 +1,11 @@
-import { ArticleTypes } from 'components/Types/ArticleTypes'
 import MoreStoriesPost from './MoreStoriesPost'
+import { PostOrPage } from '@tryghost/content-api'
+import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
 
-export default function MoreStories({
-  articles,
-}: {
-  articles: ArticleTypes[]
-}) {
+export default function MoreStories({ articles }: { articles?: PostOrPage[] }) {
+  console.log('articles: ', articles)
+  if (!articles) return null
+
   return (
     <>
       <div className="axil-more-stories-area axil-section-gap bg-color-grey">
@@ -18,9 +18,13 @@ export default function MoreStories({
             </div>
           </div>
           <div className="row">
-            {articles.map((item) => (
-              <MoreStoriesPost articleData={item} key={item.detailUrl} />
-            ))}
+            {articles.map((articleData) => {
+              const { detailUrl } = formatGhostDataForArticlePost(articleData)
+
+              return (
+                <MoreStoriesPost articleData={articleData} key={detailUrl} />
+              )
+            })}
           </div>
         </div>
       </div>
