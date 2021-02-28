@@ -14,8 +14,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     postId = query?.id
   }
 
-  const moreStories = await getPosts({})
-
   if (!postId) {
     return {
       notFound: true,
