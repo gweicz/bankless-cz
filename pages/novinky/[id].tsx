@@ -1,32 +1,50 @@
-import { useEffect, useState } from 'react'
-
 import Article from 'components/Article/Article'
 import { GetServerSideProps } from 'next'
+import { PostOrPage } from '@tryghost/content-api'
 import { getSinglePost } from 'pages/api/posts'
-import { useRouter } from 'next/router'
 
-export default function Novinka() {
-  const [articleData, setArticleData] = useState<any>()
-  const router = useRouter()
-  const { id } = router.query
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { query } = context
+  let postId
 
-  useEffect(() => {
-    if (!id || Array.isArray(id)) return
-    ;(async function () {
-      const articlePost = await getSinglePost(id)
-      setArticleData(articlePost)
-    })()
-  }, [id])
+  if (Array.isArray(query?.postId)) {
+    postId = query?.postId[0]
+  } else {
+    postId = query?.postId
+  }
+
+  if (!postId) {
+    return {
+      notFound: true,
+    }
+  }
+  const articlePost = await getSinglePost(postId)
+
+  if (!articlePost) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: { articlePost }, // will be passed to the page component as props
+  }
+}
+
+export default function Novinka({ articlePost }: { articlePost?: PostOrPage }) {
+  const articleData = articlePost
 
   if (!articleData) return null
 
   return (
     <Article articleData={articleData}>
       <h1>{articleData.title}</h1>
-      <div
-        className="content"
-        dangerouslySetInnerHTML={{ __html: articleData.html }}
-      ></div>
+      {articleData.html && (
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{ __html: articleData.html }}
+        ></div>
+      )}
     </Article>
   )
 }

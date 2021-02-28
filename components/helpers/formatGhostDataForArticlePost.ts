@@ -12,7 +12,7 @@ export const formatGhostDataForArticlePost = (data: PostOrPage) => {
     reading_time,
   } = data || {}
 
-  const detailUrl = slug ? `novinky/${slug}` : '/'
+  const detailUrl = slug ? `novinky/${slug}?postId=${slug}` : '/'
   const category = tags && tags[0].name
   const frontImg = {
     url: feature_image,

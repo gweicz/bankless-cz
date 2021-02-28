@@ -1,6 +1,6 @@
-import { GetServerSideProps, GetStaticProps } from 'next'
 import { useEffect, useState } from 'react'
 
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import MainBanner from 'components/HomePage/MainBanner'
@@ -13,10 +13,14 @@ import styles from 'styles/Home.module.scss'
 export const POSTS_ON_PAGE_LIMIT = 15
 
 // Fetch posts
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { query } = context
+
+  const page = Number(query?.page) || 1
+
   const posts = await getPosts({
     limit: POSTS_ON_PAGE_LIMIT,
-    page: 1,
+    page,
     include: ['tags', 'authors'],
   })
 
@@ -27,11 +31,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   return {
-    props: { posts }, // will be passed to the this page component as props
+    props: { posts }, // will be passed to the page component as props
   }
 }
 
 const Home = ({ posts }: { posts?: PostOrPage[] }) => {
+  const [postsState, setPostsState] = useState<PostOrPage[]>([])
+  const [nextPage, setNextPage] = useState(1)
+
+  useEffect(() => {
+    if (!posts) return
+    setPostsState([...postsState, ...posts])
+    setNextPage(nextPage + 1)
+  }, [posts])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -39,11 +52,15 @@ const Home = ({ posts }: { posts?: PostOrPage[] }) => {
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <main className={styles.main}>
-        {posts && <MainBanner data={posts?.slice(0, 3) || []} />}
+        {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
         <div className="container">
           <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
             <div className="row">
-              {posts && <PostList posts={posts.slice(3)} />}
+              <PostList
+                posts={postsState}
+                nextPage={nextPage}
+                isLastPage={posts?.length !== POSTS_ON_PAGE_LIMIT}
+              />
               <SideBar />
             </div>
           </div>
