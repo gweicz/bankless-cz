@@ -22,6 +22,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: POSTS_ON_PAGE_LIMIT,
     page,
     include: ['tags', 'authors'],
+    filter: 'tag:-hashovka'
+  })
+
+  const hashovky = await getPosts({
+    limit: 5,
+    page,
+    include: ['tags'],
+    filter: 'tag:hashovka'
   })
 
   if (!posts) {
@@ -31,12 +39,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: { posts }, // will be passed to the page component as props
+    props: { posts, hashovky }, // will be passed to the page component as props
   }
 }
 
-const Home = ({ posts }: { posts?: PostOrPage[] }) => {
+const Home = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: PostOrPage[] }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
+  const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
+
   const [nextPage, setNextPage] = useState(1)
 
   useEffect(() => {
@@ -44,6 +54,12 @@ const Home = ({ posts }: { posts?: PostOrPage[] }) => {
     setPostsState([...postsState, ...posts])
     setNextPage(nextPage + 1)
   }, [posts])
+
+  useEffect(() => {
+    if (!hashovky) return
+    setHashovkyState([...hashovkyState, ...hashovky])
+    console.log(hashovky)
+  }, [hashovky])
 
   return (
     <div className={styles.container}>
@@ -61,7 +77,7 @@ const Home = ({ posts }: { posts?: PostOrPage[] }) => {
                 nextPage={nextPage}
                 isLastPage={posts?.length !== POSTS_ON_PAGE_LIMIT}
               />
-              <SideBar />
+              <SideBar hashovky={hashovkyState}/>
             </div>
           </div>
         </div>
