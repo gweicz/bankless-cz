@@ -22,6 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: POSTS_ON_PAGE_LIMIT,
     page,
     include: ['tags', 'authors'],
+    filter: 'tag:-hashovka'
   })
 
   if (!posts) {
@@ -42,6 +43,7 @@ const Home = ({ posts }: { posts?: PostOrPage[] }) => {
   useEffect(() => {
     if (!posts) return
     setPostsState([...postsState, ...posts])
+    console.log(posts)
     setNextPage(nextPage + 1)
   }, [posts])
 

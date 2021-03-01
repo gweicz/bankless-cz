@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const moreStories = await getPosts({
     limit: 4,
     page: 1,
-    filter: `id:-${articlePost.id}`,
+    filter: `id:-${articlePost.id}+tag:-hashovka`,
     include: ['tags', 'authors'],
   })
 

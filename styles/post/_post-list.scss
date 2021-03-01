@@ -9,7 +9,6 @@ Post List Style
 }
 
 .hash-post {
-  max-width: 480px;
   margin: 0 auto;
 
   p {
@@ -796,11 +795,14 @@ Post List Style
             font-size: 1.5rem;
             line-height: 1.5rem;
 
+            p {
+              font-size: 1.5rem;
+            }
+
             a {
               font-weight: 500;
               font-size: 1.5rem;
               text-decoration: underline;
-              margin-left: .5rem;
 
               &:hover {
                 text-decoration: line-through;

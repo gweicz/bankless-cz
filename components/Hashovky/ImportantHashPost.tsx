@@ -10,11 +10,11 @@ type HashInfo = {
   published_at: string
 }
 
-const HashPost = (hashInfo : HashInfo) => {
+const ImportantHashPost = (hashInfo : HashInfo) => {
   return (
-    <div className="content-block post-medium mb--20">
-      <div className="post-content hash-news">
-        <span className="hash-content" dangerouslySetInnerHTML={{__html: hashInfo.html}} />
+    <div className="content-block post-list-view axil-control is-active mt--30 hash-post">
+      <div className="post-content">
+        <span dangerouslySetInnerHTML={{__html: hashInfo.html}} />
         <div className="post-meta-wrapper d-flex">
           <div className="post-meta">
             <div className="content">
@@ -30,4 +30,4 @@ const HashPost = (hashInfo : HashInfo) => {
   )
 }
 
-export default HashPost;
+export default ImportantHashPost
