@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     setBtcPrice(data.data.bitcoin.usd)
     setEthPrice(data.data.ethereum.usd)
     setDotPrice(data.data.polkadot.usd)
-  }, 1000)
+  }, 10000)
 
   return (
     <SimpleReactLightbox>

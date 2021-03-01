@@ -7,11 +7,9 @@ const Header = (props: any) => {
   const hamburgerOnClick = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
     mobilePopupMenu?.classList.toggle('popup-mobile-menu-show')
-    console.log('mobilePopupMenu: ', mobilePopupMenu)
   }
 
   const closeMobileMenu = () => {
-    console.log('closeMobileMenu: ')
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
     mobilePopupMenu?.classList.toggle('popup-mobile-menu-show')
   }
@@ -102,13 +100,13 @@ const Header = (props: any) => {
       <div className="mainmenu-wrapper">
         <nav className="mainmenu-nav">
           <ul className="mainmenu">
-            <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp"/>
+            <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp" />
             <li>${props.btc_price}</li>
 
-            <img id="ethereum-price-logo" src="/images/icons/ethereum.webp"/>
+            <img id="ethereum-price-logo" src="/images/icons/ethereum.webp" />
             <li>${props.eth_price}</li>
 
-            <img id="polkadot-price-logo" src="/images/icons/polkadot.webp"/>
+            <img id="polkadot-price-logo" src="/images/icons/polkadot.webp" />
             <li>${props.dot_price}</li>
           </ul>
         </nav>
@@ -121,13 +119,13 @@ const Header = (props: any) => {
       <div className="mainmenu-wrapper">
         <nav className="mainmenu-nav">
           <ul className="mainmenu">
-            <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp"/>
+            <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp" />
             <li>${props.btc_price}</li>
 
-            <img id="ethereum-price-logo" src="/images/icons/ethereum.webp"/>
+            <img id="ethereum-price-logo" src="/images/icons/ethereum.webp" />
             <li>${props.eth_price}</li>
 
-            <img id="polkadot-price-logo" src="/images/icons/polkadot.webp"/>
+            <img id="polkadot-price-logo" src="/images/icons/polkadot.webp" />
             <li>${props.dot_price}</li>
           </ul>
         </nav>
@@ -161,9 +159,7 @@ const Header = (props: any) => {
           <div className="row justify-content-between align-items-center">
             {_logo()}
 
-            <div className="col-xl-6 d-none d-xl-block">
-              {_mainMenu()}
-            </div>
+            <div className="col-xl-6 d-none d-xl-block">{_mainMenu()}</div>
 
             <div className="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
               <div className="header-search text-right d-flex align-items-center justify-content-end">

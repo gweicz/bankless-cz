@@ -6,7 +6,7 @@ type Props = {
     alt?: string
   }
   name: string
-  description: string
+  description?: string
   job?: string
   profileUrl?: string
 }

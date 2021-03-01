@@ -1,16 +1,22 @@
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
+import { PostOrPage } from '@tryghost/content-api'
 import SocShare from 'components/SocShare'
+import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
 import style from './MainBanner.module.scss'
 import { useState } from 'react'
 
-const MainBanner = ({ data }: { data?: any }) => {
+const MainBanner = ({ data }: { data: PostOrPage[] }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
 
-  const { frontImg, detailUrl, category, author, date, title, readTime } =
-    data[activeSlideIndex] || {}
+  const {
+    detailUrl,
+    category,
+    frontImg,
+    author,
+    readTime,
+    date,
+    title,
+  } = formatGhostDataForArticlePost(data[activeSlideIndex])
 
   const _authorName = () => (
     <>
@@ -123,7 +129,13 @@ l178.494 178.494h-375.887c-6.62695 0 -12 5.37305 -12 12v10c0 6.62695 5.37305 12 
                   <div className={`post-thumbnail ${style.thumbnailHover}`}>
                     <Link href={detailUrl}>
                       <a>
-                        <img src={frontImg.url} alt={frontImg.alt} />
+                        {frontImg?.url && (
+                          <img
+                            className={style.frontImg}
+                            src={frontImg.url}
+                            alt={frontImg.alt}
+                          />
+                        )}
                       </a>
                     </Link>
                   </div>

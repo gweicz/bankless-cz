@@ -19,7 +19,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/novinky/article1.tsx"
+    "pages/novinky/article1.tsx",
+    "pages/api/posts.ts"
   ],
   "exclude": ["node_modules"]
 }
