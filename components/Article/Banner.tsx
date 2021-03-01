@@ -1,10 +1,21 @@
 import { ArticleTypes } from 'components/Types/ArticleTypes'
 import Link from 'next/link'
+import { PostOrPage } from '@tryghost/content-api'
 import SocShare from 'components/SocShare'
+import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
 import styles from './Banner.module.scss'
 
-export default function Banner({ articleData }: { articleData: ArticleTypes }) {
-  const { frontImg, title, author, date, detailUrl } = articleData || {}
+export default function Banner({ articleData }: { articleData: PostOrPage }) {
+  const {
+    detailUrl,
+    category,
+    frontImg,
+    author,
+    readTime,
+    date,
+    title,
+  } = formatGhostDataForArticlePost(articleData)
+
   const _authorName = () => (
     <>
       {author.profileUrl ? (
@@ -27,9 +38,13 @@ export default function Banner({ articleData }: { articleData: ArticleTypes }) {
 
   const _authorBox = () => (
     <div className="post-meta m-0">
-      {author?.imgSmall?.url && (
+      {author?.img?.url && (
         <div className="post-author-avatar border-rounded">
-          <img src={author.imgSmall.url} alt={author.name} />
+          <img
+            className={styles.authorImg}
+            src={author.img.url}
+            alt={author.name}
+          />
         </div>
       )}
       <div className="content">
@@ -61,7 +76,13 @@ export default function Banner({ articleData }: { articleData: ArticleTypes }) {
             {/* <!-- Start Single Slide  --> */}
             <div className="content-block">
               <div className={`post-thumbnail ${styles.frontImg}`}>
-                <img className="w-100" src={frontImg.url} alt={frontImg.alt} />
+                {frontImg?.url && (
+                  <img
+                    className="w-100"
+                    src={frontImg?.url}
+                    alt={frontImg.alt}
+                  />
+                )}
               </div>
 
               <div className="post-content">

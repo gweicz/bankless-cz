@@ -1,28 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
+import { PostOrPage } from '@tryghost/content-api'
 import SocShare from 'components/SocShare'
+import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
 
-interface PostTypes {
-  data: {
-    detailUrl: string
-    frontImg: {
-      url: string
-      alt: string
-    }
-    category: string
-    title: string
-    author: {
-      name: string
-      profileUrl?: string
-    }
-    date: string
-    readTime: string
-  }
-}
-
-export default function Post({ data }: PostTypes) {
-  const { detailUrl, frontImg, category, title, author, date, readTime } =
-    data || {}
+export default function Post({ data }: { data: PostOrPage }) {
+  const {
+    detailUrl,
+    category,
+    frontImg,
+    author,
+    readTime,
+    date,
+    title,
+  } = formatGhostDataForArticlePost(data)
 
   const _authorName = (author: any) => {
     return (
@@ -99,9 +90,7 @@ export default function Post({ data }: PostTypes) {
   const _postImg = () => (
     <div className="post-thumbnail">
       <Link href={detailUrl}>
-        <a>
-          <img src={frontImg.url} alt={frontImg?.alt} />
-        </a>
+        <a>{frontImg?.url && <img src={frontImg.url} alt={frontImg?.alt} />}</a>
       </Link>
     </div>
   )

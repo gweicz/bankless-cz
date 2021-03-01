@@ -8,6 +8,34 @@ Post List Style
     padding: 0 15px;
 }
 
+.hash-post {
+  margin: 0 auto;
+
+  p {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  a {
+    font-weight: 500;
+    font-size: 1.75rem;
+    text-decoration: underline;
+    margin-left: .5rem;
+
+    &:hover {
+      text-decoration: line-through;
+    }
+  }
+
+  .post-meta-wrapper {
+    margin-top: 0;
+  }
+
+  ul.post-meta-list li {
+    font-size: 1.25rem;
+  }
+}
+
 .content-block {
     .post-thumbnail {
         position: relative;
@@ -767,11 +795,14 @@ Post List Style
             font-size: 1.5rem;
             line-height: 1.5rem;
 
+            p {
+              font-size: 1.5rem;
+            }
+
             a {
               font-weight: 500;
               font-size: 1.5rem;
               text-decoration: underline;
-              margin-left: .5rem;
 
               &:hover {
                 text-decoration: line-through;

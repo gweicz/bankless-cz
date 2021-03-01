@@ -1,8 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import SocInvite from 'components/SocInvite'
+import {PostOrPage} from "@tryghost/content-api";
+import {useEffect, useState} from "react";
+import HashPost from "../Hashovky/HashPost";
 
-const SideBar = () => {
+const SideBar = ({hashovky}: { hashovky?: PostOrPage[] }) => {
+  const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
+  const [nextPage, setNextPage] = useState(1)
+
+  useEffect(() => {
+    if (!hashovky) return
+    setHashovkyState([...hashovkyState, ...hashovky])
+    setNextPage(nextPage + 1)
+  }, [hashovky])
+
   const _instagram = () => (
     <div className="axil-single-widget widget widget_instagram mb--30">
       <h5 className="widget-title">Instagram</h5>
@@ -126,7 +138,7 @@ const SideBar = () => {
           </Link>
         </li>
         <li className="cat-item">
-          <Link href="/novinky/other">
+          <Link href="/novinky/ostatni">
             <a className="inner">
               <div className="thumbnail">
                 <img
@@ -145,47 +157,19 @@ const SideBar = () => {
     </div>
   )
 
-  const _hashovky = () => (
-    <div className="axil-single-widget widget widget_postlist mb--30">
-      <h4 className="widget-title">#Hashovky</h4>
-      <div className="post-medium-block">
-        <div className="content-block post-medium mb--20">
-          <div className="post-content hash-news">
-            <p className="hash-content">
-              Metamask: "Pokud máte problém s odesíláním transakcí v naší
-              mobilní aplikaci, zkuste se přepnout na jinou síť a po té zase
-              zpět".
-              <a href="https://twitter.com/metamask_io/status/1353118291959529472?s=20">
-                Zdroj
-              </a>
-            </p>
-            <div className="post-meta hash-meta">
-              <ul className="post-meta-list">
-                <li>10:07</li>
-                <li>Led 24, 2021</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="content-block post-medium mb--20">
-          <div className="post-content hash-news">
-            <p className="hash-content">
-              Podle Coingecko tržní kapitalizace DeFi narostla mezi roky 2020 a
-              2021 o 41 miliard dolarů.
-              <a href="https://twitter.com/coingecko/status/1353206035763392512?s=20">
-                Více info
-              </a>
-            </p>
-            <div className="post-meta hash-meta">
-              <ul className="post-meta-list">
-                <li>10:07</li>
-                <li>Led 24, 2021</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+  const _hashovky = (hashovky?: PostOrPage[]) => (
+    <div className="post-medium-block axil-single-widget">
+      <h5 className="widget-title">#Hashovky</h5>
+      {hashovky?.map((hashovka, i) => (
+        <HashPost
+          key={i}
+          meta_title={hashovka.meta_title || ''}
+          meta_description={hashovka.meta_description || ''}
+          feature_image={hashovka.feature_image || ''}
+          html={hashovka.html || ''}
+          published_at={hashovka.published_at || ''}
+        />
+      ))}
     </div>
   )
 
@@ -201,7 +185,7 @@ const SideBar = () => {
       <div className="sidebar-inner">
         {_cryptoType()}
 
-        {_hashovky()}
+        {_hashovky(hashovky)}
 
         {_socFollow()}
 
