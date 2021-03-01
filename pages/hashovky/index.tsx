@@ -77,7 +77,6 @@ const Hashovky = ({posts}: { posts?: PostOrPage[] }) => {
   useEffect(() => {
     if (!posts) return
     setPostsState([...postsState, ...posts])
-    console.log(posts)
     setNextPage(nextPage + 1)
   }, [posts])
 
