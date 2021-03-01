@@ -1,13 +1,36 @@
-import { GhostContentAPIOptions } from 'tryghost__content-api'
-import { api } from './init'
-// Create API instance with site credentials
+import { GhostContentAPIOptions, Params } from 'tryghost__content-api'
 
-export const getPosts = async () => {
+import { api } from './init'
+
+export const getPosts = async ({
+  include,
+  limit,
+  page,
+  fields,
+  formats,
+  filter,
+  order = 'published_at DESC',
+}: Params) => {
   return await api.posts
     .browse({
-      limit: 'all',
+      include,
+      fields,
+      formats,
+      filter,
+      limit,
+      page,
+      order,
     })
     .catch((err) => {
       console.error(err)
     })
+}
+
+export async function getSinglePost(postSlug: string) {
+  return await api.posts.read(
+    {
+      slug: postSlug,
+    },
+    { include: ['count.posts', 'authors'] },
+  )
 }
