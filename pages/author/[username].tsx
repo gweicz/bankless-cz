@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
     return !isHashovka;
   });
-  console.log(posts[0])
+  
   return { props: {author, posts} }
 }
 
