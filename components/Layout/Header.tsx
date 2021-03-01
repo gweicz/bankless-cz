@@ -67,7 +67,7 @@ const Header = (props: any) => {
               <a>Novinky</a>
             </li>
           </Link>
-          <Link href="#">
+          <Link href="/hashovky/">
             <li onClick={closeMobileMenu}>
               <a>#Hashovky</a>
             </li>
@@ -145,7 +145,7 @@ const Header = (props: any) => {
             </Link>
           </li>
           <li>
-            <a href="#">#Hashovky</a>
+            <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
           <Megamenu menuTitle="Začátečníci" />

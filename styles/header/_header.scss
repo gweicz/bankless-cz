@@ -6,6 +6,7 @@ Header Styles
     padding: 0 60px;
     background: #fff;
     position: fixed;
+    top: 0;
     z-index: 99;
     box-shadow: 0px 2px 20px 5px #c8c8c840;
     @media #{$laptop-device} {
