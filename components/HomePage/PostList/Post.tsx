@@ -37,40 +37,6 @@ export default function Post({ data }: { data: PostOrPage }) {
     )
   }
 
-  const _socShare = () => (
-    <ul className="social-share-transparent justify-content-end">
-      <li>
-        <a href="#">
-          <FontAwesomeIcon icon={['fab', 'facebook-f']} />
-        </a>
-      </li>
-      <li>
-        {/* <a href="#"> */}
-        <a
-          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-          // className="twitter-share-button"
-          data-related="@gweicz"
-          target="_blank"
-          data-show-count="false"
-        >
-          {/* Tweet */}
-          <FontAwesomeIcon icon={['fab', 'twitter']} />
-        </a>
-        {/* <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charSet="utf-8"
-        ></script> */}
-        {/* </a> */}
-      </li>
-      {/* <li>
-        <a href="#">
-          <FontAwesomeIcon icon="link" />
-        </a>
-      </li> */}
-    </ul>
-  )
-
   const _category = () => (
     <div className="post-cat">
       <div className="post-cat-list">
@@ -78,7 +44,7 @@ export default function Post({ data }: { data: PostOrPage }) {
         <a className="hover-flip-item-wrapper">
           {/* <span className="hover-flip-item"> */}
           <span className="text-dark cursor-default">
-            <span data-text={category}>{category}</span>
+            <span data-text={category}>{category?.toLocaleUpperCase()}</span>
           </span>
           {/* </span> */}
         </a>
