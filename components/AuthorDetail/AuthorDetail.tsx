@@ -17,7 +17,6 @@ const AuthorDetail = (props: any) => {
                                 <div className="media-body">
                                     <div className="author-info">
                                         <h1><a href="#">{props.username}</a></h1>
-                                        <span>{props.location}</span>
                                     </div>
                                     <div className="content">
                                         <p className="b1 description">{props.bio}</p>
