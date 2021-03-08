@@ -1,4 +1,5 @@
 import { getPosts, getSinglePost } from 'pages/api/posts'
+import { useEffect, useState } from 'react'
 
 import Article from 'components/Article/Article'
 import { GetServerSideProps } from 'next'
@@ -14,6 +15,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   } else {
     postId = query.id
   }
+
+  const hashovky = await getPosts({
+    limit: 5,
+    page: 1,
+    include: ['tags'],
+    filter: 'tag:hashovka',
+  })
 
   if (!postId) {
     return {
@@ -36,24 +44,36 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   })
 
   return {
-    props: { articlePost, moreStories: moreStories || null }, // will be passed to the page component as props
+    props: { articlePost, moreStories: moreStories || null, hashovky }, // will be passed to the page component as props
   }
 }
 
 export default function Novinka({
   articlePost,
   moreStories,
+  hashovky,
 }: {
   articlePost?: PostOrPage
   moreStories?: PostOrPage[]
+  hashovky?: PostOrPage[]
 }) {
+  const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
   const articleData = articlePost
+
+  useEffect(() => {
+    if (!hashovky) return
+    setHashovkyState([...hashovkyState, ...hashovky])
+    console.log(hashovky)
+  }, [hashovky])
 
   if (!articleData) return null
 
   return (
-    <Article articleData={articleData} moreStories={moreStories}>
-      <h1>{articleData.title}</h1>
+    <Article
+      articleData={articleData}
+      moreStories={moreStories}
+      hashovky={hashovky}
+    >
       {articleData.html && (
         <div
           className="content"

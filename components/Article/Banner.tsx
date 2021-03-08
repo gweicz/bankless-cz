@@ -68,6 +68,7 @@ export default function Banner({ articleData }: { articleData: PostOrPage }) {
       </div>
     </div>
   )
+
   return (
     <div className="banner banner-single-post post-formate post-standard alignwide">
       <div className="container">
@@ -87,7 +88,7 @@ export default function Banner({ articleData }: { articleData: PostOrPage }) {
 
               <div className="post-content">
                 {/* {_featuredPost()} */}
-                <h1 className={`title ${styles.title}`}>{title}</h1>
+                <h1 className={`title `}>{title}</h1>
                 <div className="post-meta-wrapper">
                   {_authorBox()}
                   <SocShare urlToShare={detailUrl} />

@@ -33,7 +33,9 @@ export default function MoreStoriesPost({
           <div className="post-content">
             <div className="post-cat">
               <div className="post-cat-list">
-                <a className="cursor-default text-dark">{category}</a>
+                <a className="cursor-default text-dark">
+                  {category?.toUpperCase()}
+                </a>
               </div>
             </div>
             <h5 className="title">

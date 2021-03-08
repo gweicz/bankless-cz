@@ -1,11 +1,12 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Link from 'next/link'
-import SocInvite from 'components/SocInvite'
-import {PostOrPage} from "@tryghost/content-api";
-import {useEffect, useState} from "react";
-import HashPost from "../Hashovky/HashPost";
+import { useEffect, useState } from 'react'
 
-const SideBar = ({hashovky}: { hashovky?: PostOrPage[] }) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import HashPost from '../Hashovky/HashPost'
+import Link from 'next/link'
+import { PostOrPage } from '@tryghost/content-api'
+import SocInvite from 'components/SocInvite'
+
+const SideBar = ({ hashovky }: { hashovky?: PostOrPage[] }) => {
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
   const [nextPage, setNextPage] = useState(1)
 
@@ -157,6 +158,18 @@ const SideBar = ({hashovky}: { hashovky?: PostOrPage[] }) => {
     </div>
   )
 
+  const _linkToHashovky = () => (
+    <div className="content-block post-medium justify-content-center">
+      <div className="post-content hash-news">
+        <span className="hash-content">
+          <Link href={'/hashovky'}>
+            <a>Více hashovek</a>
+          </Link>
+        </span>
+      </div>
+    </div>
+  )
+
   const _hashovky = (hashovky?: PostOrPage[]) => (
     <div className="post-medium-block axil-single-widget">
       <h5 className="widget-title">#Hashovky</h5>
@@ -170,6 +183,7 @@ const SideBar = ({hashovky}: { hashovky?: PostOrPage[] }) => {
           published_at={hashovka.published_at || ''}
         />
       ))}
+      {_linkToHashovky()}
     </div>
   )
 

@@ -57,7 +57,7 @@ const MainBanner = ({ data }: { data: PostOrPage[] }) => {
         <a className="hover-flip-item-wrapper">
           {/* <span className="hover-flip-item"> */}
           <span className="text-dark cursor-default">
-            <span data-text={category}>{category}</span>
+            <span data-text={category}>{category?.toLocaleUpperCase()}</span>
           </span>
           {/* </span> */}
         </a>
