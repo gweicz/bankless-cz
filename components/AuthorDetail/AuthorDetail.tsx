@@ -1,6 +1,7 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {Author} from '@tryghost/content-api';
 
-const AuthorDetail = (props: any) => {
+const AuthorDetail = ({author}: {author: Author}) => {
   return (
     <div>
       <div className="axil-author-area axil-author-banner bg-color-grey">
@@ -9,22 +10,22 @@ const AuthorDetail = (props: any) => {
             <div className="about-author">
               <div className="media" style={{margin: "100px 20px 0px 20px"}}>
                 <div className="thumbnail">
-                  <a href={props.web}>
-                    <img src={props.picture} alt="Author's Image"/>
+                  <a href={author.website}>
+                    <img src={author.profile_image} alt="Author's Image"/>
                   </a>
                 </div>
                 <div className="media-body">
                   <div className="author-info">
-                    <h1>{props.username}</h1>
+                    <h1>{author.name}</h1>
                   </div>
                   <div className="content">
-                    <p className="b1 description">{props.bio}</p>
+                    <p className="b1 description">{author.bio}</p>
                     <ul className="social-share-transparent justify-content-centre">
-                      {props.fb && (
-                        <li><a href={props.fb}><FontAwesomeIcon icon={["fab", "facebook-f"]}/></a></li>
+                      {author.facebook && (
+                        <li><a href={author.facebook}><FontAwesomeIcon icon={["fab", "facebook-f"]}/></a></li>
                       )}
-                      {props.twitter && (
-                        <li><a href={props.twitter}><FontAwesomeIcon icon={["fab", "twitter"]}/></a></li>
+                      {author.twitter && (
+                        <li><a href={author.twitter}><FontAwesomeIcon icon={["fab", "twitter"]}/></a></li>
                       )}
                     </ul>
                   </div>
