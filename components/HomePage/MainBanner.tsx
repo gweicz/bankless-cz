@@ -18,8 +18,6 @@ const MainBanner = ({ data }: { data: PostOrPage[] }) => {
     title,
   } = formatGhostDataForArticlePost(data[activeSlideIndex])
 
-  console.log(detailUrl);
-
   const _authorName = () => (
     <>
       {author.profileUrl ? (
