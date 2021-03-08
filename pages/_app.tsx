@@ -26,6 +26,9 @@ import Header from 'components/Layout/Header'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { useState } from 'react'
+import {GetServerSideProps} from "next";
+import {getPosts} from "./api/posts";
+import {POSTS_ON_PAGE_LIMIT} from "./novinky/polkadot";
 
 library.add(
   faSearch,
@@ -42,7 +45,40 @@ library.add(
   faTimes,
 )
 
+// Fetch posts
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { query } = context
+
+  const page = Number(query?.page) || 1
+
+  const beginnersBitcoinPosts = await getPosts({
+    limit: 5,
+    page,
+    include: [],
+    filter: 'tag:zacatecnici+tag:bitcoin'
+  })
+
+  const beginnersEthereumPosts = await getPosts({
+    limit: 5,
+    page,
+    include: [],
+    filter: 'tag:zacatecnici+tag:ethereum'
+  })
+
+  const beginnersPolkadotPosts = await getPosts({
+    limit: 5,
+    page,
+    include: [],
+    filter: 'tag:zacatecnici+tag:polkadot'
+  })
+
+  return {
+    props: { beginnersBitcoinPosts, beginnersEthereumPosts, beginnersPolkadotPosts }, // will be passed to the page component as props
+  }
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
+
   //coingacko api for prices
   const CoinGecko = require('coingecko-api')
   const CoinGeckoClient = new CoinGecko()

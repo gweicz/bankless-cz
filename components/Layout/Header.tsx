@@ -146,7 +146,7 @@ const Header = (props: any) => {
             <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
-          <Megamenu menuTitle="Začátečníci" />
+          <Megamenu menuTitle="Začátečníci" menuLink="/zacatecnici" />
         </ul>
       </nav>
     </div>

@@ -1,11 +1,12 @@
 import { useState } from 'react'
 
 type Props = {
-  menuTitle: string
+  menuTitle: string,
+  menuLink: string,
   tabs?: { [key: string]: { [key: string]: string }[] }
 }
 
-const Megamenu = ({ menuTitle, tabs }: Props) => {
+const Megamenu = ({ menuTitle, menuLink, tabs }: Props) => {
   tabs = {
     Ethereum: [
       {
@@ -72,29 +73,7 @@ const Megamenu = ({ menuTitle, tabs }: Props) => {
         thumbnail: '/images/others/mega-post-02.jpg',
         title: 'Jak funguje stakování na Polkadot?',
       },
-    ],
-    Blockchain: [
-      {
-        category: 'blockchain',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Proof of Work vs. Proof of Stake',
-      },
-      {
-        category: 'blockchain',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Historie kryptoměn a jejich forků',
-      },
-      {
-        category: 'blockchain',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Co jsou a jak fungují Atomic swapy?',
-      },
-      {
-        category: 'blockchain',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Které kryptoměny jsou decentralizované?',
-      },
-    ],
+    ]
   }
 
   const [activeTab, setActiveTab] = useState('Ethereum')
@@ -118,7 +97,7 @@ const Megamenu = ({ menuTitle, tabs }: Props) => {
 
   return (
     <li className="menu-item-has-children megamenu-wrapper">
-      <a href={`/${menuTitle}`}>{menuTitle}</a>
+      <a href={menuLink}>{menuTitle}</a>
       <ul className="col-xl-6 megamenu-sub-menu">
         <li className="megamenu-item">
           <div className="axil-vertical-nav">

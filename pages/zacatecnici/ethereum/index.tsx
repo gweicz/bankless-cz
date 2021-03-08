@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {GetServerSideProps} from "next";
+import {getPosts} from "../../api/posts";
+import {PostOrPage} from "@tryghost/content-api";
+import {useEffect, useState} from "react";
+import styles from "../../../styles/Home.module.scss";
+import Head from "next/head";
+import MainBanner from "../../../components/HomePage/MainBanner";
+import PostList from "../../../components/HomePage/PostList/PostList";
+import SideBar from "../../../components/Layout/SideBar";
 
-import { GetServerSideProps } from 'next'
-import Head from 'next/head'
-import MainBanner from 'components/HomePage/MainBanner'
-import PostList from 'components/HomePage/PostList/PostList'
-import { PostOrPage } from '@tryghost/content-api'
-import SideBar from 'components/Layout/SideBar'
-import { getPosts } from './api/posts'
-import styles from 'styles/Home.module.scss'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -21,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: POSTS_ON_PAGE_LIMIT,
     page,
     include: ['tags', 'authors'],
-    filter: 'tag:-hashovka'
+    filter: 'tag:zacatecnici+tag:ethereum'
   })
 
   const hashovky = await getPosts({
@@ -42,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-const Home = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: PostOrPage[] }) => {
+const ZacatecniciBitcoin = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: PostOrPage[] }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
 
@@ -62,7 +63,7 @@ const Home = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: PostOrPage
   return (
     <div className={styles.container}>
       <Head>
-        <title>Cryptohash | Ethereum, Bitcoin a jiné krypto</title>
+        <title>Cryptohash | Ethereum pro začátečníky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <main className={styles.main}>
@@ -82,6 +83,6 @@ const Home = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: PostOrPage
       </main>
     </div>
   )
-}
+};
 
-export default Home
+export default ZacatecniciBitcoin;

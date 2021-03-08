@@ -40,7 +40,7 @@ const MainBanner = ({ data }: { data: PostOrPage[] }) => {
 
   const _readBtn = () => (
     <div className={`read-more-button cerchio ${style.readPostBtn}`}>
-      <Link href={detailUrl}>
+      <Link href={`/${detailUrl}`}>
         <a className="axil-button button-rounded hover-flip-item-wrapper">
           <span className="hover-flip-item">
             <span data-text="Přečíst článek">Přečíst článek</span>
@@ -127,7 +127,7 @@ l178.494 178.494h-375.887c-6.62695 0 -12 5.37305 -12 12v10c0 6.62695 5.37305 12 
                 <div className={`content-block ${style.disableHover}`}>
                   {_sliderBtns()}
                   <div className={`post-thumbnail ${style.thumbnailHover}`}>
-                    <Link href={detailUrl}>
+                    <Link href={`/${detailUrl}`}>
                       <a>
                         {frontImg?.url && (
                           <img
@@ -143,7 +143,7 @@ l178.494 178.494h-375.887c-6.62695 0 -12 5.37305 -12 12v10c0 6.62695 5.37305 12 
                   <div className="post-content">
                     {_category()}
                     <h2 className="title">
-                      <Link href={detailUrl}>
+                      <Link href={`/${detailUrl}`}>
                         <a>{title}</a>
                       </Link>
                     </h2>
