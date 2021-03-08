@@ -55,7 +55,7 @@ export default function Post({ data }: { data: PostOrPage }) {
 
   const _postImg = () => (
     <div className="post-thumbnail">
-      <Link href={detailUrl}>
+      <Link href={`/${detailUrl}`}>
         <a>{frontImg?.url && <img src={frontImg.url} alt={frontImg?.alt} />}</a>
       </Link>
     </div>
@@ -68,12 +68,12 @@ export default function Post({ data }: { data: PostOrPage }) {
         {_category()}
 
         <h4 className="title">
-          <Link href={detailUrl}>
+          <Link href={`/${detailUrl}`}>
             <a>{title}</a>
           </Link>
         </h4>
         <div className="post-meta-wrapper d-flex">
-          <SocShare urlToShare={detailUrl} />
+          <SocShare urlToShare={`/${detailUrl}`} />
           <div className="post-meta">
             <div className="content">
               {_authorName(author)}
