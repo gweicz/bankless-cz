@@ -4,7 +4,7 @@ import SideBar from 'components/Layout/SideBar'
 import {getAuthorInfo, getAuthorPosts} from 'pages/api/authorPosts'
 import {GetServerSideProps} from 'next'
 import {getPosts} from 'pages/api/posts'
-import {PostOrPage} from '@tryghost/content-api'
+import {PostOrPage, Author} from '@tryghost/content-api'
 import {useEffect, useState} from 'react'
 import PostList from "../../components/HomePage/PostList/PostList";
 import {POSTS_ON_PAGE_LIMIT} from "../novinky/polkadot";
@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 
-const AuthorDetailPage = ({author, posts, hashovky}: { author?: object | null | undefined, posts?: PostOrPage[], hashovky?: PostOrPage[] }) => {
+const AuthorDetailPage = ({author, posts, hashovky}: { author?: Author, posts?: PostOrPage[], hashovky?: PostOrPage[] }) => {
   if (!author) return null
   if (!posts) return null
 
@@ -69,13 +69,7 @@ const AuthorDetailPage = ({author, posts, hashovky}: { author?: object | null | 
   return (
     <div>
       <AuthorDetail
-        username={author.name}
-        picture={author.profile_image}
-        bio={author.bio}
-        fb={author.facebook}
-        twitter={author.twitter}
-        web={author.website}
-        location={author.location}
+        author={author}
       />
 
       <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">

@@ -78,7 +78,7 @@ const Megamenu = ({ menuTitle, menuLink, tabs }: Props) => {
 
   const [activeTab, setActiveTab] = useState('Ethereum')
 
-  const onTabHover = (e, category) => {
+  const onTabHover = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, category: string) => {
     // We hide the current tab content
     setActiveTab('')
 
@@ -87,6 +87,7 @@ const Megamenu = ({ menuTitle, menuLink, tabs }: Props) => {
     while (allTabNames[0]) allTabNames[0].classList.remove('active')
 
     // Add "active" class name to element which user hover over it
+    // @ts-ignore
     document
       .getElementById(`nav-item-${category.toLowerCase()}`)
       .classList.add('active')
@@ -121,7 +122,7 @@ const Megamenu = ({ menuTitle, menuLink, tabs }: Props) => {
 
           <div className="axil-vertical-nav-content">
             {Object.keys(tabs).map((category, id) => {
-              let categoryPosts = tabs[category]
+              let categoryPosts = tabs![category]
 
               return (
                 <div
