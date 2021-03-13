@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import Article from 'components/Article/Article'
 import { GetServerSideProps } from 'next'
 import { PostOrPage } from '@tryghost/content-api'
+import { fetchMenuPosts } from 'utils/fetchMenuPosts'
+import { useMenuData } from 'context/SessionContext'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -22,6 +24,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     include: ['tags'],
     filter: 'tag:hashovka',
   })
+
+  const menuPosts = await fetchMenuPosts()
 
   if (!postId) {
     return {
@@ -44,7 +48,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   })
 
   return {
-    props: { articlePost, moreStories: moreStories || null, hashovky }, // will be passed to the page component as props
+    props: {
+      articlePost,
+      moreStories: moreStories || null,
+      hashovky,
+      menuPosts,
+    }, // will be passed to the page component as props
   }
 }
 
@@ -52,13 +61,17 @@ export default function Novinka({
   articlePost,
   moreStories,
   hashovky,
+  menuPosts,
 }: {
   articlePost?: PostOrPage
   moreStories?: PostOrPage[]
   hashovky?: PostOrPage[]
+  menuPosts?: PostOrPage[]
 }) {
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
   const articleData = articlePost
+
+  useMenuData({ menuPosts })
 
   useEffect(() => {
     if (!hashovky) return

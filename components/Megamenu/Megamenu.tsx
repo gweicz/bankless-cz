@@ -1,84 +1,44 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { PostOrPage } from '@tryghost/content-api'
+import style from './MegaMenu.module.scss'
+import { useSessionContext } from 'context/SessionContext'
 
 type Props = {
-  menuTitle: string,
-  menuLink: string,
-  tabs?: { [key: string]: { [key: string]: string }[] }
+  menuTitle: string
+  menuLink: string
 }
 
-const Megamenu = ({ menuTitle, menuLink, tabs }: Props) => {
-  tabs = {
-    Ethereum: [
-      {
-        category: 'ethereum',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Co je Ethereum a k čemu lze použít?',
-      },
-      {
-        category: 'ethereum',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Co je Ethereum 2.0 a co nám přinese?',
-      },
-      {
-        category: 'ethereum',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Co jsou Ethereum tokeny (ERC20)?',
-      },
-      {
-        category: 'ethereum',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Co jsou chytré kontrakty a jak fungují?',
-      },
-    ],
-    Bitcoin: [
-      {
-        category: 'bitcoin',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Co je Bitcoin a kdo je Satoshi Nakamoto?',
-      },
-      {
-        category: 'bitcoin',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Proč dochází k půlení Bitcoinu?',
-      },
-      {
-        category: 'bitcoin',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Čím je Bitcoin krytý a má vnitřní hodnotu?',
-      },
-      {
-        category: 'bitcoin',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Co znamená těžení Bitcoinu a jak funguje?',
-      },
-    ],
-    Polkadot: [
-      {
-        category: 'polkadot',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Co je Polkadot a je to konkurence Etherea?',
-      },
-      {
-        category: 'polkadot',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Governance na Polkadot',
-      },
-      {
-        category: 'polkadot',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'K čemu je Kusama, testovací síť Polkadot?',
-      },
-      {
-        category: 'polkadot',
-        thumbnail: '/images/others/mega-post-02.jpg',
-        title: 'Jak funguje stakování na Polkadot?',
-      },
-    ]
+const Megamenu = ({ menuTitle, menuLink }: Props) => {
+  const { apiPostsData } = useSessionContext()
+
+  const tabs: { [key: string]: { [key: string]: string }[] } = {
+    Ethereum: (apiPostsData?.ethPosts || []).map((post: PostOrPage) => ({
+      category: 'ethereum',
+      thumbnail: post.feature_image,
+      title: post.title,
+      slug: post.slug,
+    })),
+    Bitcoin: (apiPostsData?.btcPosts || []).map((post: PostOrPage) => ({
+      category: 'bitcoin',
+      thumbnail: post.feature_image,
+      title: post.title,
+      slug: post.slug,
+    })),
+    Polkadot: (apiPostsData?.dotPosts || []).map((post: PostOrPage) => ({
+      category: 'polkadot',
+      thumbnail: post.feature_image,
+      title: post.title,
+      slug: post.slug,
+    })),
   }
 
   const [activeTab, setActiveTab] = useState('Ethereum')
 
-  const onTabHover = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, category: string) => {
+  const onTabHover = (
+    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
+    category: string,
+  ) => {
     // We hide the current tab content
     setActiveTab('')
 
@@ -137,11 +97,9 @@ const Megamenu = ({ menuTitle, menuLink, tabs }: Props) => {
                         <div key={id} className="col-lg-3">
                           <div className="content-block image-rounded">
                             <div className="post-thumbnail mb--20">
-                              <a
-                                href={`/zacatecnici/${category}/${post.title}`}
-                              >
+                              <a href={`/zacatecnici/${category}/${post.slug}`}>
                                 <img
-                                  className="w-100"
+                                  className={`w-100 ${style.previewImg}`}
                                   src={post.thumbnail}
                                   alt={post.title}
                                 />
@@ -164,7 +122,7 @@ const Megamenu = ({ menuTitle, menuLink, tabs }: Props) => {
                               </div>
                               <h5 className="title">
                                 <a
-                                  href={`/zacatecnici/${category}/${post.title}`}
+                                  href={`/zacatecnici/${category}/${post.slug}`}
                                 >
                                   {post.title}
                                 </a>

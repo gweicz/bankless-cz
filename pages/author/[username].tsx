@@ -1,10 +1,13 @@
+import { Author, PostOrPage } from '@tryghost/content-api'
 import { getAuthorInfo, getAuthorPosts } from 'pages/api/authorPosts'
 
-import { Author } from '@tryghost/content-api'
 import AuthorDetail from 'components/AuthorDetail/AuthorDetail'
 import { GetServerSideProps } from 'next'
 import Post from 'components/AuthorDetail/Post'
 import SideBar from 'components/Layout/SideBar'
+import { fetchMenuPosts } from 'utils/fetchMenuPosts'
+import { useEffect } from 'react'
+import { useMenuData } from 'context/SessionContext'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -12,6 +15,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const author: any = await getAuthorInfo(username)
   const posts_notFiltered: any = await getAuthorPosts(username)
+
+  const menuPosts = await fetchMenuPosts()
 
   if (!posts_notFiltered) {
     return {
@@ -32,16 +37,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return !isHashovka
   })
 
-  return { props: { author, posts } }
+  return { props: { author, posts, menuPosts } }
 }
 
 const AuthorDetailPage = ({
   author,
   posts,
+  menuPosts,
 }: {
   author?: Author
   posts?: string | null | undefined
+  menuPosts?: PostOrPage[]
 }) => {
+  useMenuData({ menuPosts })
+
   if (!author) return null
   if (!posts) return null
 
