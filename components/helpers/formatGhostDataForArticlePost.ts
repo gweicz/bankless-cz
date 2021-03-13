@@ -20,11 +20,12 @@ export const formatGhostDataForArticlePost = (data: PostOrPage) => {
   }
   const author = {
     name: primary_author?.name,
-    profileUrl: primary_author?.slug ? `authors/${primary_author?.slug}` : '/',
+    profileUrl: primary_author?.slug ? `/authors/${primary_author?.slug}` : '/',
     img: {
       url: primary_author?.profile_image,
     },
     description: primary_author?.bio,
+    slug: primary_author?.slug,
   }
   const readTime = `${reading_time} minut`
   const date = published_at && formatDate(published_at)

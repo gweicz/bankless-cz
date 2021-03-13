@@ -1,18 +1,30 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {Author} from '@tryghost/content-api';
+import { Author } from '@tryghost/content-api'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
 
-const AuthorDetail = ({author}: {author: Author}) => {
+const AuthorDetail = ({ author }: { author: Author }) => {
+  console.log('author: ', author)
   return (
     <div>
       <div className="axil-author-area axil-author-banner bg-color-grey">
         <div className="container">
           <div className="col-lg-12">
             <div className="about-author">
-              <div className="media" style={{margin: "100px 20px 0px 20px"}}>
+              <div className="media" style={{ margin: '100px 20px 0px 20px' }}>
                 <div className="thumbnail">
-                  <a href={author.website}>
-                    <img src={author.profile_image} alt="Author's Image"/>
-                  </a>
+                  {author.website ? (
+                    <a href={author.website}>
+                      {author.profile_image && (
+                        <img src={author.profile_image} alt="Author's Image" />
+                      )}
+                    </a>
+                  ) : (
+                    <a href="#" className="cursor-default">
+                      {author.profile_image && (
+                        <img src={author.profile_image} alt="Author's Image" />
+                      )}
+                    </a>
+                  )}
                 </div>
                 <div className="media-body">
                   <div className="author-info">
@@ -22,10 +34,18 @@ const AuthorDetail = ({author}: {author: Author}) => {
                     <p className="b1 description">{author.bio}</p>
                     <ul className="social-share-transparent justify-content-centre">
                       {author.facebook && (
-                        <li><a href={author.facebook}><FontAwesomeIcon icon={["fab", "facebook-f"]}/></a></li>
+                        <li>
+                          <a href={author.facebook}>
+                            <FontAwesomeIcon icon={['fab', 'facebook-f']} />
+                          </a>
+                        </li>
                       )}
                       {author.twitter && (
-                        <li><a href={author.twitter}><FontAwesomeIcon icon={["fab", "twitter"]}/></a></li>
+                        <li>
+                          <a href={author.twitter}>
+                            <FontAwesomeIcon icon={['fab', 'twitter']} />
+                          </a>
+                        </li>
                       )}
                     </ul>
                   </div>
@@ -36,7 +56,7 @@ const AuthorDetail = ({author}: {author: Author}) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default AuthorDetail

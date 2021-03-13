@@ -1,14 +1,14 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {GetServerSideProps} from "next";
-import {getPosts} from "pages/api/posts";
-import {PostOrPage} from "@tryghost/content-api";
-import {useEffect, useState} from "react";
-import styles from "../../../styles/Home.module.scss";
-import Head from "next/head";
-import MainBanner from "components/HomePage/MainBanner";
-import PostList from "components/HomePage/PostList/PostList";
-import SideBar from "components/Layout/SideBar";
+import { useEffect, useState } from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { GetServerSideProps } from 'next'
+import Head from 'next/head'
+import MainBanner from 'components/HomePage/MainBanner'
+import PostList from 'components/HomePage/PostList/PostList'
+import { PostOrPage } from '@tryghost/content-api'
+import SideBar from 'components/Layout/SideBar'
+import { getPosts } from 'pages/api/posts'
+import styles from '../../styles/Home.module.scss'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -22,14 +22,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: 5,
     page,
     include: [],
-    filter: 'tag:zacatecnici+tag:bitcoin'
+    filter: 'tag:zacatecnici+tag:bitcoin',
   })
 
   const hashovky = await getPosts({
     limit: 5,
     page,
     include: ['tags'],
-    filter: 'tag:hashovka'
+    filter: 'tag:hashovka',
   })
 
   if (!posts) {
@@ -43,7 +43,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-const ZacatecniciBitcoin = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: PostOrPage[] }) => {
+const ZacatecniciBitcoin = ({
+  posts,
+  hashovky,
+}: {
+  posts?: PostOrPage[]
+  hashovky?: PostOrPage[]
+}) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
 
@@ -76,13 +82,13 @@ const ZacatecniciBitcoin = ({ posts, hashovky }: { posts?: PostOrPage[], hashovk
                 nextPage={nextPage}
                 isLastPage={posts?.length !== POSTS_ON_PAGE_LIMIT}
               />
-              <SideBar hashovky={hashovkyState}/>
+              <SideBar hashovky={hashovkyState} />
             </div>
           </div>
         </div>
       </main>
     </div>
   )
-};
+}
 
-export default ZacatecniciBitcoin;
+export default ZacatecniciBitcoin
