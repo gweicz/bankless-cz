@@ -6,8 +6,10 @@ import MainBanner from 'components/HomePage/MainBanner'
 import PostList from 'components/HomePage/PostList/PostList'
 import { PostOrPage } from '@tryghost/content-api'
 import SideBar from 'components/Layout/SideBar'
+import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from './api/posts'
 import styles from 'styles/Home.module.scss'
+import { useMenuData } from 'context/SessionContext'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -21,15 +23,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: POSTS_ON_PAGE_LIMIT,
     page,
     include: ['tags', 'authors'],
-    filter: 'tag:-hashovka'
+    filter: 'tag:-hashovka',
   })
 
   const hashovky = await getPosts({
     limit: 5,
     page,
     include: ['tags'],
-    filter: 'tag:hashovka'
+    filter: 'tag:hashovka',
   })
+
+  const menuPosts = await fetchMenuPosts()
 
   if (!posts) {
     return {
@@ -38,15 +42,25 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: { posts, hashovky }, // will be passed to the page component as props
+    props: { posts, hashovky, menuPosts }, // will be passed to the page component as props
   }
 }
 
-const Home = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: PostOrPage[] }) => {
+const Home = ({
+  posts,
+  hashovky,
+  menuPosts,
+}: {
+  posts?: PostOrPage[]
+  hashovky?: PostOrPage[]
+  menuPosts?: PostOrPage[]
+}) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
 
   const [nextPage, setNextPage] = useState(1)
+
+  useMenuData({ menuPosts })
 
   useEffect(() => {
     if (!posts) return
@@ -75,7 +89,7 @@ const Home = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: PostOrPage
                 nextPage={nextPage}
                 isLastPage={posts?.length !== POSTS_ON_PAGE_LIMIT}
               />
-              <SideBar hashovky={hashovkyState}/>
+              <SideBar hashovky={hashovkyState} />
             </div>
           </div>
         </div>

@@ -9,16 +9,22 @@ export default function MoreStoriesPost({
 }: {
   articleData: PostOrPage
 }) {
-  const { category, frontImg, title, slug } = formatGhostDataForArticlePost(
-    articleData,
-  )
+  const {
+    detailUrl,
+    category,
+    frontImg,
+    author,
+    readTime,
+    date,
+    title,
+  } = formatGhostDataForArticlePost(articleData)
 
   return (
     <>
       <div className="col-lg-3 col-md-6 col-sm-6 col-12">
         <div className="post-stories content-block mt--30">
           <div className="post-thumbnail">
-            <Link href={slug}>
+            <Link href={`/` + detailUrl}>
               <a href="post-details.html">
                 {frontImg?.url && (
                   <img
@@ -39,7 +45,7 @@ export default function MoreStoriesPost({
               </div>
             </div>
             <h5 className="title">
-              <Link href={slug}>
+              <Link href={`/` + detailUrl}>
                 <a>{title}</a>
               </Link>
             </h5>

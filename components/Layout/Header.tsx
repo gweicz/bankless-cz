@@ -1,9 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import Megamenu from 'components/Megamenu/Megamenu'
+import {ICryptoPrices} from "pages/_app";
+
 import style from './Header.module.scss'
 
-const Header = (props: any) => {
+interface IHeader {
+  cryptoPrices: ICryptoPrices
+}
+
+const Header: React.FC<IHeader> = ({ cryptoPrices }) => {
+
+  const { btcPrice, ethPrice, dotPrice } = cryptoPrices
+
   const hamburgerOnClick = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
     mobilePopupMenu?.classList.toggle('popup-mobile-menu-show')
@@ -101,13 +110,13 @@ const Header = (props: any) => {
         <nav className="mainmenu-nav">
           <ul className="mainmenu">
             <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp" />
-            <li>${props.btc_price}</li>
+            <li>${btcPrice}</li>
 
             <img id="ethereum-price-logo" src="/images/icons/ethereum.webp" />
-            <li>${props.eth_price}</li>
+            <li>${ethPrice}</li>
 
             <img id="polkadot-price-logo" src="/images/icons/polkadot.webp" />
-            <li>${props.dot_price}</li>
+            <li>${dotPrice}</li>
           </ul>
         </nav>
       </div>
@@ -120,13 +129,13 @@ const Header = (props: any) => {
         <nav className="mainmenu-nav">
           <ul className="mainmenu">
             <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp" />
-            <li>${props.btc_price}</li>
+            <li>${btcPrice}</li>
 
             <img id="ethereum-price-logo" src="/images/icons/ethereum.webp" />
-            <li>${props.eth_price}</li>
+            <li>${ethPrice}</li>
 
             <img id="polkadot-price-logo" src="/images/icons/polkadot.webp" />
-            <li>${props.dot_price}</li>
+            <li>${dotPrice}</li>
           </ul>
         </nav>
       </div>
@@ -137,16 +146,15 @@ const Header = (props: any) => {
     <div className="mainmenu-wrapper">
       <nav className="mainmenu-nav">
         <ul className="mainmenu">
-          <li>
-            <Link href="/">
-              <a>Novinky</a>
-            </Link>
-          </li>
+          
+          <Megamenu menuTitle="Novinky" menuLink="/" isBegginer={false} />
+          
           <li>
             <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
-          <Megamenu menuTitle="Začátečníci" menuLink="/zacatecnici" />
+          <Megamenu menuTitle="Začátečníci" menuLink="/zacatecnici/" isBegginer={true} />
+          
         </ul>
       </nav>
     </div>

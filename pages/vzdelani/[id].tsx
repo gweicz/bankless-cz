@@ -1,4 +1,3 @@
-import React from 'react';
 import { getPosts, getSinglePost } from 'pages/api/posts'
 import { useEffect, useState } from 'react'
 
@@ -7,7 +6,6 @@ import { GetServerSideProps } from 'next'
 import { PostOrPage } from '@tryghost/content-api'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { useMenuData } from 'context/SessionContext'
-import Head from "next/head";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -58,12 +56,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-export default function Novinka({
-  articlePost,
-  moreStories,
-  hashovky,
-  menuPosts,
-}: {
+export default function ZacatecniciArticleDetail({
+                                  articlePost,
+                                  moreStories,
+                                  hashovky,
+                                  menuPosts,
+                                }: {
   articlePost?: PostOrPage
   moreStories?: PostOrPage[]
   hashovky?: PostOrPage[]
@@ -82,23 +80,17 @@ export default function Novinka({
   if (!articleData) return null
 
   return (
-    <div>
-      <Head>
-        <title>Cryptohash | {articleData.title}</title>
-        <link rel="icon" type="image/png" href="/favicon.png" />
-      </Head>
-      <Article
-        articleData={articleData}
-        moreStories={moreStories}
-        hashovky={hashovky}
-      >
-        {articleData.html && (
-          <div
-            className="content"
-            dangerouslySetInnerHTML={{ __html: articleData.html }}
-          ></div>
-        )}
-      </Article>
-    </div>
+    <Article
+      articleData={articleData}
+      moreStories={moreStories}
+      hashovky={hashovky}
+    >
+      {articleData.html && (
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{ __html: articleData.html }}
+        ></div>
+      )}
+    </Article>
   )
 }

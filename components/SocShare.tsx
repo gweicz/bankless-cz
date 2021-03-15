@@ -28,7 +28,7 @@ export default function SocShare({
     >
       <li>
         <a
-          href={`https://www.facebook.com/sharer.php?u=${baseUrl}${urlToShare}`}
+          href={`https://www.facebook.com/sharer.php?u=${baseUrl}/${urlToShare}`}
           target="_blank"
         >
           <FontAwesomeIcon icon={['fab', 'facebook-f']} />
@@ -36,7 +36,7 @@ export default function SocShare({
       </li>
       <li>
         <a
-          href={`https://twitter.com/share?url=${baseUrl}${urlToShare}&text=${encodeURI(
+          href={`https://twitter.com/share?url=${baseUrl}/${urlToShare}&text=${encodeURI(
             defaultText,
           )}`}
           data-related="@gweicz"

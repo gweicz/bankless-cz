@@ -1,4 +1,4 @@
-import { PostOrPage } from '@tryghost/content-api'
+import { PostOrPage, Tag } from '@tryghost/content-api'
 import { formatDate } from './formatDate'
 
 export const formatGhostDataForArticlePost = (data: PostOrPage) => {
@@ -12,7 +12,19 @@ export const formatGhostDataForArticlePost = (data: PostOrPage) => {
     reading_time,
   } = data || {}
 
-  const detailUrl = slug ? `novinky/${slug}` : '/'
+  // const detailUrl = slug ? `novinky/${slug}` : '/'
+  let detailUrl = () => {
+    if (slug && tags) {
+      const tagSlugs = tags.map(tag => tag.slug)
+      if (tagSlugs.includes('vzdelani')) {
+        return `vzdelani/${slug}`
+      } else {
+        return `novinky/${slug}`
+      }
+    } else {
+      return '/'
+    }
+  }
   const category = tags && tags[0].name
   const frontImg = {
     url: feature_image,
@@ -31,7 +43,7 @@ export const formatGhostDataForArticlePost = (data: PostOrPage) => {
   const date = published_at && formatDate(published_at)
 
   const formatedGhostData = {
-    detailUrl,
+    detailUrl: detailUrl(),
     category,
     frontImg,
     author,
