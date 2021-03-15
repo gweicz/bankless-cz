@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import Link from 'next/link'
 import { PostOrPage } from '@tryghost/content-api'
 import style from './MegaMenu.module.scss'
 import { useSessionContext } from 'context/SessionContext'
@@ -7,31 +8,56 @@ import { useSessionContext } from 'context/SessionContext'
 type Props = {
   menuTitle: string
   menuLink: string
+  isBegginer: boolean
 }
 
-const Megamenu = ({ menuTitle, menuLink }: Props) => {
+const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
   const { apiPostsData } = useSessionContext()
 
-  const tabs: { [key: string]: { [key: string]: string }[] } = {
-    Ethereum: (apiPostsData?.ethPosts || []).map((post: PostOrPage) => ({
+  let tabs: { [key: string]: { [key: string]: string }[] } ;
+  if(isBegginer === true){
+  tabs = {
+    Ethereum: (apiPostsData?.ethPostsBegginer || []).map((post: PostOrPage) => ({
       category: 'ethereum',
       thumbnail: post.feature_image,
       title: post.title,
       slug: post.slug,
     })),
-    Bitcoin: (apiPostsData?.btcPosts || []).map((post: PostOrPage) => ({
+    Bitcoin: (apiPostsData?.btcPostsBegginer || []).map((post: PostOrPage) => ({
       category: 'bitcoin',
       thumbnail: post.feature_image,
       title: post.title,
       slug: post.slug,
     })),
-    Polkadot: (apiPostsData?.dotPosts || []).map((post: PostOrPage) => ({
+    Polkadot: (apiPostsData?.dotPostsBegginer || []).map((post: PostOrPage) => ({
       category: 'polkadot',
       thumbnail: post.feature_image,
       title: post.title,
       slug: post.slug,
     })),
+  } } else {
+    tabs = {
+      Ethereum: (apiPostsData?.ethPosts || []).map((post: PostOrPage) => ({
+        category: 'ethereum',
+        thumbnail: post.feature_image,
+        title: post.title,
+        slug: post.slug,
+      })),
+      Bitcoin: (apiPostsData?.btcPosts || []).map((post: PostOrPage) => ({
+        category: 'bitcoin',
+        thumbnail: post.feature_image,
+        title: post.title,
+        slug: post.slug,
+      })),
+      Polkadot: (apiPostsData?.dotPosts || []).map((post: PostOrPage) => ({
+        category: 'polkadot',
+        thumbnail: post.feature_image,
+        title: post.title,
+        slug: post.slug,
+      })),
+    }
   }
+
 
   const [activeTab, setActiveTab] = useState('Ethereum')
 
@@ -58,7 +84,9 @@ const Megamenu = ({ menuTitle, menuLink }: Props) => {
 
   return (
     <li className="menu-item-has-children megamenu-wrapper">
-      <a href={menuLink}>{menuTitle}</a>
+      <Link href={menuLink}>
+      <a >{menuTitle}</a>
+      </Link>
       <ul className="col-xl-6 megamenu-sub-menu">
         <li className="megamenu-item">
           <div className="axil-vertical-nav">
@@ -97,7 +125,7 @@ const Megamenu = ({ menuTitle, menuLink }: Props) => {
                         <div key={id} className="col-lg-3">
                           <div className="content-block image-rounded">
                             <div className="post-thumbnail mb--20">
-                              <a href={`/zacatecnici/${category}/${post.slug}`}>
+                              <a href={`/novinky/${post.slug}`}>
                                 <img
                                   className={`w-100 ${style.previewImg}`}
                                   src={post.thumbnail}
@@ -122,7 +150,7 @@ const Megamenu = ({ menuTitle, menuLink }: Props) => {
                               </div>
                               <h5 className="title">
                                 <a
-                                  href={`/zacatecnici/${category}/${post.slug}`}
+                                  href={`/novinky/${post.slug}`}
                                 >
                                   {post.title}
                                 </a>

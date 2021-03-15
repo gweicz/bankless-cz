@@ -137,16 +137,15 @@ const Header = (props: any) => {
     <div className="mainmenu-wrapper">
       <nav className="mainmenu-nav">
         <ul className="mainmenu">
-          <li>
-            <Link href="/">
-              <a>Novinky</a>
-            </Link>
-          </li>
+          
+          <Megamenu menuTitle="Novinky" menuLink="/" isBegginer={false} />
+          
           <li>
             <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
-          <Megamenu menuTitle="Začátečníci" menuLink="/zacatecnici" />
+          <Megamenu menuTitle="Začátečníci" menuLink="/zacatecnici/" isBegginer={true} />
+          
         </ul>
       </nav>
     </div>
