@@ -1,15 +1,17 @@
-import React from "react";
-import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import {ICryptoPrices} from "pages/_app";
+import Link from 'next/link'
 import Megamenu from 'components/Megamenu/Megamenu'
+import {ICryptoPrices} from "pages/_app";
 
 import style from './Header.module.scss'
 
-const Header: React.FC<{cryptoPrices: ICryptoPrices}> = ({ cryptoPrices }) => {
+interface IHeader {
+  cryptoPrices: ICryptoPrices
+}
 
-  const { btcPrice, ethPrice, dotPrice } = cryptoPrices;
+const Header: React.FC<IHeader> = ({ cryptoPrices }) => {
+
+  const { btcPrice, ethPrice, dotPrice } = cryptoPrices
 
   const hamburgerOnClick = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
@@ -80,7 +82,7 @@ const Header: React.FC<{cryptoPrices: ICryptoPrices}> = ({ cryptoPrices }) => {
 
           <Link href="#">
             <li onClick={closeMobileMenu}>
-              <a>Vzdělání</a>
+              <a>Začátečníci</a>
             </li>
           </Link>
         </ul>
@@ -144,16 +146,15 @@ const Header: React.FC<{cryptoPrices: ICryptoPrices}> = ({ cryptoPrices }) => {
     <div className="mainmenu-wrapper">
       <nav className="mainmenu-nav">
         <ul className="mainmenu">
-          <li>
-            <Link href="/">
-              <a>Novinky</a>
-            </Link>
-          </li>
+          
+          <Megamenu menuTitle="Novinky" menuLink="/" isBegginer={false} />
+          
           <li>
             <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
-          <Megamenu menuTitle="Vzdělání" menuLink="/vzdelani" />
+          <Megamenu menuTitle="Začátečníci" menuLink="/zacatecnici/" isBegginer={true} />
+          
         </ul>
       </nav>
     </div>
