@@ -26,7 +26,7 @@ import Header from 'components/Layout/Header'
 import { SessionContextProvider } from 'context/SessionContext'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 
 library.add(
   faSearch,
@@ -43,35 +43,46 @@ library.add(
   faTimes,
 )
 
+export interface ICryptoPrices {
+  btcPrice: number,
+  ethPrice: number,
+  dotPrice: number
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
-  //coingacko api for prices
+  // Coingecko API for fetching crypto prices
   const CoinGecko = require('coingecko-api')
   const CoinGeckoClient = new CoinGecko()
-  const [btc_price, setBtcPrice] = useState(0)
-  const [eth_price, setEthPrice] = useState(0)
-  const [dot_price, setDotPrice] = useState(0)
 
-  setInterval(async function () {
-    let data = await CoinGeckoClient.simple.price({
+  const [cryptoPrices, setCryptoPrices] = useState<ICryptoPrices>({
+    btcPrice: 0,
+    ethPrice: 0,
+    dotPrice: 0
+  });
+
+  const fetchCryptoPrices = async () => {
+    let { data } = await CoinGeckoClient.simple.price({
       ids: ['bitcoin', 'ethereum', 'polkadot'],
       vs_currencies: ['usd'],
     })
-    JSON.stringify(data.data.bitcoin.usd)
-    JSON.stringify(data.data.ethereum.usd)
-    JSON.stringify(data.data.polkadot.usd)
-    setBtcPrice(data.data.bitcoin.usd)
-    setEthPrice(data.data.ethereum.usd)
-    setDotPrice(data.data.polkadot.usd)
-  }, 10000)
+
+    setCryptoPrices({
+      btcPrice: data.bitcoin.usd,
+      ethPrice: data.ethereum.usd,
+      dotPrice: data.polkadot.usd
+    })
+  }
+
+  useEffect(() => {
+    fetchCryptoPrices()
+  })
 
   return (
     <SessionContextProvider>
       <SimpleReactLightbox>
         <div id="mobile-menu-show">
           <Header
-            btc_price={btc_price}
-            eth_price={eth_price}
-            dot_price={dot_price}
+            cryptoPrices={cryptoPrices}
           />
           <Component {...pageProps} />
           <Footer />

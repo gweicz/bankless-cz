@@ -55,7 +55,6 @@ const Home = ({
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
 }) => {
-  console.log('menuPosts: ', menuPosts)
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
 

@@ -13,7 +13,7 @@ const fetchBeginnersCryptoPosts = (crypto: Crypto) =>
     limit: 5,
     page: 1,
     include: ['tags'],
-    filter: `tag:zacatecnici+tag:${crypto}`,
+    filter: `tag:vzdelani+tag:${crypto}`,
   })
 
 export const fetchMenuPosts = async () => {

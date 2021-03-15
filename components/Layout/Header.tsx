@@ -1,9 +1,16 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from "react";
 import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import {ICryptoPrices} from "pages/_app";
 import Megamenu from 'components/Megamenu/Megamenu'
+
 import style from './Header.module.scss'
 
-const Header = (props: any) => {
+const Header: React.FC<{cryptoPrices: ICryptoPrices}> = ({ cryptoPrices }) => {
+
+  const { btcPrice, ethPrice, dotPrice } = cryptoPrices;
+
   const hamburgerOnClick = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
     mobilePopupMenu?.classList.toggle('popup-mobile-menu-show')
@@ -73,7 +80,7 @@ const Header = (props: any) => {
 
           <Link href="#">
             <li onClick={closeMobileMenu}>
-              <a>Začátečníci</a>
+              <a>Vzdělání</a>
             </li>
           </Link>
         </ul>
@@ -101,13 +108,13 @@ const Header = (props: any) => {
         <nav className="mainmenu-nav">
           <ul className="mainmenu">
             <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp" />
-            <li>${props.btc_price}</li>
+            <li>${btcPrice}</li>
 
             <img id="ethereum-price-logo" src="/images/icons/ethereum.webp" />
-            <li>${props.eth_price}</li>
+            <li>${ethPrice}</li>
 
             <img id="polkadot-price-logo" src="/images/icons/polkadot.webp" />
-            <li>${props.dot_price}</li>
+            <li>${dotPrice}</li>
           </ul>
         </nav>
       </div>
@@ -120,13 +127,13 @@ const Header = (props: any) => {
         <nav className="mainmenu-nav">
           <ul className="mainmenu">
             <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp" />
-            <li>${props.btc_price}</li>
+            <li>${btcPrice}</li>
 
             <img id="ethereum-price-logo" src="/images/icons/ethereum.webp" />
-            <li>${props.eth_price}</li>
+            <li>${ethPrice}</li>
 
             <img id="polkadot-price-logo" src="/images/icons/polkadot.webp" />
-            <li>${props.dot_price}</li>
+            <li>${dotPrice}</li>
           </ul>
         </nav>
       </div>
@@ -146,7 +153,7 @@ const Header = (props: any) => {
             <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
-          <Megamenu menuTitle="Začátečníci" menuLink="/zacatecnici" />
+          <Megamenu menuTitle="Vzdělání" menuLink="/vzdelani" />
         </ul>
       </nav>
     </div>
