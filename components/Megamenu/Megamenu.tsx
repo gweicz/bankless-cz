@@ -89,6 +89,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
       </Link>
       <ul className="col-xl-6 megamenu-sub-menu">
         <li className="megamenu-item">
+          <div className="height">
           <div className="axil-vertical-nav">
             <ul className="vertical-nav-menu">
               {Object.keys(tabs).map((category, id) => (
@@ -107,7 +108,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
               ))}
             </ul>
           </div>
-
+        </div>
           <div className="axil-vertical-nav-content">
             {Object.keys(tabs).map((category, id) => {
               let categoryPosts = tabs![category]
