@@ -5,7 +5,13 @@ import SocShare from 'components/SocShare'
 import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
 import styles from './Banner.module.scss'
 
-export default function Banner({ articleData }: { articleData: PostOrPage }) {
+export default function Banner({
+  articleData,
+  fromPage,
+}: {
+  articleData: PostOrPage
+  fromPage: string
+}) {
   const {
     detailUrl,
     category,
@@ -13,6 +19,7 @@ export default function Banner({ articleData }: { articleData: PostOrPage }) {
     author,
     readTime,
     date,
+    slug,
     title,
   } = formatGhostDataForArticlePost(articleData)
 
@@ -91,7 +98,7 @@ export default function Banner({ articleData }: { articleData: PostOrPage }) {
                 <h1 className={`title `}>{title}</h1>
                 <div className="post-meta-wrapper">
                   {_authorBox()}
-                  <SocShare urlToShare={detailUrl} />
+                  <SocShare urlToShare={fromPage + slug} />
                 </div>
               </div>
             </div>

@@ -13,17 +13,19 @@ export default function Article({
   moreStories,
   children,
   hashovky,
+  fromPage,
 }: {
   articleData: PostOrPage
   moreStories?: PostOrPage[]
   children: any
   hashovky?: PostOrPage[]
+  fromPage: string
 }) {
-  const { detailUrl, author } = formatGhostDataForArticlePost(articleData)
+  const { slug, author } = formatGhostDataForArticlePost(articleData)
 
   return (
     <div className="main-wrapper">
-      <Banner articleData={articleData} />
+      <Banner articleData={articleData} fromPage={fromPage} />
       <div className="post-single-wrapper axil-section-gap bg-color-white">
         <div className="container">
           <div className="row">
@@ -34,7 +36,7 @@ export default function Article({
                 </SRLWrapper>
                 {/* <SocialShareBlock /> */}
                 <div className="social-share-block justify-content-end m-t-5">
-                  <SocShare urlToShare={detailUrl} isRoundedIcons />
+                  <SocShare urlToShare={fromPage + slug} isRoundedIcons />
                 </div>
                 <AboutAuthor
                   name={author?.name || ''}

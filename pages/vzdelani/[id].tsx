@@ -57,11 +57,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 export default function ZacatecniciArticleDetail({
-                                  articlePost,
-                                  moreStories,
-                                  hashovky,
-                                  menuPosts,
-                                }: {
+  articlePost,
+  moreStories,
+  hashovky,
+  menuPosts,
+}: {
   articlePost?: PostOrPage
   moreStories?: PostOrPage[]
   hashovky?: PostOrPage[]
@@ -84,6 +84,7 @@ export default function ZacatecniciArticleDetail({
       articleData={articleData}
       moreStories={moreStories}
       hashovky={hashovky}
+      fromPage={'vzdelani/'}
     >
       {articleData.html && (
         <div

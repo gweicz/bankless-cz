@@ -13,8 +13,8 @@ export default function SocShare({
 }) {
   const defaultText = 'Cryptohash | Ethereum, Bitcoin a jiné krypto'
 
-  const baseUrl = 'https://zintra.io'
-  const urlForClipboard = `${baseUrl}${urlToShare}`
+  const baseUrl = 'http://zintra.io'
+  const urlForClipboard = `${baseUrl}/${urlToShare}`
 
   const { copyLink, isCopiedTooltip } = useCopyToClipboard()
 

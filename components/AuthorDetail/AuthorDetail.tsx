@@ -1,9 +1,7 @@
 import { Author } from '@tryghost/content-api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Link from 'next/link'
 
 const AuthorDetail = ({ author }: { author: Author }) => {
-  console.log('author: ', author)
   return (
     <div>
       <div className="axil-author-area axil-author-banner bg-color-grey">
