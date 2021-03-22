@@ -1,6 +1,5 @@
 import { Author } from '@tryghost/content-api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Link from 'next/link'
 
 const AuthorDetail = ({ author }: { author: Author }) => {
   return (

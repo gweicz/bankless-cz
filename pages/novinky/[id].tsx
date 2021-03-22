@@ -1,13 +1,13 @@
-import React from 'react';
 import { getPosts, getSinglePost } from 'pages/api/posts'
 import { useEffect, useState } from 'react'
 
 import Article from 'components/Article/Article'
 import { GetServerSideProps } from 'next'
+import Head from 'next/head'
 import { PostOrPage } from '@tryghost/content-api'
+import React from 'react'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { useMenuData } from 'context/SessionContext'
-import Head from "next/head";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -84,13 +84,14 @@ export default function Novinka({
   return (
     <div>
       <Head>
-        <title>Cryptohash | {articleData.title}</title>
+        <title>Bankless | {articleData.title}</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <Article
         articleData={articleData}
         moreStories={moreStories}
         hashovky={hashovky}
+        fromPage={'novinky/'}
       >
         {articleData.html && (
           <div

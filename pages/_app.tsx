@@ -18,6 +18,7 @@ import {
   faTwitter,
   fab,
 } from '@fortawesome/free-brands-svg-icons'
+import { useEffect, useState } from 'react'
 
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import BackToTop from 'components/Layout/BackToTop'
@@ -26,7 +27,6 @@ import Header from 'components/Layout/Header'
 import { SessionContextProvider } from 'context/SessionContext'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {useEffect, useState} from 'react'
 
 library.add(
   faSearch,
@@ -44,8 +44,8 @@ library.add(
 )
 
 export interface ICryptoPrices {
-  btcPrice: number,
-  ethPrice: number,
+  btcPrice: number
+  ethPrice: number
   dotPrice: number
 }
 
@@ -57,8 +57,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [cryptoPrices, setCryptoPrices] = useState<ICryptoPrices>({
     btcPrice: 0,
     ethPrice: 0,
-    dotPrice: 0
-  });
+    dotPrice: 0,
+  })
 
   const fetchCryptoPrices = async () => {
     let { data } = await CoinGeckoClient.simple.price({
@@ -69,7 +69,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     setCryptoPrices({
       btcPrice: data.bitcoin.usd,
       ethPrice: data.ethereum.usd,
-      dotPrice: data.polkadot.usd
+      dotPrice: data.polkadot.usd,
     })
   }
 
@@ -81,9 +81,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <SessionContextProvider>
       <SimpleReactLightbox>
         <div id="mobile-menu-show">
-          <Header
-            cryptoPrices={cryptoPrices}
-          />
+          <Header cryptoPrices={cryptoPrices} />
           <Component {...pageProps} />
           <Footer />
           <BackToTop />

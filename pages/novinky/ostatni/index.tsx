@@ -63,7 +63,7 @@ const NovinkyOstatni = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Cryptohash | Novinky</title>
+        <title>Bankless | Novinky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <main className={styles.main}>
