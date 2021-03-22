@@ -1,9 +1,8 @@
-# Novinkový web Gwei.cz komunity
-Projekt je postavený na frameworku Next.js
-
-
+# Bankless.cz
+Novinkový/Vzdělávací web se zaměřením na kryptoměny a decentralizované finance.
 
 ## Užitečné odkazy
+Projekt je postavený na frameworku Next.js
 - Oficiální dokumentace k Next.js: [https://nextjs.org/docs](https://nextjs.org/docs)
 - Ghost Content API dokumentace: [https://ghost.org/docs/content-api/](https://ghost.org/docs/content-api/)
 - Popis projektu na fóru: [https://forum.gwei.cz/t/novinkovy-web-o-kryptomenach/232](https://forum.gwei.cz/t/novinkovy-web-o-kryptomenach/232)
@@ -26,7 +25,7 @@ Projekt je postavený na frameworku Next.js
 ### Přispění do projektu
 - Prosím po naklonování na lokální počítač si vytvořte vlastní branch: 
   - např. `git checkout -b <rixcian-homepage-implementation>`
-  - Bylo by super kdyby název branche odpovídal vašemu nicku a featury, na které pracujete, viz. příklad
+  - Bylo by super kdyby název branche odpovídal vašemu nicku a featury (všechno malými písmeny), na které pracujete, viz. příklad
 - Až jste hotovi, tak stačí pushnout branch na GitHub: 
   - např. `git push origin <rixcian-homepage-implementation>`
 
@@ -37,3 +36,7 @@ Projekt je postavený na frameworku Next.js
 - Otevřete si `index.html` v prohlížeči a můžete procházet celým webem
 - **Odkazy**
   - Odkaz na ThemeForest: [https://themeforest.net/item/blogar-blog-magazine-template/29431702](https://themeforest.net/item/blogar-blog-magazine-template/29431702)
+
+
+## Nasazení na produkci
+TODO
