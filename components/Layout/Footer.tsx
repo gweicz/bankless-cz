@@ -4,7 +4,7 @@ import SocInvite from 'components/SocInvite'
 import useCopyToClipboard from 'components/helpers/useCopyToClipboard'
 
 const Footer = () => {
-  const redactionEmailAdsress = 'redakce@cryptohash.cz'
+  const redactionEmailAdsress = 'redakce@bankless.cz'
   let [EmailText, setEmailText] = useState(redactionEmailAdsress)
 
   const { copyLink, isCopiedTooltip } = useCopyToClipboard()
