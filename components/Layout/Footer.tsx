@@ -1,12 +1,11 @@
-import { MouseEvent, useEffect, useState } from 'react'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState } from 'react'
 import Link from 'next/link'
 import SocInvite from 'components/SocInvite'
 import useCopyToClipboard from 'components/helpers/useCopyToClipboard'
 
 const Footer = () => {
-  const redactionEmailAdsress = 'redakce@cryptohash.cz'
+  const redactionEmailAdsress = 'redakce@bankless.cz'
+  let [EmailText, setEmailText] = useState(redactionEmailAdsress)
 
   const { copyLink, isCopiedTooltip } = useCopyToClipboard()
 
@@ -49,14 +48,19 @@ const Footer = () => {
                     <a
                       href="#"
                       className="hover-text-black cursor-copy"
-                      onClick={(event) =>
-                        copyLink({ event, textToCopy: redactionEmailAdsress })
-                      }
+                      onClick={(event) => {
+                        copyLink({ event, textToCopy: redactionEmailAdsress });
+                        setEmailText("")
+                        setTimeout(function () {
+                          setEmailText(redactionEmailAdsress)
+                        }, 3000)
+                      }}
                     >
                       {isCopiedTooltip()}
-                      {redactionEmailAdsress}
+                      {EmailText}
                     </a>
                   </li>
+                  
                 </ul>
               </div>
             </div>
