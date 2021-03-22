@@ -99,7 +99,7 @@ const Hashovky = ({
   return (
     <div>
       <Head>
-        <title>Cryptohash | Ethereum, Bitcoin a jiné krypto</title>
+        <title>Bankless | Hashovky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
 

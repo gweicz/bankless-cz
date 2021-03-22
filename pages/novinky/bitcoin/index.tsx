@@ -63,7 +63,7 @@ const NovinkyBitcoin = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Cryptohash | Bitcoin novinky</title>
+        <title>Bankless | Bitcoin novinky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <main className={styles.main}>

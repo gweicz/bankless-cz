@@ -76,7 +76,7 @@ const Home = ({
   return (
     <div className={styles.container}>
       <Head>
-        <title>Cryptohash | Ethereum, Bitcoin a jiné krypto</title>
+        <title>Bankless | Ethereum, Bitcoin a jiné krypto</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <main className={styles.main}>

@@ -77,7 +77,7 @@ const NovinkyPolkadot = ({
   return (
     <div className={styles.container}>
       <Head>
-        <title>Cryptohash | Začátečníci</title>
+        <title>Bankless | Vzdělání</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <main className={styles.main}>

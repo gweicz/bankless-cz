@@ -84,7 +84,7 @@ export default function Novinka({
   return (
     <div>
       <Head>
-        <title>Cryptohash | {articleData.title}</title>
+        <title>Bankless | {articleData.title}</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <Article

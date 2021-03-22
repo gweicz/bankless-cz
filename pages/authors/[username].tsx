@@ -11,6 +11,7 @@ import SideBar from 'components/Layout/SideBar'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
+import Head from "next/head";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -86,6 +87,11 @@ const AuthorDetailPage = ({
 
   return (
     <div>
+      <Head>
+        <title>Bankless | @{author.name}</title>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+      </Head>
+
       <AuthorDetail author={author} />
 
       <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">

@@ -63,7 +63,7 @@ const ZacatecniciBitcoin = ({ posts, hashovky }: { posts?: PostOrPage[], hashovk
   return (
     <div className={styles.container}>
       <Head>
-        <title>Cryptohash | Polkadot pro začátečníky</title>
+        <title>Bankless | Polkadot pro začátečníky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <main className={styles.main}>
