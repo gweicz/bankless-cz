@@ -73,7 +73,7 @@ export default function Post({ data }: { data: PostOrPage }) {
           </Link>
         </h4>
         <div className="post-meta-wrapper d-flex">
-          <SocShare urlToShare={`/${detailUrl}`} />
+          <SocShare urlToShare={`${detailUrl}`} />
           <div className="post-meta">
             <div className="content">
               {_authorName(author)}

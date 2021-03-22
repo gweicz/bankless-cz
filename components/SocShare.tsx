@@ -11,9 +11,9 @@ export default function SocShare({
   urlToShare: string
   isRoundedIcons?: boolean
 }) {
-  const defaultText = 'Cryptohash | Ethereum, Bitcoin a jiné krypto'
+  const defaultText = 'Bankless | Ethereum, Bitcoin a jiné krypto'
 
-  const baseUrl = 'http://zintra.io'
+  const baseUrl = 'https://bankless.cz'
   const urlForClipboard = `${baseUrl}/${urlToShare}`
 
   const { copyLink, isCopiedTooltip } = useCopyToClipboard()
