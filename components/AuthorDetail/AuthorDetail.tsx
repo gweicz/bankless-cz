@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
 const AuthorDetail = ({ author }: { author: Author }) => {
-  console.log('author: ', author)
   return (
     <div>
       <div className="axil-author-area axil-author-banner bg-color-grey">
@@ -13,7 +12,7 @@ const AuthorDetail = ({ author }: { author: Author }) => {
               <div className="media" style={{ margin: '100px 20px 0px 20px' }}>
                 <div className="thumbnail">
                   {author.website ? (
-                    <a href={author.website}>
+                    <a href={author.website} target="_blank">
                       {author.profile_image && (
                         <img src={author.profile_image} alt="Author's Image" />
                       )}
@@ -35,14 +34,14 @@ const AuthorDetail = ({ author }: { author: Author }) => {
                     <ul className="social-share-transparent justify-content-centre">
                       {author.facebook && (
                         <li>
-                          <a href={author.facebook}>
+                          <a href={ "http://facebook.com/" + author.facebook} target="_blank">
                             <FontAwesomeIcon icon={['fab', 'facebook-f']} />
                           </a>
                         </li>
                       )}
                       {author.twitter && (
                         <li>
-                          <a href={author.twitter}>
+                          <a href={ "http://twitter.com/" + author.twitter} target="_blank">
                             <FontAwesomeIcon icon={['fab', 'twitter']} />
                           </a>
                         </li>
