@@ -26,10 +26,10 @@ export default function Banner({
   const _authorName = () => (
     <>
       {author.profileUrl ? (
-        <h6 className="post-author-name">
+        <h6 className="post-author-name text-white">
           <Link href={author.profileUrl}>
-            <a className="hover-flip-item-wrapper">
-              <span className="hover-flip-item text-left">
+            <a style={{color: "white"}}>
+              <span className={`text-left`}>
                 <span data-text={author.name}>{author.name}</span>
               </span>
             </a>
@@ -76,6 +76,7 @@ export default function Banner({
     </div>
   )
 
+
   return (
     <div className="banner banner-single-post post-formate post-standard alignwide">
       <div className="container">
@@ -98,7 +99,7 @@ export default function Banner({
                 <h1 className={`title `}>{title}</h1>
                 <div className="post-meta-wrapper">
                   {_authorBox()}
-                  <SocShare urlToShare={fromPage + slug} />
+                  <SocShare urlToShare={fromPage + slug} color={"white"}/>
                 </div>
               </div>
             </div>

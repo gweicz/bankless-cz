@@ -7,9 +7,11 @@ import useCopyToClipboard from './helpers/useCopyToClipboard'
 export default function SocShare({
   urlToShare,
   isRoundedIcons = false,
+  color = undefined,
 }: {
   urlToShare: string
   isRoundedIcons?: boolean
+  color: string | undefined
 }) {
   const defaultText = 'Bankless | Ethereum, Bitcoin a jiné krypto'
 
@@ -18,6 +20,47 @@ export default function SocShare({
 
   const { copyLink, isCopiedTooltip } = useCopyToClipboard()
 
+if(color === undefined){
+return (
+    <ul
+      className={`${
+        isRoundedIcons
+          ? 'social-icon icon-rounded-transparent md-size'
+          : 'social-share-transparent'
+      } justify-content-end`}
+    >
+      <li>
+        <a
+          href={`https://www.facebook.com/sharer.php?u=${baseUrl}/${urlToShare}`}
+          target="_blank"
+        >
+          <FontAwesomeIcon icon={['fab', 'facebook-f']}/>
+        </a>
+      </li>
+      <li>
+        <a
+          href={`https://twitter.com/share?url=${baseUrl}/${urlToShare}&text=${encodeURI(
+            defaultText,
+          )}`}
+          data-related="@gweicz"
+          target="_blank"
+          data-show-count="false"
+        >
+          <FontAwesomeIcon icon={['fab', 'twitter']}/>
+        </a>
+      </li>
+      <li className={styles.copyLink}>
+        <a
+          href="#"
+          onClick={(event) => copyLink({ event, textToCopy: urlForClipboard })}
+        >
+          {isCopiedTooltip()}
+          <FontAwesomeIcon icon="link"/>
+        </a>
+      </li>
+    </ul>
+  )
+} else {
   return (
     <ul
       className={`${
@@ -31,7 +74,7 @@ export default function SocShare({
           href={`https://www.facebook.com/sharer.php?u=${baseUrl}/${urlToShare}`}
           target="_blank"
         >
-          <FontAwesomeIcon icon={['fab', 'facebook-f']} />
+          <FontAwesomeIcon icon={['fab', 'facebook-f']} style={{color: `${color}`}}/>
         </a>
       </li>
       <li>
@@ -43,7 +86,7 @@ export default function SocShare({
           target="_blank"
           data-show-count="false"
         >
-          <FontAwesomeIcon icon={['fab', 'twitter']} />
+          <FontAwesomeIcon icon={['fab', 'twitter']} style={{color: `${color}`}}/>
         </a>
       </li>
       <li className={styles.copyLink}>
@@ -52,9 +95,10 @@ export default function SocShare({
           onClick={(event) => copyLink({ event, textToCopy: urlForClipboard })}
         >
           {isCopiedTooltip()}
-          <FontAwesomeIcon icon="link" />
+          <FontAwesomeIcon icon="link" style={{color: `${color}`}}/>
         </a>
       </li>
     </ul>
   )
+}
 }
