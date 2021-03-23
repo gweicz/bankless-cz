@@ -46,7 +46,6 @@ const Footer = () => {
                 <ul className="mainmenu justify-content-start">
                   <li>
                     <a
-                      href="#"
                       className="hover-text-black cursor-copy"
                       onClick={(event) => {
                         copyLink({ event, textToCopy: redactionEmailAdsress });
@@ -60,7 +59,18 @@ const Footer = () => {
                       {EmailText}
                     </a>
                   </li>
-                  
+                </ul>
+                <ul className="mainmenu justify-content-right">
+                  <li>
+                  <Link href="/kodex">
+                    <a
+                      className="hover-text-black"
+                      style={{fontSize: "15px"}}
+                    >
+                     {"Náš kodex"}
+                    </a>
+                  </Link>
+                  </li>
                 </ul>
               </div>
             </div>
