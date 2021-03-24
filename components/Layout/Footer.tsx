@@ -43,6 +43,18 @@ const Footer = () => {
           <div className="row align-items-center">
             <div className="col-lg-9 col-md-8">
               <div className="copyright-left">
+                <ul className="mainmenu justify-content-right">
+                  <li>
+                    <Link href="/kodex">
+                      <a
+                        className="hover-text-black"
+                        style={{fontSize: "15px"}}
+                      >
+                        {"Náš kodex"}
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
                 <ul className="mainmenu justify-content-start">
                   <li>
                     <a
@@ -58,18 +70,6 @@ const Footer = () => {
                       {isCopiedTooltip()}
                       {EmailText}
                     </a>
-                  </li>
-                </ul>
-                <ul className="mainmenu justify-content-right">
-                  <li>
-                  <Link href="/kodex">
-                    <a
-                      className="hover-text-black"
-                      style={{fontSize: "15px"}}
-                    >
-                     {"Náš kodex"}
-                    </a>
-                  </Link>
                   </li>
                 </ul>
               </div>
