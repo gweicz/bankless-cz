@@ -29,7 +29,7 @@ export default function Banner({
         <h6 className="post-author-name text-white">
           <Link href={author.profileUrl}>
             <a style={{color: "white"}}>
-              <span className={`text-left`}>
+              <span className="text-left">
                 <span data-text={author.name}>{author.name}</span>
               </span>
             </a>

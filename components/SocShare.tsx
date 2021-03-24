@@ -20,47 +20,6 @@ export default function SocShare({
 
   const { copyLink, isCopiedTooltip } = useCopyToClipboard()
 
-if(color === undefined){
-return (
-    <ul
-      className={`${
-        isRoundedIcons
-          ? 'social-icon icon-rounded-transparent md-size'
-          : 'social-share-transparent'
-      } justify-content-end`}
-    >
-      <li>
-        <a
-          href={`https://www.facebook.com/sharer.php?u=${baseUrl}/${urlToShare}`}
-          target="_blank"
-        >
-          <FontAwesomeIcon icon={['fab', 'facebook-f']}/>
-        </a>
-      </li>
-      <li>
-        <a
-          href={`https://twitter.com/share?url=${baseUrl}/${urlToShare}&text=${encodeURI(
-            defaultText,
-          )}`}
-          data-related="@gweicz"
-          target="_blank"
-          data-show-count="false"
-        >
-          <FontAwesomeIcon icon={['fab', 'twitter']}/>
-        </a>
-      </li>
-      <li className={styles.copyLink}>
-        <a
-          href="#"
-          onClick={(event) => copyLink({ event, textToCopy: urlForClipboard })}
-        >
-          {isCopiedTooltip()}
-          <FontAwesomeIcon icon="link"/>
-        </a>
-      </li>
-    </ul>
-  )
-} else {
   return (
     <ul
       className={`${
@@ -74,7 +33,7 @@ return (
           href={`https://www.facebook.com/sharer.php?u=${baseUrl}/${urlToShare}`}
           target="_blank"
         >
-          <FontAwesomeIcon icon={['fab', 'facebook-f']} style={{color: `${color}`}}/>
+          <FontAwesomeIcon icon={['fab', 'facebook-f']} style={color ? {color: color} : {color: 'inherit'}}/>
         </a>
       </li>
       <li>
@@ -86,7 +45,7 @@ return (
           target="_blank"
           data-show-count="false"
         >
-          <FontAwesomeIcon icon={['fab', 'twitter']} style={{color: `${color}`}}/>
+          <FontAwesomeIcon icon={['fab', 'twitter']} style={color ? {color: color} : {color: 'inherit'}}/>
         </a>
       </li>
       <li className={styles.copyLink}>
@@ -95,10 +54,10 @@ return (
           onClick={(event) => copyLink({ event, textToCopy: urlForClipboard })}
         >
           {isCopiedTooltip()}
-          <FontAwesomeIcon icon="link" style={{color: `${color}`}}/>
+          <FontAwesomeIcon icon="link" style={color ? {color: color} : {color: 'inherit'}}/>
         </a>
       </li>
     </ul>
   )
 }
-}
+
