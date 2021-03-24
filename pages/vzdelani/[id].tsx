@@ -28,14 +28,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (!postId) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/404Error',
+        permanent: false,
+      },
     }
   }
   const articlePost = await getSinglePost(postId)
 
   if (!articlePost) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/404Error',
+        permanent: false,
+      },
     }
   }
 

@@ -11,7 +11,7 @@ import SideBar from 'components/Layout/SideBar'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
-import Head from "next/head";
+import Head from 'next/head'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -30,12 +30,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (!posts_notFiltered) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/404Error',
+        permanent: false,
+      },
     }
   }
   if (!author) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/404Error',
+        permanent: false,
+      },
     }
   }
 
