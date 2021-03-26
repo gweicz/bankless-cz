@@ -1,18 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import Megamenu from 'components/Megamenu/Megamenu'
-import {ICryptoPrices} from "pages/_app";
 
 import style from './Header.module.scss'
+import CryptoPrices from './CryptoPrices'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-interface IHeader {
-  cryptoPrices: ICryptoPrices
-}
-
-const Header: React.FC<IHeader> = ({ cryptoPrices }) => {
-
-  const { btcPrice, ethPrice, dotPrice } = cryptoPrices
-
+const Header: React.FC = () => {
   const hamburgerOnClick = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
     mobilePopupMenu?.classList.toggle('popup-mobile-menu-show')
@@ -104,57 +97,21 @@ const Header: React.FC<IHeader> = ({ cryptoPrices }) => {
     </div>
   )
 
-  const _cryptoPrices = () => (
-    <div className="col-xl-12 d-none d-xl-block crypto-prices">
-      <div className="mainmenu-wrapper">
-        <nav className="mainmenu-nav">
-          <ul className="mainmenu">
-            <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp" />
-            <li>${btcPrice}</li>
-
-            <img id="ethereum-price-logo" src="/images/icons/ethereum.webp" />
-            <li>${ethPrice}</li>
-
-            <img id="polkadot-price-logo" src="/images/icons/polkadot.webp" />
-            <li>${dotPrice}</li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  )
-
-  const _mobileCryptoPrices = () => (
-    <div className="mobile-crypto-prices">
-      <div className="mainmenu-wrapper">
-        <nav className="mainmenu-nav">
-          <ul className="mainmenu">
-            <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp" />
-            <li>${btcPrice}</li>
-
-            <img id="ethereum-price-logo" src="/images/icons/ethereum.webp" />
-            <li>${ethPrice}</li>
-
-            <img id="polkadot-price-logo" src="/images/icons/polkadot.webp" />
-            <li>${dotPrice}</li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  )
-
   const _mainMenu = () => (
     <div className="mainmenu-wrapper">
       <nav className="mainmenu-nav">
         <ul className="mainmenu">
-          
           <Megamenu menuTitle="Novinky" menuLink="/" isBegginer={false} />
-          
+
           <li>
             <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
-          <Megamenu menuTitle="Začátečníci" menuLink="/zacatecnici/" isBegginer={true} />
-          
+          <Megamenu
+            menuTitle="Začátečníci"
+            menuLink="/zacatecnici/"
+            isBegginer={true}
+          />
         </ul>
       </nav>
     </div>
@@ -171,13 +128,13 @@ const Header: React.FC<IHeader> = ({ cryptoPrices }) => {
 
             <div className="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
               <div className="header-search text-right d-flex align-items-center justify-content-end">
-                {_mobileCryptoPrices()}
+                <CryptoPrices isMobile={true} />
                 {_hamburgerMenu()}
               </div>
             </div>
           </div>
           <div className="row justify-content-center align-items-center">
-            {_cryptoPrices()}
+            <CryptoPrices isMobile={false} />
           </div>
         </div>
       </header>

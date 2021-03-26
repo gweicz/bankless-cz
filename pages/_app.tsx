@@ -18,7 +18,6 @@ import {
   faTwitter,
   fab,
 } from '@fortawesome/free-brands-svg-icons'
-import { useEffect, useState } from 'react'
 
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import BackToTop from 'components/Layout/BackToTop'
@@ -50,38 +49,11 @@ export interface ICryptoPrices {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // Coingecko API for fetching crypto prices
-  const CoinGecko = require('coingecko-api')
-  const CoinGeckoClient = new CoinGecko()
-
-  const [cryptoPrices, setCryptoPrices] = useState<ICryptoPrices>({
-    btcPrice: 0,
-    ethPrice: 0,
-    dotPrice: 0,
-  })
-
-  const fetchCryptoPrices = async () => {
-    let { data } = await CoinGeckoClient.simple.price({
-      ids: ['bitcoin', 'ethereum', 'polkadot'],
-      vs_currencies: ['usd'],
-    })
-
-    setCryptoPrices({
-      btcPrice: data.bitcoin.usd,
-      ethPrice: data.ethereum.usd,
-      dotPrice: data.polkadot.usd,
-    })
-  }
-
-  useEffect(() => {
-    fetchCryptoPrices()
-  })
-
   return (
     <SessionContextProvider>
       <SimpleReactLightbox>
         <div id="mobile-menu-show">
-          <Header cryptoPrices={cryptoPrices} />
+          <Header />
           <Component {...pageProps} />
           <Footer />
           <BackToTop />

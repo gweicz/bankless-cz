@@ -27,10 +27,16 @@ export const getPosts = async ({
 }
 
 export async function getSinglePost(postSlug: string) {
-  return await api.posts.read(
-    {
-      slug: postSlug,
-    },
-    { include: ['count.posts', 'authors'] },
-  )
+  try {
+    const post = await api.posts.read(
+      {
+        slug: postSlug,
+      },
+      { include: ['count.posts', 'authors'] },
+    )
+    return post;
+  } catch (error) {
+    console.error('getSinglePost error', error)
+    return null;
+  }
 }

@@ -1,14 +1,13 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {GetServerSideProps} from "next";
-import {getPosts} from "../../api/posts";
-import {PostOrPage} from "@tryghost/content-api";
-import {useEffect, useState} from "react";
-import styles from "../../../styles/Home.module.scss";
-import Head from "next/head";
-import MainBanner from "../../../components/HomePage/MainBanner";
-import PostList from "../../../components/HomePage/PostList/PostList";
-import SideBar from "../../../components/Layout/SideBar";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { GetServerSideProps } from 'next'
+import { getPosts } from '../../api/posts'
+import { PostOrPage } from '@tryghost/content-api'
+import { useEffect, useState } from 'react'
+import styles from '../../../styles/Home.module.scss'
+import Head from 'next/head'
+import MainBanner from '../../../components/HomePage/MainBanner'
+import PostList from '../../../components/HomePage/PostList/PostList'
+import SideBar from '../../../components/Layout/SideBar'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -22,19 +21,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: POSTS_ON_PAGE_LIMIT,
     page,
     include: ['tags', 'authors'],
-    filter: 'tag:bitcoin'
+    filter: 'tag:bitcoin',
   })
 
   const hashovky = await getPosts({
     limit: 5,
     page,
     include: ['tags'],
-    filter: 'tag:hashovka'
+    filter: 'tag:hashovka',
   })
 
   if (!posts) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/404Error',
+        permanent: false,
+      },
     }
   }
 
@@ -43,7 +45,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-const NovinkyBitcoin = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: PostOrPage[] }) => {
+const NovinkyBitcoin = ({
+  posts,
+  hashovky,
+}: {
+  posts?: PostOrPage[]
+  hashovky?: PostOrPage[]
+}) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
 
@@ -76,13 +84,13 @@ const NovinkyBitcoin = ({ posts, hashovky }: { posts?: PostOrPage[], hashovky?: 
                 nextPage={nextPage}
                 isLastPage={posts?.length !== POSTS_ON_PAGE_LIMIT}
               />
-              <SideBar hashovky={hashovkyState}/>
+              <SideBar hashovky={hashovkyState} />
             </div>
           </div>
         </div>
       </main>
     </div>
   )
-};
+}
 
-export default NovinkyBitcoin;
+export default NovinkyBitcoin

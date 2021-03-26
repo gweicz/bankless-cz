@@ -28,7 +28,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (!posts) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/404Error',
+        permanent: false,
+      },
     }
   }
 
