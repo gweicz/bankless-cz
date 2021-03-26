@@ -7,9 +7,11 @@ import useCopyToClipboard from './helpers/useCopyToClipboard'
 export default function SocShare({
   urlToShare,
   isRoundedIcons = false,
+  color = undefined,
 }: {
   urlToShare: string
   isRoundedIcons?: boolean
+  color: string | undefined
 }) {
   const defaultText = 'Bankless | Ethereum, Bitcoin a jiné krypto'
 
@@ -31,7 +33,7 @@ export default function SocShare({
           href={`https://www.facebook.com/sharer.php?u=${baseUrl}/${urlToShare}`}
           target="_blank"
         >
-          <FontAwesomeIcon icon={['fab', 'facebook-f']} />
+          <FontAwesomeIcon icon={['fab', 'facebook-f']} style={color ? {color: color} : {color: 'inherit'}}/>
         </a>
       </li>
       <li>
@@ -43,7 +45,7 @@ export default function SocShare({
           target="_blank"
           data-show-count="false"
         >
-          <FontAwesomeIcon icon={['fab', 'twitter']} />
+          <FontAwesomeIcon icon={['fab', 'twitter']} style={color ? {color: color} : {color: 'inherit'}}/>
         </a>
       </li>
       <li className={styles.copyLink}>
@@ -52,9 +54,10 @@ export default function SocShare({
           onClick={(event) => copyLink({ event, textToCopy: urlForClipboard })}
         >
           {isCopiedTooltip()}
-          <FontAwesomeIcon icon="link" />
+          <FontAwesomeIcon icon="link" style={color ? {color: color} : {color: 'inherit'}}/>
         </a>
       </li>
     </ul>
   )
 }
+
