@@ -39,4 +39,22 @@ Projekt je postavený na frameworku Next.js
 
 
 ## Nasazení na produkci
-TODO
+- Naklonování repozitáře na produkční server
+- Nainstalování závislostí: `yarn install`
+- Build docker image: `docker build -t bankless:latest .`
+- V root adresáři vytvořit `.env`, se změněnými hodnotami (napsat o ně @rixcian):
+  ```dotenv
+  GHOST_URL=<ghost_url>
+  GHOST_CONTENT_API_KEY=<ghost_api_content_key>
+  GHOST_API_VERSION=<ghost_api_version>
+    ```
+- Vytvoření a spuštění kontejneru: `docker run -p 3000:3000 --name bankless_prod bankless:latest`
+
+
+## Update produkce
+- Připojení na produkční server
+- Stažení všech nových commitů: `git pull`
+- Build nového image: `docker build -t bankless:latest .`
+- Zastavení aktuálně běžícího kontejneru: `docker stop bankless_prod`
+- Smazání kontejneru: `docker rm bankless_prod`
+- Vytvoření a spuštění kontejneru: `docker run -p 3000:3000 --name bankless_prod bankless:latest`
