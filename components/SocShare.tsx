@@ -11,7 +11,7 @@ export default function SocShare({
 }: {
   urlToShare: string
   isRoundedIcons?: boolean
-  color: string | undefined
+  color?: string
 }) {
   const defaultText = 'Bankless | Ethereum, Bitcoin a jiné krypto'
 
