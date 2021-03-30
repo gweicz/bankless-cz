@@ -104,7 +104,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
                     className={`vertical-nav-item ${id === 0 ? 'active' : ''}`}
                     onMouseEnter={(e) => onTabHover(e, category)}
                   >
-                    <Link href={`/vzdelani/${category.toLowerCase()}`}>
+                    <Link href={`/${menuLink}/${category.toLowerCase()}`}>
                       <a className="hover-flip-item-wrapper">
                         <span className="hover-flip-item">
                           <span data-text={category}>{category}</span>
@@ -133,7 +133,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
                         <div key={id} className="col-lg-3">
                           <div className="content-block image-rounded">
                             <div className="post-thumbnail mb--20">
-                              <Link href={`/novinky/${post.slug}`}>
+                              <Link href={`/${menuLink}/${post.slug}`}>
                                 <a>
                                   <img
                                     className={`w-100 ${style.previewImg}`}
@@ -152,7 +152,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
                                 </div>
                               </div>
                               <h5 className="title">
-                                <Link href={`/novinky/${post.slug}`}>
+                                <Link href={`/${menuLink}/${post.slug}`}>
                                   <a>{post.title}</a>
                                 </Link>
                               </h5>
