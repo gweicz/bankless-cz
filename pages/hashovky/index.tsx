@@ -104,6 +104,7 @@ const Hashovky = ({
       <Head>
         <title>Bankless | Hashovky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+        <base target="_blank"/>
       </Head>
 
       <main className="mt--150">
