@@ -108,7 +108,7 @@ const Header: React.FC = () => {
 
           <Megamenu
             menuTitle="Začátečníci"
-            menuLink="/zacatecnici/"
+            menuLink="/vzdelani/"
             isBegginer={true}
           />
         </ul>
