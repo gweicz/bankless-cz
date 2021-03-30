@@ -1,9 +1,8 @@
-import Link from 'next/link'
-import Megamenu from 'components/Megamenu/Megamenu'
-
-import style from './Header.module.scss'
 import CryptoPrices from './CryptoPrices'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
+import Megamenu from 'components/Megamenu/Megamenu'
+import style from './Header.module.scss'
 
 const Header: React.FC = () => {
   const hamburgerOnClick = () => {
@@ -119,7 +118,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="header axil-header  header-light header-sticky ">
+      <header className="header axil-header  header-light header-sticky position-relative">
         <div className="header-wrap">
           <div className="row justify-content-between align-items-center">
             {_logo()}
