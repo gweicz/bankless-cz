@@ -19,7 +19,7 @@ const SideBar = ({ hashovky }: { hashovky?: PostOrPage[] }) => {
   const _instagram = () => (
     <div className="axil-single-widget widget widget_instagram mb--30">
       <h5 className="widget-title">Instagram</h5>
-      <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="https://cdn.lightwidget.com/widgets/e09f0e394e805ec8ba1e7083159388fe.html" scrolling="no" allowTransparency= {true} className="lightwidget-widget" style={{width: '100%', border: '0', overflow: 'hidden'}} ></iframe>
+       <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="https://cdn.lightwidget.com/widgets/e09f0e394e805ec8ba1e7083159388fe.html" scrolling="no" className="lightwidget-widget" style={{width: '100%', border: '0', overflow: 'hidden'}} ></iframe>
     </div>
   )
 
