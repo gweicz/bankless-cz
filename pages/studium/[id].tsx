@@ -90,7 +90,7 @@ export default function ZacatecniciArticleDetail({
       articleData={articleData}
       moreStories={moreStories}
       hashovky={hashovky}
-      fromPage={'vzdelani/'}
+      fromPage={'studium/'}
     >
       {articleData.html && (
         <div

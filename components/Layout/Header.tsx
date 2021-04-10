@@ -74,7 +74,7 @@ const Header: React.FC = () => {
 
           <Link href="#">
             <li onClick={closeMobileMenu}>
-              <a>Začátečníci</a>
+              <a>Studium</a>
             </li>
           </Link>
         </ul>
@@ -100,17 +100,13 @@ const Header: React.FC = () => {
     <div className="mainmenu-wrapper">
       <nav className="mainmenu-nav">
         <ul className="mainmenu">
-          <Megamenu menuTitle="Novinky" menuLink="novinky" isBegginer={false} />
+          <Megamenu menuTitle="Novinky" menuLink="/" isBegginer={false} />
 
           <li>
             <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
-          <Megamenu
-            menuTitle="Začátečníci"
-            menuLink="vzdelani"
-            isBegginer={true}
-          />
+          <Megamenu menuTitle="Studium" menuLink="studium" isBegginer={true} />
         </ul>
       </nav>
     </div>

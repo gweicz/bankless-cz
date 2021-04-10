@@ -1,4 +1,5 @@
 import { PostOrPage, Tag } from '@tryghost/content-api'
+
 import { formatDate } from './formatDate'
 
 export const formatGhostDataForArticlePost = (data: PostOrPage) => {
@@ -15,9 +16,9 @@ export const formatGhostDataForArticlePost = (data: PostOrPage) => {
   // const detailUrl = slug ? `novinky/${slug}` : '/'
   let detailUrl = () => {
     if (slug && tags) {
-      const tagSlugs = tags.map(tag => tag.slug)
-      if (tagSlugs.includes('vzdelani')) {
-        return `vzdelani/${slug}`
+      const tagSlugs = tags.map((tag) => tag.slug)
+      if (tagSlugs.includes('vzdelani') || tagSlugs.includes('studium')) {
+        return `studium/${slug}`
       } else {
         return `novinky/${slug}`
       }

@@ -19,10 +19,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const page = Number(query?.page) || 1
 
   const posts = await getPosts({
-    limit: 5,
+    limit: POSTS_ON_PAGE_LIMIT,
     page,
     include: ['tags', 'authors'],
-    filter: 'tag:vzdelani+tag:polkadot',
+    filter: 'tag:vzdelani+tag:ethereum,tag:studium+tag:ethereum',
   })
 
   const hashovky = await getPosts({
@@ -72,7 +72,7 @@ const ZacatecniciBitcoin = ({
   return (
     <div className={styles.container}>
       <Head>
-        <title>Bankless | Polkadot pro začátečníky</title>
+        <title>Bankless | Ethereum pro začátečníky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <main className={styles.main}>
