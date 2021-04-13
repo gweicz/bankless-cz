@@ -4,7 +4,6 @@ import Image from 'next/image'
 import style from './Header.module.scss'
 import CryptoPrices from './CryptoPrices'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import banklessczWhite from 'public/images/logo/banklessczWhite.svg'
 
 const Header: React.FC = () => {
   const hamburgerOnClick = () => {
@@ -112,7 +111,7 @@ const Header: React.FC = () => {
     <>
       <header className="header axil-header  header-light header-sticky ">
         <div className="header-wrap">
-          <div className="row justify-content-centre align-items-center">
+          <div className="row justify-content-between align-items-center">
           {_logo()}
 
             <div className="col-xl-6 d-none d-xl-block">{_mainMenu()}</div>
