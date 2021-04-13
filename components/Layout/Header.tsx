@@ -17,21 +17,38 @@ const Header: React.FC = () => {
   }
 
   const _logo = () => (
-    <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12">
+    <div className="col-xl-3 d-none d-xl-block">
       <Link href="/">
-        <div className="logo">
+        <div className="logo" style={{paddingTop: '30px'}}>
           <div style={{cursor: 'pointer', height: '65px', width: '188px'}}>
             <Image
             src="/images/logo/banklessczWhite.svg"
             alt="Bankless logo"
             width={188}
             height={65}
-            />            
+            />          
           </div>
         </div>
       </Link>
     </div>
   )
+
+  const _logoMobile = () => (
+      <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12 d-xl-none">
+        <Link href="/">
+          <div className="logo" style={{marginLeft: 'auto', marginRight: 'auto', width: '50%'}}>
+            <div style={{cursor: 'pointer', height: 'auto', width: 'auto', alignItems: 'center'}}>
+              <Image
+              src="/images/logo/banklessczWhite.svg"
+              alt="Bankless logo"
+              width={188}
+              height={65}
+              />            
+            </div>
+          </div>
+        </Link>
+      </div>
+    )
 
   const _mobilePopupMenu = () => (
     <div className="popup-mobilemenu-area">
@@ -113,7 +130,7 @@ const Header: React.FC = () => {
         <div className="header-wrap">
           <div className="row justify-content-between align-items-center">
           {_logo()}
-
+          {_logoMobile()}
             <div className="col-xl-6 d-none d-xl-block">{_mainMenu()}</div>
             <div className="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
               <div className="header-search text-right d-flex align-items-center justify-content-end">
