@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import SocInvite from 'components/SocInvite'
 import useCopyToClipboard from 'components/helpers/useCopyToClipboard'
+import Image from 'next/image'
 
 const Footer = () => {
   const redactionEmailAdsress = 'redakce@bankless.cz'
@@ -12,23 +13,21 @@ const Footer = () => {
   return (
     <div className="axil-footer-area axil-footer-style-1 footer-variation-2">
       <div className="container">
-        <div className="footer-top">
+        <div className="footer-top" style={{paddingTop: '15px', paddingBottom: '15px'}}>
           <div className="row">
             <div className="col-lg-4 col-md-4 d-flex align-items-center">
-              <div className="logo">
                 <Link href="/">
-                  <a>
-                    <img
-                      className="dark-logo"
-                      src="/images/logo/logo_black_final.png"
-                      alt="Cryptohash logo"
-                    />
-                  </a>
-                </Link>
-              </div>
-            </div>
-
-            <div className="col-lg-8 col-md-8">
+                  <div style={{cursor: 'pointer', height: '65px'}}>
+                  <Image
+                    src="/images/logo/banklessczWhite.svg"
+                    alt="Bankless logo"
+                    width={188}
+                    height={65}
+                  />  
+                  </div>
+                </Link> 
+          </div>
+            <div className="col-lg-8 col-md-8" style={{paddingTop: '10px'}}>
               <div className="d-flex justify-content-start mt_sm--15 justify-content-md-end align-items-center flex-wrap">
                 <h5 className="follow-title mb--0 mr--20">Sledujte nás</h5>
                 <SocInvite />

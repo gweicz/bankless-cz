@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Megamenu from 'components/Megamenu/Megamenu'
-
+import Image from 'next/image'
 import style from './Header.module.scss'
 import CryptoPrices from './CryptoPrices'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import banklessczWhite from 'public/images/logo/banklessczWhite.svg'
 
 const Header: React.FC = () => {
   const hamburgerOnClick = () => {
@@ -18,22 +19,18 @@ const Header: React.FC = () => {
 
   const _logo = () => (
     <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12">
-      <div className="logo">
-        <Link href="/">
-          <a>
-            <img
-              className="dark-logo"
-              src="/images/logo/logo_black_final.png"
-              alt="Cryptohash logo"
-            />
-            <img
-              className="light-logo"
-              src="/images/logo/logo_white_final.png"
-              alt="Cryptohash logo"
-            />
-          </a>
-        </Link>
-      </div>
+      <Link href="/">
+        <div className="logo">
+          <div style={{cursor: 'pointer', height: '65px', width: '188px'}}>
+            <Image
+            src="/images/logo/banklessczWhite.svg"
+            alt="Bankless logo"
+            width={188}
+            height={65}
+            />            
+          </div>
+        </div>
+      </Link>
     </div>
   )
 
@@ -43,18 +40,12 @@ const Header: React.FC = () => {
         <div className="mobile-menu-top">
           <div className="logo w-50">
             <Link href="/">
-              <a>
-                <img
-                  className="dark-logo"
-                  src="/images/logo/logo_black_final.png"
-                  alt="Cryptohash logo"
-                />
-                <img
-                  className="light-logo"
-                  src="/images/logo/logo_white_final.png"
-                  alt="Cryptohash logo"
-                />
-              </a>
+            <Image
+            src="/images/logo/banklessczWhite.svg"
+            alt="Bankless logo"
+            width={188}
+            height={65}
+            /> 
             </Link>
           </div>
           <div className="mobile-close" onClick={closeMobileMenu}>
@@ -121,11 +112,10 @@ const Header: React.FC = () => {
     <>
       <header className="header axil-header  header-light header-sticky ">
         <div className="header-wrap">
-          <div className="row justify-content-between align-items-center">
-            {_logo()}
+          <div className="row justify-content-centre align-items-center">
+          {_logo()}
 
             <div className="col-xl-6 d-none d-xl-block">{_mainMenu()}</div>
-
             <div className="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
               <div className="header-search text-right d-flex align-items-center justify-content-end">
                 <CryptoPrices isMobile={true} />
