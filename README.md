@@ -13,11 +13,12 @@ Projekt je postavený na frameworku Next.js
 - Instalace YARN: [https://classic.yarnpkg.com/en/docs/install](https://classic.yarnpkg.com/en/docs/install)
 - Naklonování repozitáře na lokální počítač
 - Instalace závislostí: `yarn install`
-- Vytvoření `.env.local` souboru (v kořenovém adresáři projektu) se změněnými hodnotami (napsat @rixcian):
+- Vytvoření `.env.local` souboru (v kořenovém adresáři projektu) se změněnými hodnotami (napsat @rixcian), google analytics stačí přidat do production verze.:
     ```dotenv
     GHOST_URL=<ghost_url>
     GHOST_CONTENT_API_KEY=<ghost_api_content_key>
     GHOST_API_VERSION=<ghost_api_version>
+    GOOGLE_KEY=<google_analytics_key>
     ```
 - Spuštění development serveru: `yarn dev`
 - Development server se spustí na [localhost:3000](http://localhost:3000)
