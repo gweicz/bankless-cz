@@ -100,7 +100,7 @@ const Header: React.FC = () => {
     <div className="mainmenu-wrapper">
       <nav className="mainmenu-nav">
         <ul className="mainmenu">
-          <Megamenu menuTitle="Novinky" menuLink="/" isBegginer={false} />
+          <Megamenu menuTitle="Novinky" menuLink="novinky" isBegginer={false} />
 
           <li>
             <Link href="/hashovky/">#Hashovky</Link>
@@ -108,7 +108,7 @@ const Header: React.FC = () => {
 
           <Megamenu
             menuTitle="Začátečníci"
-            menuLink="/zacatecnici/"
+            menuLink="vzdelani"
             isBegginer={true}
           />
         </ul>

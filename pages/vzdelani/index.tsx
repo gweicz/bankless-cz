@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: POSTS_ON_PAGE_LIMIT,
     page,
     include: ['tags', 'authors'],
-    filter: 'tag:zacatecnici',
+    filter: 'tag:vzdelani',
   })
 
   const hashovky = await getPosts({
@@ -84,7 +84,9 @@ const NovinkyPolkadot = ({
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <main className={styles.main}>
-        {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
+        {postsState.length > 0 && (
+          <MainBanner data={postsState?.slice(0, 3) || []} />
+        )}
         <div className="container">
           <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
             <div className="row">
