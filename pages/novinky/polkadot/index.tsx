@@ -2,12 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetServerSideProps } from 'next'
 import { getPosts } from '../../api/posts'
 import { PostOrPage } from '@tryghost/content-api'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../../styles/Home.module.scss'
 import Head from 'next/head'
 import MainBanner from '../../../components/HomePage/MainBanner'
 import PostList from '../../../components/HomePage/PostList/PostList'
 import SideBar from '../../../components/Layout/SideBar'
+import MetaTags from "../../../components/MetaTags/MetaTags";
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -73,6 +74,18 @@ const NovinkyPolkadot = ({
       <Head>
         <title>Bankless | Polkadot novinky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+
+        <MetaTags
+          meta_title="Bankless | Polkadot novinky"
+          meta_description="Nejnovější zprávy ze světa Polkadot"
+          og_title="Bankless | Polkadot novinky"
+          og_image=""
+          og_description="Nejnovější zprávy ze světa Polkadot"
+          twitter_title="Bankless | Polkadot novinky"
+          twitter_image=""
+          twitter_description="Nejnovější zprávy ze světa Polkadot"
+        />
+
         <base target="_blank"/>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
         <script
