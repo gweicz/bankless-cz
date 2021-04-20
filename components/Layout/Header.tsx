@@ -1,9 +1,9 @@
-import Link from 'next/link'
-import Megamenu from 'components/Megamenu/Megamenu'
-import Image from 'next/image'
-import style from './Header.module.scss'
 import CryptoPrices from './CryptoPrices'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
+import Image from 'next/image'
+import Megamenu from 'components/Megamenu/Megamenu'
+import style from './Header.module.scss'
 
 const Header: React.FC = () => {
   const hamburgerOnClick = () => {
@@ -22,11 +22,11 @@ const Header: React.FC = () => {
         <div className="logo" style={{paddingTop: '30px'}}>
           <div style={{cursor: 'pointer', height: '65px', width: '188px'}}>
             <Image
-            src="/images/logo/banklessczWhite.svg"
-            alt="Bankless logo"
-            width={188}
-            height={65}
-            />          
+              src="/images/logo/banklessczWhite.svg"
+              alt="Bankless logo"
+              width={188}
+              height={65}
+            />
           </div>
         </div>
       </Link>
@@ -34,21 +34,21 @@ const Header: React.FC = () => {
   )
 
   const _logoMobile = () => (
-      <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12 d-xl-none">
-        <Link href="/">
-          <div className="logo" style={{marginLeft: 'auto', marginRight: 'auto', width: '50%'}}>
-            <div style={{cursor: 'pointer', height: 'auto', width: 'auto', alignItems: 'center'}}>
-              <Image
+    <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12 d-xl-none">
+      <Link href="/">
+        <div className="logo" style={{marginLeft: 'auto', marginRight: 'auto', width: '50%'}}>
+          <div style={{cursor: 'pointer', height: 'auto', width: 'auto', alignItems: 'center'}}>
+            <Image
               src="/images/logo/banklessczWhite.svg"
               alt="Bankless logo"
               width={188}
               height={65}
-              />            
-            </div>
+            />
           </div>
-        </Link>
-      </div>
-    )
+        </div>
+      </Link>
+    </div>
+  )
 
   const _mobilePopupMenu = () => (
     <div className="popup-mobilemenu-area">
@@ -56,16 +56,16 @@ const Header: React.FC = () => {
         <div className="mobile-menu-top">
           <div className="logo w-50">
             <Link href="/">
-            <Image
-            src="/images/logo/banklessczWhite.svg"
-            alt="Bankless logo"
-            width={188}
-            height={65}
-            /> 
+              <Image
+                src="/images/logo/banklessczWhite.svg"
+                alt="Bankless logo"
+                width={188}
+                height={65}
+              />
             </Link>
           </div>
           <div className="mobile-close" onClick={closeMobileMenu}>
-            <FontAwesomeIcon icon="times" />
+            <FontAwesomeIcon icon="times"/>
           </div>
         </div>
         <ul className="mainmenu list-unstyled">
@@ -82,12 +82,12 @@ const Header: React.FC = () => {
 
           <Link href="#">
             <li onClick={closeMobileMenu}>
-              <a>Začátečníci</a>
+              <a>Studium</a>
             </li>
           </Link>
         </ul>
       </div>
-      <div className={style.closeMobileMenu} onClick={closeMobileMenu} />
+      <div className={style.closeMobileMenu} onClick={closeMobileMenu}/>
     </div>
   )
 
@@ -98,7 +98,7 @@ const Header: React.FC = () => {
     >
       <div className="hamburger-inner">
         <div className="icon">
-          <FontAwesomeIcon icon="bars" />
+          <FontAwesomeIcon icon="bars"/>
         </div>
       </div>
     </div>
@@ -108,17 +108,13 @@ const Header: React.FC = () => {
     <div className="mainmenu-wrapper">
       <nav className="mainmenu-nav">
         <ul className="mainmenu">
-          <Megamenu menuTitle="Novinky" menuLink="/" isBegginer={false} />
+          <Megamenu menuTitle="Novinky" menuLink="/" isBegginer={false}/>
 
           <li>
             <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
-          <Megamenu
-            menuTitle="Začátečníci"
-            menuLink="/zacatecnici/"
-            isBegginer={true}
-          />
+          <Megamenu menuTitle="Studium" menuLink="studium" isBegginer={true}/>
         </ul>
       </nav>
     </div>
@@ -126,21 +122,23 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="header axil-header  header-light header-sticky ">
+      <header className="header axil-header  header-light header-sticky position-relative">
         <div className="header-wrap">
           <div className="row justify-content-between align-items-center">
-          {_logo()}
-          {_logoMobile()}
+            {_logo()}
+            {_logoMobile()}
+
             <div className="col-xl-6 d-none d-xl-block">{_mainMenu()}</div>
+
             <div className="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
               <div className="header-search text-right d-flex align-items-center justify-content-end">
-                <CryptoPrices isMobile={true} />
+                <CryptoPrices isMobile={true}/>
                 {_hamburgerMenu()}
               </div>
             </div>
           </div>
           <div className="row justify-content-center align-items-center">
-            <CryptoPrices isMobile={false} />
+            <CryptoPrices isMobile={false}/>
           </div>
         </div>
       </header>
