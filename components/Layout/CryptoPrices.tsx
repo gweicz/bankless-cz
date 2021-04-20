@@ -48,14 +48,18 @@ export default function CryptoPrices({
       <div className="mainmenu-wrapper">
         <nav className="mainmenu-nav">
           <ul className="mainmenu">
-            <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp" />
-            <li>${btcPrice}</li>
-
-            <img id="ethereum-price-logo" src="/images/icons/ethereum.webp" />
-            <li>${ethPrice}</li>
-
-            <img id="polkadot-price-logo" src="/images/icons/polkadot.webp" />
-            <li>${dotPrice}</li>
+            <div className="d-flex">
+              <img id="bitcoin-price-logo" src="/images/icons/bitcoin.webp" />
+              <li>${btcPrice}</li>
+            </div>
+            <div className="d-flex">
+              <img id="ethereum-price-logo" src="/images/icons/ethereum.webp" />
+              <li>${ethPrice}</li>
+            </div>
+            <div className="d-flex">
+              <img id="polkadot-price-logo" src="/images/icons/polkadot.webp" />
+              <li>${dotPrice}</li>
+            </div>
           </ul>
         </nav>
       </div>

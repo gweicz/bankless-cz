@@ -17,10 +17,10 @@ const fetchBeginnersCryptoPosts = (crypto: Crypto) =>
     limit: 5,
     page: 1,
     include: ['tags'],
-    filter: `tag:vzdelani+tag:${crypto}`,
+    filter: `tag:vzdelani+tag:${crypto},tag:studium+tag:${crypto}`,
   })
 
-  const fetchCryptoPosts = (crypto: Crypto) =>
+const fetchCryptoPosts = (crypto: Crypto) =>
   getPosts({
     limit: 5,
     page: 1,

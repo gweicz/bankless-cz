@@ -1,0 +1,28 @@
+.authorDescriptionMobile {
+  display: none;
+}
+
+.authorDescriptionDesktop {
+  display: block;
+}
+
+@media only screen and (max-width: 600px) {
+  .aboutAuthorImgNameMobile {
+    align-items: center;
+    display: flex;
+    a img {
+      width: 80px !important;
+    }
+  }
+
+  // .aboutAuthorMobileImg
+
+  .authorDescriptionMobile {
+    margin-top: 2rem;
+    display: flex;
+  }
+
+  .authorDescriptionDesktop {
+    display: none;
+  }
+}

@@ -1,12 +1,12 @@
 import { getPosts, getSinglePost } from 'pages/api/posts'
 import { useEffect, useState } from 'react'
 
+import Head from 'next/head'
 import Article from 'components/Article/Article'
 import { GetServerSideProps } from 'next'
 import { PostOrPage } from '@tryghost/content-api'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { useMenuData } from 'context/SessionContext'
-import Head from 'next/head'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -89,25 +89,24 @@ export default function ZacatecniciArticleDetail({
   return (
   <div>
     <Head>
-        <title>Bankless | Ethereum, Bitcoin a jiné krypto</title>
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
-        <script
-            async
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];
+      <base target="_blank"/>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
+      <script
+        async
+        dangerouslySetInnerHTML={{
+          __html: `window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
             
               gtag('config', ${process.env.GOOGLE_KEY});`
-          }}
-        />
+        }}
+      />
     </Head>
     <Article
       articleData={articleData}
       moreStories={moreStories}
       hashovky={hashovky}
-      fromPage={'vzdelani/'}
+      fromPage={'studium/'}
     >
       {articleData.html && (
         <div

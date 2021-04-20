@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
-
 import Link from 'next/link'
 import { PostOrPage } from '@tryghost/content-api'
 import style from './MegaMenu.module.scss'
 import { useSessionContext } from 'context/SessionContext'
+import { useState } from 'react'
 
 type Props = {
   menuTitle: string
@@ -14,28 +13,35 @@ type Props = {
 const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
   const { apiPostsData } = useSessionContext()
 
-  let tabs: { [key: string]: { [key: string]: string }[] } ;
-  if(isBegginer === true){
-  tabs = {
-    Ethereum: (apiPostsData?.ethPostsBegginer || []).map((post: PostOrPage) => ({
-      category: 'ethereum',
-      thumbnail: post.feature_image,
-      title: post.title,
-      slug: post.slug,
-    })),
-    Bitcoin: (apiPostsData?.btcPostsBegginer || []).map((post: PostOrPage) => ({
-      category: 'bitcoin',
-      thumbnail: post.feature_image,
-      title: post.title,
-      slug: post.slug,
-    })),
-    Polkadot: (apiPostsData?.dotPostsBegginer || []).map((post: PostOrPage) => ({
-      category: 'polkadot',
-      thumbnail: post.feature_image,
-      title: post.title,
-      slug: post.slug,
-    })),
-  } } else {
+  let tabs: { [key: string]: { [key: string]: string }[] }
+  if (isBegginer === true) {
+    tabs = {
+      Ethereum: (apiPostsData?.ethPostsBegginer || []).map(
+        (post: PostOrPage) => ({
+          category: 'ethereum',
+          thumbnail: post.feature_image,
+          title: post.title,
+          slug: post.slug,
+        }),
+      ),
+      Bitcoin: (apiPostsData?.btcPostsBegginer || []).map(
+        (post: PostOrPage) => ({
+          category: 'bitcoin',
+          thumbnail: post.feature_image,
+          title: post.title,
+          slug: post.slug,
+        }),
+      ),
+      Polkadot: (apiPostsData?.dotPostsBegginer || []).map(
+        (post: PostOrPage) => ({
+          category: 'polkadot',
+          thumbnail: post.feature_image,
+          title: post.title,
+          slug: post.slug,
+        }),
+      ),
+    }
+  } else {
     tabs = {
       Ethereum: (apiPostsData?.ethPosts || []).map((post: PostOrPage) => ({
         category: 'ethereum',
@@ -57,7 +63,6 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
       })),
     }
   }
-
 
   const [activeTab, setActiveTab] = useState('Ethereum')
 
@@ -85,30 +90,32 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
   return (
     <li className="menu-item-has-children megamenu-wrapper">
       <Link href={menuLink}>
-      <a >{menuTitle}</a>
+        <a>{menuTitle}</a>
       </Link>
       <ul className="col-xl-6 megamenu-sub-menu">
         <li className="megamenu-item">
           <div className="height">
-          <div className="axil-vertical-nav">
-            <ul className="vertical-nav-menu">
-              {Object.keys(tabs).map((category, id) => (
-                <li
-                  key={category}
-                  id={`nav-item-${category.toLowerCase()}`}
-                  className={`vertical-nav-item ${id === 0 ? 'active' : ''}`}
-                  onMouseEnter={(e) => onTabHover(e, category)}
-                >
-                  <a className="hover-flip-item-wrapper" href={`#${category}`}>
-                    <span className="hover-flip-item">
-                      <span data-text={category}>{category}</span>
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="axil-vertical-nav">
+              <ul className="vertical-nav-menu">
+                {Object.keys(tabs).map((category, id) => (
+                  <li
+                    key={category}
+                    id={`nav-item-${category.toLowerCase()}`}
+                    className={`vertical-nav-item ${id === 0 ? 'active' : ''}`}
+                    onMouseEnter={(e) => onTabHover(e, category)}
+                  >
+                    <Link href={`/${menuLink}/${category.toLowerCase()}`}>
+                      <a className="hover-flip-item-wrapper">
+                        <span className="hover-flip-item">
+                          <span data-text={category}>{category}</span>
+                        </span>
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
           <div className="axil-vertical-nav-content">
             {Object.keys(tabs).map((category, id) => {
               let categoryPosts = tabs![category]
@@ -126,35 +133,28 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
                         <div key={id} className="col-lg-3">
                           <div className="content-block image-rounded">
                             <div className="post-thumbnail mb--20">
-                              <a href={`/novinky/${post.slug}`}>
-                                <img
-                                  className={`w-100 ${style.previewImg}`}
-                                  src={post.thumbnail}
-                                  alt={post.title}
-                                />
-                              </a>
+                              <Link href={`/${menuLink}/${post.slug}`}>
+                                <a>
+                                  <img
+                                    className={`w-100 ${style.previewImg}`}
+                                    src={post.thumbnail}
+                                    alt={post.title}
+                                  />
+                                </a>
+                              </Link>
                             </div>
                             <div className="post-content">
                               <div className="post-cat">
                                 <div className="post-cat-list">
-                                  <a
-                                    className="hover-flip-item-wrapper"
-                                    href="#"
-                                  >
-                                    <span className="hover-flip-item">
-                                      <span data-text={category.toUpperCase()}>
-                                        {category.toUpperCase()}
-                                      </span>
-                                    </span>
+                                  <a className="cursor-default text-dark">
+                                    {category?.toUpperCase()}
                                   </a>
                                 </div>
                               </div>
                               <h5 className="title">
-                                <a
-                                  href={`/novinky/${post.slug}`}
-                                >
-                                  {post.title}
-                                </a>
+                                <Link href={`/${menuLink}/${post.slug}`}>
+                                  <a>{post.title}</a>
+                                </Link>
                               </h5>
                             </div>
                           </div>

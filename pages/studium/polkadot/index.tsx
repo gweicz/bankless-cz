@@ -1,13 +1,14 @@
+import { useEffect, useState } from 'react'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetServerSideProps } from 'next'
-import { getPosts } from '../../api/posts'
-import { PostOrPage } from '@tryghost/content-api'
-import { useEffect, useState } from 'react'
-import styles from '../../../styles/Home.module.scss'
 import Head from 'next/head'
 import MainBanner from '../../../components/HomePage/MainBanner'
 import PostList from '../../../components/HomePage/PostList/PostList'
+import { PostOrPage } from '@tryghost/content-api'
 import SideBar from '../../../components/Layout/SideBar'
+import { getPosts } from '../../api/posts'
+import styles from '../../../styles/Home.module.scss'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -21,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: 5,
     page,
     include: ['tags', 'authors'],
-    filter: 'tag:zacatecnici+tag:bitcoin',
+    filter: 'tag:vzdelani+tag:polkadot,tag:studium+tag:polkadot',
   })
 
   const hashovky = await getPosts({
@@ -71,19 +72,20 @@ const ZacatecniciBitcoin = ({
   return (
     <div className={styles.container}>
       <Head>
-        <title>Bankless | Bitcoin pro začátečníky</title>
+        <title>Bankless | Polkadot pro začátečníky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+        <base target="_blank"/>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
         <script
-            async
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];
+          async
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
             
               gtag('config', ${process.env.GOOGLE_KEY});`
           }}
-          />
+        />
       </Head>
       <main className={styles.main}>
         {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
