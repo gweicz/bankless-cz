@@ -1,5 +1,5 @@
 import CryptoPrices from './CryptoPrices'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import Image from 'next/image'
 import Megamenu from 'components/Megamenu/Megamenu'
@@ -114,7 +114,7 @@ const Header: React.FC = () => {
             <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
-          <Megamenu menuTitle="Studium" menuLink="studium" isBegginer={true}/>
+          <Megamenu menuTitle="Studium" menuLink="studium" isBegginer={true} />
         </ul>
       </nav>
     </div>

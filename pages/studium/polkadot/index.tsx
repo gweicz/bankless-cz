@@ -1,13 +1,14 @@
+import { useEffect, useState } from 'react'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetServerSideProps } from 'next'
-import { getPosts } from '../../api/posts'
-import { PostOrPage } from '@tryghost/content-api'
-import { useEffect, useState } from 'react'
-import styles from '../../../styles/Home.module.scss'
 import Head from 'next/head'
 import MainBanner from '../../../components/HomePage/MainBanner'
 import PostList from '../../../components/HomePage/PostList/PostList'
+import { PostOrPage } from '@tryghost/content-api'
 import SideBar from '../../../components/Layout/SideBar'
+import { getPosts } from '../../api/posts'
+import styles from '../../../styles/Home.module.scss'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -21,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: 5,
     page,
     include: ['tags', 'authors'],
-    filter: 'tag:zacatecnici+tag:polkadot',
+    filter: 'tag:vzdelani+tag:polkadot,tag:studium+tag:polkadot',
   })
 
   const hashovky = await getPosts({
@@ -73,6 +74,7 @@ const ZacatecniciBitcoin = ({
       <Head>
         <title>Bankless | Polkadot pro začátečníky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+        <base target="_blank"/>
       </Head>
       <main className={styles.main}>
         {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}

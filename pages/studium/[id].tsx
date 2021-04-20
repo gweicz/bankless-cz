@@ -1,6 +1,7 @@
 import { getPosts, getSinglePost } from 'pages/api/posts'
 import { useEffect, useState } from 'react'
 
+import Head from 'next/head'
 import Article from 'components/Article/Article'
 import { GetServerSideProps } from 'next'
 import { PostOrPage } from '@tryghost/content-api'
@@ -86,11 +87,15 @@ export default function ZacatecniciArticleDetail({
   if (!articleData) return null
 
   return (
+  <div>
+    <Head>
+      <base target="_blank"/>
+    </Head>
     <Article
       articleData={articleData}
       moreStories={moreStories}
       hashovky={hashovky}
-      fromPage={'vzdelani/'}
+      fromPage={'studium/'}
     >
       {articleData.html && (
         <div
@@ -99,5 +104,6 @@ export default function ZacatecniciArticleDetail({
         ></div>
       )}
     </Article>
+  </div>
   )
 }

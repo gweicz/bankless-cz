@@ -3,8 +3,12 @@ import Link from 'next/link'
 import { PostOrPage } from '@tryghost/content-api'
 import SocShare from 'components/SocShare'
 import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
+import CheckPost from "components/helpers/CheckPost"
 
 export default function Post({ data }: { data: PostOrPage }) {
+  try{
+    if(!CheckPost(data.tags![0].name, data.feature_image)){return null}
+  }catch{return null}
   const {
     detailUrl,
     category,

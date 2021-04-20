@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import styles from './AboutAuthor.module.scss'
 
 type Props = {
   img?: {
@@ -87,7 +88,7 @@ export default function AboutAuthor({
 
   return (
     <div className="about-author">
-      <div className="media">
+      <div className={`media ${styles.aboutAuthorImgNameMobile}`}>
         {_profileImg()}
 
         <div className="media-body">
@@ -96,11 +97,14 @@ export default function AboutAuthor({
             <span className="b3 subtitle">{job}</span>
           </div>
           <div className="content">
-            <p className="b1 description">{description}</p>
+            <p className={`b1 ${styles.authorDescriptionDesktop}`}>
+              {description}
+            </p>
             {_socFollow()}
           </div>
         </div>
       </div>
+      <p className={`b1 ${styles.authorDescriptionMobile}`}>{description}</p>
     </div>
   )
 }

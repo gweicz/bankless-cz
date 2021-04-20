@@ -25,7 +25,7 @@ export default function MoreStoriesPost({
         <div className="post-stories content-block mt--30">
           <div className="post-thumbnail">
             <Link href={`/` + detailUrl}>
-              <a href="post-details.html">
+              <a>
                 {frontImg?.url && (
                   <img
                     src={frontImg?.url}
