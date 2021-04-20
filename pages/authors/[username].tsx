@@ -96,6 +96,7 @@ const AuthorDetailPage = ({
       <Head>
         <title>Bankless | @{author.name}</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+        <base target="_blank"/>
       </Head>
 
       <AuthorDetail author={author} />

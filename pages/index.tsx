@@ -81,6 +81,7 @@ const Home = ({
       <Head>
         <title>Bankless | Ethereum, Bitcoin a jiné krypto</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+        <base target="_blank"/>
       </Head>
       <main className={styles.main}>
         {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
