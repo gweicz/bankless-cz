@@ -95,7 +95,7 @@ const Home = ({
         />
       </Head>
       <main className={styles.main}>
-        {postsState && <MainBanner data={postsState || []} />}
+        {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
         <div className="container">
           <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
             <div className="row">
