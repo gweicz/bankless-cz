@@ -97,6 +97,17 @@ const AuthorDetailPage = ({
         <title>Bankless | @{author.name}</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <base target="_blank"/>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
+        <script
+          async
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', ${process.env.GOOGLE_KEY});`
+          }}
+        />
       </Head>
 
       <AuthorDetail author={author} />
