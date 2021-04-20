@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { GetServerSideProps } from 'next'
 import HashPost from 'components/Hashovky/HashPost'
@@ -8,6 +8,7 @@ import { PostOrPage } from '@tryghost/content-api'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
+import MetaTags from "../../components/MetaTags/MetaTags";
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -104,6 +105,18 @@ const Hashovky = ({
       <Head>
         <title>Bankless | Hashovky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+
+        <MetaTags
+          meta_title="Bankless | Hashovky"
+          meta_description="Krátké novinky ze světa kryptoměn. Buďte o důležitých novinkách informováni jako první."
+          og_title="Bankless | Hashovky"
+          og_image=""
+          og_description="Krátké novinky ze světa kryptoměn. Buďte o důležitých novinkách informováni jako první."
+          twitter_title="Bankless | Hashovky"
+          twitter_image=""
+          twitter_description="Krátké novinky ze světa kryptoměn. Buďte o důležitých novinkách informováni jako první."
+        />
+
         <base target="_blank"/>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
         <script

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetServerSideProps } from 'next'
@@ -11,6 +11,7 @@ import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from 'pages/api/posts'
 import styles from 'styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
+import MetaTags from "../../components/MetaTags/MetaTags";
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -82,6 +83,18 @@ const NovinkyPolkadot = ({
       <Head>
         <title>Bankless | Studium</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+
+        <MetaTags
+          meta_title="Bankless | Studium"
+          meta_description="Pochopte teoretické základy jednotlivých kryptoměn s našimi studijními články"
+          og_title="Bankless | Studium"
+          og_image=""
+          og_description="Pochopte teoretické základy jednotlivých kryptoměn s našimi studijními články"
+          twitter_title="Bankless | Studium"
+          twitter_image=""
+          twitter_description="Pochopte teoretické základy jednotlivých kryptoměn s našimi studijními články"
+        />
+
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
         <script
           async

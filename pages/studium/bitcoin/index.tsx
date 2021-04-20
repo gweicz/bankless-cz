@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetServerSideProps } from 'next'
@@ -9,6 +9,7 @@ import { PostOrPage } from '@tryghost/content-api'
 import SideBar from '../../../components/Layout/SideBar'
 import { getPosts } from '../../api/posts'
 import styles from '../../../styles/Home.module.scss'
+import MetaTags from "../../../components/MetaTags/MetaTags";
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -74,6 +75,18 @@ const ZacatecniciBitcoin = ({
       <Head>
         <title>Bankless | Bitcoin pro začátečníky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+
+        <MetaTags
+          meta_title="Bankless | Bitcoin pro začátečníky"
+          meta_description="Pochopte teoretické základy Bitcoinu s našimi studijními články"
+          og_title="Bankless | Bitcoin pro začátečníky"
+          og_image=""
+          og_description="Pochopte teoretické základy Bitcoinu s našimi studijními články"
+          twitter_title="Bankless | Bitcoin pro začátečníky"
+          twitter_image=""
+          twitter_description="Pochopte teoretické základy Bitcoinu s našimi studijními články"
+        />
+
         <base target="_blank"/>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
         <script

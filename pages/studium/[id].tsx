@@ -1,5 +1,5 @@
 import { getPosts, getSinglePost } from 'pages/api/posts'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Head from 'next/head'
 import Article from 'components/Article/Article'
@@ -7,6 +7,7 @@ import { GetServerSideProps } from 'next'
 import { PostOrPage } from '@tryghost/content-api'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { useMenuData } from 'context/SessionContext'
+import MetaTags from "../../components/MetaTags/MetaTags";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -89,6 +90,20 @@ export default function ZacatecniciArticleDetail({
   return (
   <div>
     <Head>
+      <title>Bankless | {articleData.title}</title>
+      <link rel="icon" type="image/png" href="/favicon.png" />
+
+      <MetaTags
+        meta_title={articlePost?.meta_title}
+        meta_description={articlePost?.meta_description}
+        og_title={articlePost?.og_title}
+        og_image={articlePost?.og_image}
+        og_description={articlePost?.og_description}
+        twitter_title={articlePost?.twitter_title}
+        twitter_image={articlePost?.twitter_image}
+        twitter_description={articlePost?.twitter_description}
+      />
+
       <base target="_blank"/>
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
       <script

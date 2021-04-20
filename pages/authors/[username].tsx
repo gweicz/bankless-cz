@@ -1,6 +1,6 @@
 import { Author, PostOrPage } from '@tryghost/content-api'
 import { getAuthorInfo, getAuthorPosts } from 'pages/api/authorPosts'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import AuthorDetail from 'components/AuthorDetail/AuthorDetail'
 import { GetServerSideProps } from 'next'
@@ -12,6 +12,7 @@ import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
 import Head from 'next/head'
+import MetaTags from "../../components/MetaTags/MetaTags";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -96,6 +97,18 @@ const AuthorDetailPage = ({
       <Head>
         <title>Bankless | @{author.name}</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+
+        <MetaTags
+          meta_title={`Bankless | @${author.name}`}
+          meta_description={`Bankless | @${author.name} autor na webu bankless.cz`}
+          og_title={`Bankless | @${author.name}`}
+          og_image={author.profile_image}
+          og_description={`Bankless | @${author.name} autor na webu bankless.cz`}
+          twitter_title={`Bankless | @${author.name}`}
+          twitter_image={author.profile_image}
+          twitter_description={`Bankless | @${author.name} autor na webu bankless.cz`}
+        />
+
         <base target="_blank"/>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
         <script
