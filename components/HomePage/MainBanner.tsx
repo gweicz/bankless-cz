@@ -4,10 +4,20 @@ import SocShare from 'components/SocShare'
 import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
 import style from './MainBanner.module.scss'
 import { useState } from 'react'
+import CheckPost from "components/helpers/CheckPost"
 
 const MainBanner = ({ data }: { data: PostOrPage[] }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
 
+  try{
+    if(!CheckPost(data[activeSlideIndex].tags![0].name, data[activeSlideIndex].feature_image)){
+      data?.splice(activeSlideIndex, 1)
+    }
+  }catch{
+    data?.splice(activeSlideIndex, 1)
+  }
+
+  data?.splice(3, data.length - 3)
   const {
     detailUrl,
     category,

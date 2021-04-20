@@ -92,6 +92,7 @@ export default function Novinka({
       <Head>
         <title>Bankless | {articleData.title}</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
+        <base target="_blank"/>
       </Head>
       <Article
         articleData={articleData}
