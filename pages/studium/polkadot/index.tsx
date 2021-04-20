@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: 5,
     page,
     include: ['tags', 'authors'],
-    filter: 'tag:vzdelani+tag:polkadot',
+    filter: 'tag:vzdelani+tag:polkadot,tag:studium+tag:polkadot',
   })
 
   const hashovky = await getPosts({

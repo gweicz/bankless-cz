@@ -21,7 +21,7 @@
     "**/*.tsx",
     "pages/novinky/article1.tsx",
     "pages/api/posts.ts",
-    "pages/vzdelani/index.disabled"
+    "pages/studium/index.disabled"
   ],
   "exclude": ["node_modules"]
 }
