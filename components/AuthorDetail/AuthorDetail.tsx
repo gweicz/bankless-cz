@@ -46,7 +46,6 @@ const AuthorDetail = ({ author }: { author: Author }) => {
             <div className="about-author">
               <div
                 className={`media ${styles.aboutAuthorImgNameMobile}`}
-                style={{ margin: '100px 0 0 0' }}
               >
                 {_profileImg()}
 
