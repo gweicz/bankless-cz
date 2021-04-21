@@ -934,9 +934,23 @@ Post List Style
     }
 }
 
+.banner-single-post {
+  .post-thumbnail {
+    height: 65vh;
+    min-height: 460px;
+    max-height: 680px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
 .content-block {
     .post-thumbnail {
         position: relative;
+
         .review-count {
             position: absolute;
             background: #D93E40;

@@ -84,14 +84,14 @@ export default function Banner({
           <div className="col-lg-12">
             {/* <!-- Start Single Slide  --> */}
             <div className="content-block">
-              <div className={`post-thumbnail ${styles.frontImg}`}>
-                {frontImg?.url && (
-                  <img
-                    className="w-100"
-                    src={frontImg?.url}
-                    alt={frontImg.alt}
-                  />
-                )}
+              <div className={`post-thumbnail ${styles.frontImg}`} style={{ backgroundImage: `url(${frontImg.url})`}}>
+                {/*{frontImg?.url && (*/}
+                {/*  <img*/}
+                {/*    className="w-100"*/}
+                {/*    src={frontImg?.url}*/}
+                {/*    alt={frontImg.alt}*/}
+                {/*  />*/}
+                {/*)}*/}
               </div>
 
               <div className="post-content">
