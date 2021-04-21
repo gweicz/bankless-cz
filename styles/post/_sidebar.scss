@@ -244,6 +244,12 @@ Sidebar Styles
     }
 }
 
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .axil-single-widget.widget_categories ul li.cat-item .inner .thumbnail {
+    width: 30px;
+    height: 30px;
+  }
+}
 
 
 
