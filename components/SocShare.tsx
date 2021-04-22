@@ -52,8 +52,7 @@ export default function SocShare({
         <a
           href="#"
           onClick={(event) => copyLink({ event, textToCopy: urlForClipboard })}
-        >
-          {isCopiedTooltip()}
+        >       
           <FontAwesomeIcon icon="link" style={color ? {color: color} : {color: 'inherit'}}/>
         </a>
       </li>
