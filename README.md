@@ -49,7 +49,7 @@ Projekt je postavený na frameworku Next.js
   GHOST_CONTENT_API_KEY=<ghost_api_content_key>
   GHOST_API_VERSION=<ghost_api_version>
     ```
-- Vytvoření a spuštění kontejneru: `docker run -p 3000:3000 --name bankless_prod bankless:latest`
+- Vytvoření a spuštění kontejneru: `docker run --detach --restart=always --env-file .env -p 3000:3000 --name bankless_prod bankless:latest`
 
 
 ## Update produkce
@@ -58,4 +58,4 @@ Projekt je postavený na frameworku Next.js
 - Build nového image: `docker build -t bankless:latest .`
 - Zastavení aktuálně běžícího kontejneru: `docker stop bankless_prod`
 - Smazání kontejneru: `docker rm bankless_prod`
-- Vytvoření a spuštění kontejneru: `docker run -p 3000:3000 --name bankless_prod bankless:latest`
+- Vytvoření a spuštění kontejneru: `docker run --detach --restart=always --env-file .env -p 3000:3000 --name bankless_prod bankless:latest`
