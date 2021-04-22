@@ -28,20 +28,21 @@
 
 @media only screen and (max-width: 1199px) {
   .frontImg {
-    max-height: 500px;
+    max-height: 100%;
+    object-fit: contain;
   }
 }
 
 @media only screen and (max-width: 991px) {
   .frontImg {
-    height: 430px;
-    object-fit: cover;
+    max-height: 500px;
+    object-fit: contain;
   }
 }
 
 @media only screen and (max-width: 767px) {
   .frontImg {
-    height: 350px;
-    object-fit: cover;
+    max-height: 250px;
+    object-fit: contain;
   }
 }
