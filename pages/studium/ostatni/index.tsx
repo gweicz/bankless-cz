@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: POSTS_ON_PAGE_LIMIT,
     page,
     include: ['tags', 'authors'],
-    filter: 'tag:ethereum',
+    filter: 'tag:vzdelani+tag:ostatni,tag:studium+tag:ostatni',
   })
 
   const hashovky = await getPosts({
@@ -51,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-const NovinkyEthereum = ({
+const ZacatecniciOstatni = ({
   posts,
   hashovky,
   menuPosts,
@@ -81,18 +81,18 @@ const NovinkyEthereum = ({
   return (
     <div className={styles.container}>
       <Head>
-        <title>Bankless | Ethereum novinky</title>
+        <title>Bankless | kryptoměny pro začátečníky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
         <MetaTags
-          meta_title="Bankless | Ethereum novinky"
-          meta_description="Nejnovější zprávy ze světa Etherea"
-          og_title="Bankless | Ethereum novinky"
+          meta_title="Bankless | kryptoměny pro začátečníky"
+          meta_description="Pochopte teoretické základy kryptoměn s našimi studijními články"
+          og_title="Bankless | kryptoměny pro začátečníky"
           og_image=""
-          og_description="Nejnovější zprávy ze světa Etherea"
-          twitter_title="Bankless | Ethereum novinky"
+          og_description="Pochopte teoretické základy kryptoměn s našimi studijními články"
+          twitter_title="Bankless | kryptoměny pro začátečníky"
           twitter_image=""
-          twitter_description="Nejnovější zprávy ze světa Etherea"
+          twitter_description="Pochopte teoretické základy kryptoměn s našimi studijními články"
         />
 
         <base target="_blank" />
@@ -121,7 +121,7 @@ const NovinkyEthereum = ({
                 nextPage={nextPage}
                 isLastPage={posts?.length !== POSTS_ON_PAGE_LIMIT}
               />
-              <SideBar hashovky={hashovkyState} />
+              <SideBar hashovky={hashovkyState} topTab="studium" />
             </div>
           </div>
         </div>
@@ -130,4 +130,4 @@ const NovinkyEthereum = ({
   )
 }
 
-export default NovinkyEthereum
+export default ZacatecniciOstatni

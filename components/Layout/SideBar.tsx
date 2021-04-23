@@ -6,7 +6,13 @@ import Link from 'next/link'
 import { PostOrPage } from '@tryghost/content-api'
 import SocInvite from 'components/SocInvite'
 
-const SideBar = ({ hashovky }: { hashovky?: PostOrPage[] }) => {
+const SideBar = ({
+  hashovky,
+  topTab = 'novinky',
+}: {
+  hashovky?: PostOrPage[]
+  topTab?: string
+}) => {
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
   const [nextPage, setNextPage] = useState(1)
 
@@ -33,7 +39,7 @@ const SideBar = ({ hashovky }: { hashovky?: PostOrPage[] }) => {
     <div className="axil-single-widget widget widget_categories mb--30">
       <ul>
         <li className="cat-item">
-          <Link href="/novinky/ethereum" shallow={true} scroll={false}>
+          <Link href={`/${topTab}/ethereum`} shallow={true} scroll={false}>
             <a className="inner">
               <div className="thumbnail">
                 <picture>
@@ -55,7 +61,7 @@ const SideBar = ({ hashovky }: { hashovky?: PostOrPage[] }) => {
           </Link>
         </li>
         <li className="cat-item">
-          <Link href="/novinky/bitcoin" shallow={true} scroll={false}>
+          <Link href={`/${topTab}/bitcoin`} shallow={true} scroll={false}>
             <a className="inner">
               <div className="thumbnail">
                 <picture>
@@ -74,7 +80,7 @@ const SideBar = ({ hashovky }: { hashovky?: PostOrPage[] }) => {
           </Link>
         </li>
         <li className="cat-item">
-          <Link href="/novinky/polkadot" shallow={true} scroll={false}>
+          <Link href={`/${topTab}/polkadot`} shallow={true} scroll={false}>
             <a className="inner">
               <div className="thumbnail">
                 <picture>
@@ -96,7 +102,7 @@ const SideBar = ({ hashovky }: { hashovky?: PostOrPage[] }) => {
           </Link>
         </li>
         <li className="cat-item">
-          <Link href="/novinky/ostatni" shallow={true} scroll={false}>
+          <Link href={`/${topTab}/ostatni`} shallow={true} scroll={false}>
             <a className="inner">
               <div className="thumbnail">
                 <img
@@ -130,7 +136,7 @@ const SideBar = ({ hashovky }: { hashovky?: PostOrPage[] }) => {
   const _hashovky = (hashovky?: PostOrPage[]) => (
     <div className="post-medium-block axil-single-widget">
       <h5 className="widget-title">#Hashovky</h5>
-      {hashovky?.slice(0,3).map((hashovka, i) => (
+      {hashovky?.slice(0, 3).map((hashovka, i) => (
         <HashPost
           key={i}
           meta_title={hashovka.meta_title || ''}
