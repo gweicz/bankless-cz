@@ -19,7 +19,7 @@ const SocInvite = () => {
         </a>
       </li>
       <li>
-        <a href="https://www.facebook.com/banklesscz" target="_blank">
+        <a href="https://www.facebook.com/Bankless-CZ-109479641279147" target="_blank">
           <FontAwesomeIcon icon={['fab', 'facebook']} />
         </a>
       </li>
