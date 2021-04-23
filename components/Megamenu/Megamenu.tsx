@@ -4,17 +4,18 @@ import style from './MegaMenu.module.scss'
 import { useSessionContext } from 'context/SessionContext'
 import { useState } from 'react'
 
-type Props = {
-  menuTitle: string
-  menuLink: string
-  isBegginer: boolean
+type MegaMenuProps = {
+  menuTitle: string,
+  categoryLink: string,
+  categoryName: string,
+  isBeginner: boolean,
 }
 
-const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
+const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMenuProps) => {
   const { apiPostsData } = useSessionContext()
 
   let tabs: { [key: string]: { [key: string]: string }[] }
-  if (isBegginer === true) {
+  if (isBeginner) {
     tabs = {
       Ethereum: (apiPostsData?.ethPostsBegginer || []).map(
         (post: PostOrPage) => ({
@@ -89,7 +90,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
 
   return (
     <li className="menu-item-has-children megamenu-wrapper">
-      <Link href={menuLink}>
+      <Link href={categoryLink}>
         <a>{menuTitle}</a>
       </Link>
       <ul className="col-xl-6 megamenu-sub-menu">
@@ -104,7 +105,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
                     className={`vertical-nav-item ${id === 0 ? 'active' : ''}`}
                     onMouseEnter={(e) => onTabHover(e, category)}
                   >
-                    <Link href={`/${menuLink}/${category.toLowerCase()}`}>
+                    <Link href={`/${categoryName}/${category.toLowerCase()}`}>
                       <a className="hover-flip-item-wrapper">
                         <span className="hover-flip-item">
                           <span data-text={category}>{category}</span>
@@ -133,7 +134,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
                         <div key={id} className="col-lg-3">
                           <div className="content-block image-rounded">
                             <div className="post-thumbnail mb--20">
-                              <Link href={`/${menuLink}/${post.slug}`}>
+                              <Link href={`/${categoryName}/${post.slug}`}>
                                 <a>
                                   <img
                                     className={`w-100 ${style.previewImg}`}
@@ -152,7 +153,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
                                 </div>
                               </div>
                               <h5 className="title">
-                                <Link href={`/${menuLink}/${post.slug}`}>
+                                <Link href={`/${categoryName}/${post.slug}`}>
                                   <a>{post.title}</a>
                                 </Link>
                               </h5>
