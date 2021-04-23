@@ -124,7 +124,7 @@ const SideBar = ({ hashovky }: { hashovky?: PostOrPage[] }) => {
   const _hashovky = (hashovky?: PostOrPage[]) => (
     <div className="post-medium-block axil-single-widget">
       <h5 className="widget-title">#Hashovky</h5>
-      {hashovky?.map((hashovka, i) => (
+      {hashovky?.slice(0,3).map((hashovka, i) => (
         <HashPost
           key={i}
           meta_title={hashovka.meta_title || ''}
