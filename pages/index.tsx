@@ -95,7 +95,7 @@ const Home = ({
         />
 
         <base target="_blank"/>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`}></script>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
         <script
           async
           dangerouslySetInnerHTML={{
@@ -103,7 +103,7 @@ const Home = ({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
             
-              gtag('config', ${process.env.GOOGLE_KEY});`
+              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`
           }}
         />
       </Head>
