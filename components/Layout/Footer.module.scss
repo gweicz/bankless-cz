@@ -1,0 +1,27 @@
+.CopyrightText {
+    margin-top: 0px;
+    padding-left: 70px;
+  }
+
+
+@media only screen and (max-width: 1199px) {
+    .CopyrightText {
+        margin-top: 0px;
+        padding-left: 0px;
+    }
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .CopyrightText {
+        margin-top: 0px;
+        padding-left: 0px;
+    }
+  }
+
+@media only screen and (max-width: 767px) {
+    .CopyrightText {
+      margin-top: 10px;
+      padding-left: 15px;
+    }
+  }
+  
