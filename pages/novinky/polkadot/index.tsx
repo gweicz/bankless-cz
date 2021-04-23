@@ -1,14 +1,17 @@
+import React, { useEffect, useState } from 'react'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetServerSideProps } from 'next'
-import { getPosts } from '../../api/posts'
-import { PostOrPage } from '@tryghost/content-api'
-import React, { useEffect, useState } from 'react'
-import styles from '../../../styles/Home.module.scss'
 import Head from 'next/head'
 import MainBanner from '../../../components/HomePage/MainBanner'
+import MetaTags from '../../../components/MetaTags/MetaTags'
 import PostList from '../../../components/HomePage/PostList/PostList'
+import { PostOrPage } from '@tryghost/content-api'
 import SideBar from '../../../components/Layout/SideBar'
-import MetaTags from "../../../components/MetaTags/MetaTags";
+import { fetchMenuPosts } from 'utils/fetchMenuPosts'
+import { getPosts } from '../../api/posts'
+import styles from '../../../styles/Home.module.scss'
+import { useMenuData } from 'context/SessionContext'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -32,6 +35,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     filter: 'tag:hashovka',
   })
 
+  const menuPosts = await fetchMenuPosts()
+
   if (!posts) {
     return {
       redirect: {
@@ -42,21 +47,25 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: { posts, hashovky }, // will be passed to the page component as props
+    props: { posts, hashovky, menuPosts }, // will be passed to the page component as props
   }
 }
 
 const NovinkyPolkadot = ({
   posts,
   hashovky,
+  menuPosts,
 }: {
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
+  menuPosts?: PostOrPage[]
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
 
   const [nextPage, setNextPage] = useState(1)
+
+  useMenuData({ menuPosts })
 
   useEffect(() => {
     if (!posts) return
@@ -86,8 +95,11 @@ const NovinkyPolkadot = ({
           twitter_description="Nejnovější zprávy ze světa Polkadot"
         />
 
-        <base target="_blank"/>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
+        <base target="_blank" />
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}
+        ></script>
         <script
           async
           dangerouslySetInnerHTML={{
@@ -95,7 +107,7 @@ const NovinkyPolkadot = ({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
             
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`
+              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`,
           }}
         />
       </Head>
