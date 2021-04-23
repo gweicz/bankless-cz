@@ -6,6 +6,7 @@ import { SRLWrapper } from 'simple-react-lightbox'
 import SideBar from 'components/Layout/SideBar'
 import SocShare from 'components/SocShare'
 import SocialShareBlock from './SocialShareBlock'
+import styles from './Article.module.scss'
 import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
 
 export default function Article({
@@ -32,7 +33,11 @@ export default function Article({
             <div className="col-lg-8">
               <div className="axil-post-details">
                 <SRLWrapper>
-                  <div className="article-content">{children}</div>
+                  <div className="article-content">
+                    <div className={styles.content}>
+                      {children}
+                    </div>
+                  </div>
                 </SRLWrapper>
                 {/* <SocialShareBlock /> */}
                 <div className="social-share-block justify-content-end m-t-5">
