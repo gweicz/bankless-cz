@@ -1,8 +1,35 @@
 import React from "react";
 import Head from "next/head";
 import MetaTags from "../../components/MetaTags/MetaTags";
+import {GetServerSideProps} from 'next'
+import {fetchMenuPosts} from 'utils/fetchMenuPosts'
+import {PostOrPage} from '@tryghost/content-api'
+import {useMenuData} from 'context/SessionContext'
 
-const Kodex = () => {
+// Fetch posts
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const menuPosts = await fetchMenuPosts()
+
+  if (!menuPosts) {
+    return {
+      redirect: {
+        destination: '/404Error',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: {menuPosts}, // will be passed to the page component as props
+  }
+}
+
+const Kodex = ({
+  menuPosts
+}: {
+menuPosts?: PostOrPage[]
+}) => {
+  useMenuData({menuPosts})
 
   return (
     <>
