@@ -89,7 +89,12 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
 
   return (
     <li className="menu-item-has-children megamenu-wrapper">
-      <Link href={menuLink}>
+      <Link
+        href={{
+          pathname: `/${menuLink}`,
+        }}
+        shallow={true}
+      >
         <a>{menuTitle}</a>
       </Link>
       <ul className="col-xl-6 megamenu-sub-menu">
@@ -104,7 +109,10 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
                     className={`vertical-nav-item ${id === 0 ? 'active' : ''}`}
                     onMouseEnter={(e) => onTabHover(e, category)}
                   >
-                    <Link href={`/${menuLink}/${category.toLowerCase()}`}>
+                    <Link
+                      href={`/${menuLink}/${category.toLowerCase()}`}
+                      shallow={true}
+                    >
                       <a className="hover-flip-item-wrapper">
                         <span className="hover-flip-item">
                           <span data-text={category}>{category}</span>
