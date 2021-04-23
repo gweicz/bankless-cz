@@ -108,13 +108,13 @@ const Header: React.FC = () => {
     <div className="mainmenu-wrapper">
       <nav className="mainmenu-nav">
         <ul className="mainmenu">
-          <Megamenu menuTitle="Novinky" menuLink="novinky" isBegginer={false}/>
+          <Megamenu menuTitle="Novinky" categoryLink="/" categoryName="novinky" isBeginner={false}/>
 
           <li>
             <Link href="/hashovky/">#Hashovky</Link>
           </li>
 
-          <Megamenu menuTitle="Studium" menuLink="studium" isBegginer={true} />
+          <Megamenu menuTitle="Studium" categoryLink="/studium" categoryName="studium" isBeginner={true} />
         </ul>
       </nav>
     </div>
