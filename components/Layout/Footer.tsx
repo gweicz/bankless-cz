@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import SocInvite from 'components/SocInvite'
 import useCopyToClipboard from 'components/helpers/useCopyToClipboard'
-import Image from 'next/image'
+import { useState } from 'react'
 import style from './Footer.module.scss'
+
 
 const Footer = () => {
   const redactionEmailAdsress = 'redakce@bankless.cz'
@@ -14,21 +15,24 @@ const Footer = () => {
   return (
     <div className="axil-footer-area axil-footer-style-1 footer-variation-2">
       <div className="container">
-        <div className="footer-top" style={{paddingTop: '15px', paddingBottom: '15px'}}>
+        <div
+          className="footer-top"
+          style={{ paddingTop: '15px', paddingBottom: '15px' }}
+        >
           <div className="row">
             <div className="col-lg-4 col-md-4 d-flex align-items-center">
-                <Link href="/">
-                  <div style={{cursor: 'pointer', height: '65px'}}>
+              <Link href="/" shallow={true}>
+                <div style={{ cursor: 'pointer', height: '65px' }}>
                   <Image
                     src="/images/logo/banklessczWhite.svg"
                     alt="Bankless logo"
                     width={188}
                     height={65}
-                  />  
-                  </div>
-                </Link> 
-          </div>
-            <div className="col-lg-8 col-md-8" style={{paddingTop: '10px'}}>
+                  />
+                </div>
+              </Link>
+            </div>
+            <div className="col-lg-8 col-md-8" style={{ paddingTop: '10px' }}>
               <div className="d-flex justify-content-start mt_sm--15 justify-content-md-end align-items-center flex-wrap">
                 <h5 className="follow-title mb--0 mr--20">Sledujte nás</h5>
                 <SocInvite />
@@ -48,9 +52,9 @@ const Footer = () => {
                     <Link href="/kodex">
                       <a
                         className="hover-text-black"
-                        style={{fontSize: "15px"}}
+                        style={{ fontSize: '15px' }}
                       >
-                        {"Náš kodex"}
+                        {'Náš kodex'}
                       </a>
                     </Link>
                   </li>
@@ -60,8 +64,8 @@ const Footer = () => {
                     <a
                       className="hover-text-black cursor-copy"
                       onClick={(event) => {
-                        copyLink({ event, textToCopy: redactionEmailAdsress });
-                        setEmailText("")
+                        copyLink({ event, textToCopy: redactionEmailAdsress })
+                        setEmailText('')
                         setTimeout(function () {
                           setEmailText(redactionEmailAdsress)
                         }, 3000)
