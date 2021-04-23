@@ -23,6 +23,11 @@ const SocInvite = () => {
           <FontAwesomeIcon icon={['fab', 'facebook']} />
         </a>
       </li>
+      <li>
+        <a href="https://www.instagram.com/cryptopanda.cz/" target="_blank">
+          <FontAwesomeIcon icon={['fab', 'instagram']} />
+        </a>
+      </li>
     </ul>
   )
 }
