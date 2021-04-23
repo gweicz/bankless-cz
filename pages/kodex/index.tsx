@@ -21,7 +21,7 @@ const Kodex = () => {
           twitter_description="Bankless Kodex je seznam etických zásad, kterým se řídí všichni autoři webu"
         />
 
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_KEY}`} ></script>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
         <script
           async
           dangerouslySetInnerHTML={{
@@ -29,7 +29,7 @@ const Kodex = () => {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
             
-              gtag('config', ${process.env.GOOGLE_KEY});`
+              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`
           }}
         />
       </Head>
