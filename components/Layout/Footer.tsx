@@ -3,6 +3,8 @@ import Link from 'next/link'
 import SocInvite from 'components/SocInvite'
 import useCopyToClipboard from 'components/helpers/useCopyToClipboard'
 import { useState } from 'react'
+import style from './Footer.module.scss'
+
 
 const Footer = () => {
   const redactionEmailAdsress = 'redakce@bankless.cz'
@@ -76,7 +78,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-lg-3 col-md-4">
+            <div className={style.CopyrightText}>
               <div className="copyright-right text-left text-md-right mt_sm--20">
                 <p className="b3">
                   Všechna práva vyhrazena © {new Date().getFullYear()}

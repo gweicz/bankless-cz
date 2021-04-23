@@ -16,7 +16,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
   let tabs: { [key: string]: { [key: string]: string }[] }
   if (isBegginer === true) {
     tabs = {
-      Ethereum: (apiPostsData?.ethPostsBegginer || []).map(
+      Ethereum: (apiPostsData?.ethPostsBegginer.slice(0,4) || []).map(
         (post: PostOrPage) => ({
           category: 'ethereum',
           thumbnail: post.feature_image,
@@ -24,7 +24,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
           slug: post.slug,
         }),
       ),
-      Bitcoin: (apiPostsData?.btcPostsBegginer || []).map(
+      Bitcoin: (apiPostsData?.btcPostsBegginer.slice(0,4) || []).map(
         (post: PostOrPage) => ({
           category: 'bitcoin',
           thumbnail: post.feature_image,
@@ -32,7 +32,7 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
           slug: post.slug,
         }),
       ),
-      Polkadot: (apiPostsData?.dotPostsBegginer || []).map(
+      Polkadot: (apiPostsData?.dotPostsBegginer.slice(0,4) || []).map(
         (post: PostOrPage) => ({
           category: 'polkadot',
           thumbnail: post.feature_image,
@@ -43,19 +43,19 @@ const Megamenu = ({ menuTitle, menuLink, isBegginer }: Props) => {
     }
   } else {
     tabs = {
-      Ethereum: (apiPostsData?.ethPosts || []).map((post: PostOrPage) => ({
+      Ethereum: (apiPostsData?.ethPosts.slice(0,4) || []).map((post: PostOrPage) => ({
         category: 'ethereum',
         thumbnail: post.feature_image,
         title: post.title,
         slug: post.slug,
       })),
-      Bitcoin: (apiPostsData?.btcPosts || []).map((post: PostOrPage) => ({
+      Bitcoin: (apiPostsData?.btcPosts.slice(0,4) || []).map((post: PostOrPage) => ({
         category: 'bitcoin',
         thumbnail: post.feature_image,
         title: post.title,
         slug: post.slug,
       })),
-      Polkadot: (apiPostsData?.dotPosts || []).map((post: PostOrPage) => ({
+      Polkadot: (apiPostsData?.dotPosts.slice(0,4) || []).map((post: PostOrPage) => ({
         category: 'polkadot',
         thumbnail: post.feature_image,
         title: post.title,
