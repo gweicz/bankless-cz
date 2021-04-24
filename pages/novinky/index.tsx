@@ -11,6 +11,7 @@ import { getPosts } from 'pages/api/posts'
 import styles from 'styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
 import MetaTags from "../../components/MetaTags/MetaTags";
+import {NextSeo} from "next-seo";
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -83,17 +84,6 @@ const NovinkyPolkadot = ({
         <title>Bankless | Novinky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <MetaTags
-          meta_title="Bankless | Novinky"
-          meta_description="Novinky ze světa kryptoměn!"
-          og_title="Bankless | Novinky"
-          og_image=""
-          og_description="Novinky ze světa kryptoměn!"
-          twitter_title="Bankless | Novinky"
-          twitter_image=""
-          twitter_description="Novinky ze světa kryptoměn!"
-        />
-
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
         <script
           async
@@ -106,6 +96,30 @@ const NovinkyPolkadot = ({
           }}
         />
       </Head>
+      <NextSeo
+        title="Bankless | Novinky"
+        description="Novinky ze světa kryptoměn!"
+        canonical="https://bankless.cz"
+        openGraph={{
+          url: 'https://bankless.cz',
+          title: "Bankless | Novinky",
+          description: "Novinky ze světa kryptoměn!",
+          images: [
+            {
+              url: "https://bankless.cz/thumbnail.png",
+              width: 960,
+              height: 540,
+              alt: 'BanklessCZ',
+            }
+          ],
+          site_name: 'Bankless',
+        }}
+        twitter={{
+          handle: '@banklesscz',
+          site: '@banklesscz',
+          cardType: 'summary_large_image',
+        }}
+      />
       <main className={styles.main}>
         {postsState.length > 0 && (
           <MainBanner data={postsState?.slice(0, 3) || []} />

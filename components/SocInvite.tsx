@@ -24,7 +24,7 @@ const SocInvite = () => {
         </a>
       </li>
       <li>
-        <a href="https://www.instagram.com/cryptopanda.cz/" target="_blank">
+        <a href="https://www.instagram.com/banklesscz/" target="_blank">
           <FontAwesomeIcon icon={['fab', 'instagram']} />
         </a>
       </li>

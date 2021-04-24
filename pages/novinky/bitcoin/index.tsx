@@ -12,6 +12,7 @@ import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from '../../api/posts'
 import styles from '../../../styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
+import {NextSeo} from "next-seo";
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -84,17 +85,6 @@ const NovinkyBitcoin = ({
         <title>Bankless | Bitcoin novinky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <MetaTags
-          meta_title="Bankless | Bitcoin novinky"
-          meta_description="Nejnovější zprávy ze světa Bitcoinu"
-          og_title="Bankless | Bitcoin novinky"
-          og_image=""
-          og_description="Nejnovější zprávy ze světa Bitcoinu"
-          twitter_title="Bankless | Bitcoin novinky"
-          twitter_image=""
-          twitter_description="Nejnovější zprávy ze světa Bitcoinu"
-        />
-
         <base target="_blank" />
         <script
           async
@@ -111,6 +101,30 @@ const NovinkyBitcoin = ({
           }}
         />
       </Head>
+      <NextSeo
+        title="Bankless | Bitcoin novinky"
+        description="Nejnovější zprávy ze světa Bitcoinu"
+        canonical="https://bankless.cz/novinky/bitcoin"
+        openGraph={{
+          url: 'https://bankless.cz/novinky/bitcoin',
+          title: "Bankless | Bitcoin novinky",
+          description: "Nejnovější zprávy ze světa Bitcoinu",
+          images: [
+            {
+              url: "https://bankless.cz/thumbnail.png",
+              width: 960,
+              height: 540,
+              alt: 'BanklessCZ',
+            }
+          ],
+          site_name: 'Bankless',
+        }}
+        twitter={{
+          handle: '@banklesscz',
+          site: '@banklesscz',
+          cardType: 'summary_large_image',
+        }}
+      />
       <main className={styles.main}>
         {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
         <div className="container">

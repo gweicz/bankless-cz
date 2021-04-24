@@ -11,6 +11,7 @@ import {getPosts} from './api/posts'
 import styles from 'styles/Home.module.scss'
 import {useMenuData} from 'context/SessionContext'
 import MetaTags from "../components/MetaTags/MetaTags";
+import { NextSeo } from 'next-seo';
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -80,19 +81,8 @@ const Home = ({
   return (
     <div className={styles.container}>
       <Head>
-        <title>Bankless | Ethereum, Bitcoin a jiné krypto</title>
+        <title>Bankless | Novinkový a vzdělávací web o kryptoměnách</title>
         <link rel="icon" type="image/png" href="/favicon.png"/>
-
-        <MetaTags
-          meta_title="Bankless | Ethereum, Bitcoin a jiné krypto"
-          meta_description="Novinkový a vzdělávací web o kryptoměnách, který vám každý den přináší zajímavosti z krypto světa."
-          og_title="Bankless | Ethereum, Bitcoin a jiné krypto"
-          og_image=""
-          og_description="Novinkový a vzdělávací web o kryptoměnách, který vám každý den přináší zajímavosti z krypto světa."
-          twitter_title="Bankless | Ethereum, Bitcoin a jiné krypto"
-          twitter_image=""
-          twitter_description="Novinkový a vzdělávací web o kryptoměnách, který vám každý den přináší zajímavosti z krypto světa."
-        />
 
         <base target="_blank"/>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
@@ -107,6 +97,30 @@ const Home = ({
           }}
         />
       </Head>
+      <NextSeo
+        title="Bankless | Novinkový a vzdělávací web o kryptoměnách"
+        description="Novinkový a vzdělávací web o kryptoměnách, který vám každý den přináší zajímavosti z krypto světa."
+        canonical="https://bankless.cz"
+        openGraph={{
+          url: 'https://bankless.cz',
+          title: "Bankless | Novinkový a vzdělávací web o kryptoměnách",
+          description: "Novinkový a vzdělávací web o kryptoměnách, který vám každý den přináší zajímavosti z krypto světa.",
+          images: [
+            {
+              url: "https://bankless.cz/thumbnail.png",
+              width: 960,
+              height: 540,
+              alt: 'BanklessCZ',
+            }
+          ],
+          site_name: 'Bankless',
+        }}
+        twitter={{
+          handle: '@banklesscz',
+          site: '@banklesscz',
+          cardType: 'summary_large_image',
+        }}
+      />
       <main className={styles.main}>
         {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
         <div className="container">

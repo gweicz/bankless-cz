@@ -12,6 +12,7 @@ import { getPosts } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
 import Head from 'next/head'
 import MetaTags from "../../components/MetaTags/MetaTags";
+import {NextSeo} from "next-seo";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -97,17 +98,6 @@ const AuthorDetailPage = ({
         <title>Bankless | @{author.name}</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <MetaTags
-          meta_title={`Bankless | @${author.name}`}
-          meta_description={`Bankless | @${author.name} autor na webu bankless.cz`}
-          og_title={`Bankless | @${author.name}`}
-          og_image={author.profile_image}
-          og_description={`Bankless | @${author.name} autor na webu bankless.cz`}
-          twitter_title={`Bankless | @${author.name}`}
-          twitter_image={author.profile_image}
-          twitter_description={`Bankless | @${author.name} autor na webu bankless.cz`}
-        />
-
         <base target="_blank"/>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
         <script
@@ -121,6 +111,31 @@ const AuthorDetailPage = ({
           }}
         />
       </Head>
+
+      <NextSeo
+        title={`Bankless | @${author.name}`}
+        description={`Bankless | @${author.name} autor na webu bankless.cz`}
+        canonical={`https://bankless.cz/authors/${author.name}`}
+        openGraph={{
+          url: `https://bankless.cz/authors/${author.name}`,
+          title: `Bankless | @${author.name}`,
+          description: `Bankless | @${author.name} autor na webu bankless.cz`,
+          images: [
+            {
+              url: author.profile_image || 'https://bankless.cz/thumbnail.png',
+              width: 960,
+              height: 540,
+              alt: 'BanklessCZ',
+            }
+          ],
+          site_name: 'Bankless',
+        }}
+        twitter={{
+          handle: '@banklesscz',
+          site: '@banklesscz',
+          cardType: 'summary_large_image',
+        }}
+      />
 
       <AuthorDetail author={author} />
 

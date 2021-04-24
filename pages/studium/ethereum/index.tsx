@@ -12,6 +12,7 @@ import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from '../../api/posts'
 import styles from '../../../styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
+import {NextSeo} from "next-seo";
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -84,17 +85,6 @@ const ZacatecniciBitcoin = ({
         <title>Bankless | Ethereum pro začátečníky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <MetaTags
-          meta_title="Bankless | Ethereum pro začátečníky"
-          meta_description="Pochopte teoretické základy Etherea s našimi studijními články"
-          og_title="Bankless | Ethereum pro začátečníky"
-          og_image=""
-          og_description="Pochopte teoretické základy Etherea s našimi studijními články"
-          twitter_title="Bankless | Ethereum pro začátečníky"
-          twitter_image=""
-          twitter_description="Pochopte teoretické základy Etherea s našimi studijními články"
-        />
-
         <base target="_blank" />
         <script
           async
@@ -111,6 +101,30 @@ const ZacatecniciBitcoin = ({
           }}
         />
       </Head>
+      <NextSeo
+        title="Bankless | Ethereum pro začátečníky"
+        description="Pochopte teoretické základy Etherea s našimi studijními články"
+        canonical="https://bankless.cz/studium/ethereum"
+        openGraph={{
+          url: 'https://bankless.cz/studium/studium/ethereum',
+          title: "Bankless | Ethereum pro začátečníky",
+          description: "Pochopte teoretické základy Etherea s našimi studijními články",
+          images: [
+            {
+              url: "https://bankless.cz/thumbnail.png",
+              width: 960,
+              height: 540,
+              alt: 'BanklessCZ',
+            }
+          ],
+          site_name: 'Bankless',
+        }}
+        twitter={{
+          handle: '@banklesscz',
+          site: '@banklesscz',
+          cardType: 'summary_large_image',
+        }}
+      />
       <main className={styles.main}>
         {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
         <div className="container">

@@ -9,6 +9,7 @@ import React from 'react'
 import {fetchMenuPosts} from 'utils/fetchMenuPosts'
 import {useMenuData} from 'context/SessionContext'
 import MetaTags from "../../components/MetaTags/MetaTags";
+import {NextSeo} from "next-seo";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const {query} = context
@@ -97,6 +98,7 @@ export default function Novinka({
         <MetaTags
           meta_title={articlePost?.meta_title}
           meta_description={articlePost?.meta_description}
+          og_url={`/novinky/${articlePost?.slug}`}
           og_title={articlePost?.og_title}
           og_image={articlePost?.og_image}
           og_description={articlePost?.og_description}
@@ -118,6 +120,30 @@ export default function Novinka({
           }}
         />
       </Head>
+      <NextSeo
+        title={articlePost?.meta_title || ''}
+        description={articlePost?.meta_description || ''}
+        canonical={`https://bankless.cz/novinky/${articlePost?.slug}` || ''}
+        openGraph={{
+          url:`https://bankless.cz/novinky/${articlePost?.slug}` || '',
+          title: articlePost?.meta_title || '',
+          description: articlePost?.meta_description || '',
+          images: [
+            {
+              url: articlePost?.og_image || 'https://bankless.cz/thumbnail.png',
+              width: 960,
+              height: 540,
+              alt: articlePost?.meta_title || '',
+            }
+          ],
+          site_name: 'Bankless',
+        }}
+        twitter={{
+          handle: '@banklesscz',
+          site: '@banklesscz',
+          cardType: 'summary_large_image',
+        }}
+      />
       <Article
         articleData={articleData}
         moreStories={moreStories}
