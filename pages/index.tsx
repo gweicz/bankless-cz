@@ -116,6 +116,10 @@ const Home = ({
           site_name: 'Bankless',
         }}
         twitter={{
+          // @ts-ignore
+          url: 'https://bankless.cz',
+          title: "Bankless | Novinkový a vzdělávací web o kryptoměnách",
+          description: "Novinkový a vzdělávací web o kryptoměnách, který vám každý den přináší zajímavosti z krypto světa.",
           handle: '@banklesscz',
           site: '@banklesscz',
           cardType: 'summary_large_image',
