@@ -95,18 +95,6 @@ export default function Novinka({
         <title>Bankless | {articleData.title}</title>
         <link rel="icon" type="image/png" href="/favicon.png"/>
 
-        <MetaTags
-          meta_title={articlePost?.meta_title}
-          meta_description={articlePost?.meta_description}
-          og_url={`/novinky/${articlePost?.slug}`}
-          og_title={articlePost?.og_title}
-          og_image={articlePost?.og_image}
-          og_description={articlePost?.og_description}
-          twitter_title={articlePost?.twitter_title}
-          twitter_image={articlePost?.twitter_image}
-          twitter_description={articlePost?.twitter_description}
-        />
-
         <base target="_blank"/>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
         <script
