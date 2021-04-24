@@ -12,6 +12,7 @@ import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from '../../api/posts'
 import styles from '../../../styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
+import {NextSeo} from "next-seo";
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -87,11 +88,12 @@ const NovinkyPolkadot = ({
         <MetaTags
           meta_title="Bankless | Polkadot novinky"
           meta_description="Nejnovější zprávy ze světa Polkadot"
+          og_url="/novinky/polkadot"
           og_title="Bankless | Polkadot novinky"
-          og_image=""
+          og_image="https://bankless.cz/thumbnail.png"
           og_description="Nejnovější zprávy ze světa Polkadot"
           twitter_title="Bankless | Polkadot novinky"
-          twitter_image=""
+          twitter_image="https://bankless.cz/thumbnail.png"
           twitter_description="Nejnovější zprávy ze světa Polkadot"
         />
 
@@ -111,6 +113,30 @@ const NovinkyPolkadot = ({
           }}
         />
       </Head>
+      <NextSeo
+        title="Bankless | Polkadot novinky"
+        description="Nejnovější zprávy ze světa Polkadot"
+        canonical="https://bankless.cz/novinky/polkadot"
+        openGraph={{
+          url: 'https://bankless.cz/novinky/polkadot',
+          title: "Bankless | Polkadot novinky",
+          description: "Nejnovější zprávy ze světa Polkadot",
+          images: [
+            {
+              url: "https://bankless.cz/thumbnail.png",
+              width: 960,
+              height: 540,
+              alt: 'BanklessCZ',
+            }
+          ],
+          site_name: 'Bankless',
+        }}
+        twitter={{
+          handle: '@banklesscz',
+          site: '@banklesscz',
+          cardType: 'summary_large_image',
+        }}
+      />
       <main className={styles.main}>
         {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
         <div className="container">

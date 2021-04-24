@@ -5,6 +5,7 @@ import {GetServerSideProps} from 'next'
 import {fetchMenuPosts} from 'utils/fetchMenuPosts'
 import {PostOrPage} from '@tryghost/content-api'
 import {useMenuData} from 'context/SessionContext'
+import {NextSeo} from "next-seo";
 
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -37,17 +38,6 @@ menuPosts?: PostOrPage[]
         <title>Bankless | Kodex</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <MetaTags
-          meta_title="Bankless | Kodex"
-          meta_description="Bankless Kodex je seznam etických zásad, kterým se řídí všichni autoři webu"
-          og_title="Bankless | Kodex"
-          og_image=""
-          og_description="Bankless Kodex je seznam etických zásad, kterým se řídí všichni autoři webu"
-          twitter_title="Bankless | Kodex"
-          twitter_image=""
-          twitter_description="Bankless Kodex je seznam etických zásad, kterým se řídí všichni autoři webu"
-        />
-
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
         <script
           async
@@ -60,6 +50,30 @@ menuPosts?: PostOrPage[]
           }}
         />
       </Head>
+      <NextSeo
+        title="Bankless | Kodex"
+        description="Bankless Kodex je seznam etických zásad, kterým se řídí všichni autoři webu"
+        canonical="https://bankless.cz/kodex"
+        openGraph={{
+          url: 'https://bankless.cz/kodex',
+          title: "Bankless | Kodex",
+          description: "Bankless Kodex je seznam etických zásad, kterým se řídí všichni autoři webu",
+          images: [
+            {
+              url: "https://bankless.cz/thumbnail.png",
+              width: 960,
+              height: 540,
+              alt: 'BanklessCZ',
+            }
+          ],
+          site_name: 'Bankless',
+        }}
+        twitter={{
+          handle: '@banklesscz',
+          site: '@banklesscz',
+          cardType: 'summary_large_image',
+        }}
+      />
       <div className="container" style={{ marginBottom: '50px' }}>
         <h2 className="heading">Bankless etický kodex</h2>
         <p className="paragraph">1) Zveřejňujeme pouze ověřené informace a dbáme na důsledné ověřování zdrojů, které vždy uvedeme na konci článku. Neuvádíme nepodložená fakta a domněnky.</p>

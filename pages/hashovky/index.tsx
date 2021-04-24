@@ -9,6 +9,7 @@ import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
 import MetaTags from "../../components/MetaTags/MetaTags";
+import {NextSeo} from "next-seo";
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -106,17 +107,6 @@ const Hashovky = ({
         <title>Bankless | Hashovky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <MetaTags
-          meta_title="Bankless | Hashovky"
-          meta_description="Krátké novinky ze světa kryptoměn. Buďte o důležitých novinkách informováni jako první."
-          og_title="Bankless | Hashovky"
-          og_image=""
-          og_description="Krátké novinky ze světa kryptoměn. Buďte o důležitých novinkách informováni jako první."
-          twitter_title="Bankless | Hashovky"
-          twitter_image=""
-          twitter_description="Krátké novinky ze světa kryptoměn. Buďte o důležitých novinkách informováni jako první."
-        />
-
         <base target="_blank"/>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
         <script
@@ -130,7 +120,30 @@ const Hashovky = ({
           }}
         />
       </Head>
-
+      <NextSeo
+        title="Bankless | Hashovky"
+        description="Krátké novinky ze světa kryptoměn. Buďte o důležitých novinkách informováni jako první"
+        canonical="https://bankless.cz/hashovky"
+        openGraph={{
+          url: 'https://bankless.cz/studium',
+          title: "Bankless | Hashovky",
+          description: "Krátké novinky ze světa kryptoměn. Buďte o důležitých novinkách informováni jako první",
+          images: [
+            {
+              url: "https://bankless.cz/thumbnail.png",
+              width: 960,
+              height: 540,
+              alt: 'BanklessCZ',
+            }
+          ],
+          site_name: 'Bankless',
+        }}
+        twitter={{
+          handle: '@banklesscz',
+          site: '@banklesscz',
+          cardType: 'summary_large_image',
+        }}
+      />
       <main className="mt--150">
         <div className="container">
           <h1>#Hashovky</h1>
