@@ -1,0 +1,4 @@
+Sitemap: https://bankless.cz/api/posts-sitemap
+
+User-agent: *
+Allow: /*
