@@ -21,6 +21,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "sass": "^1.32.5",
+    "sitemap": "^6.4.0",
     "simple-react-lightbox": "^3.6.3"
   },
   "devDependencies": {
