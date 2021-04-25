@@ -131,6 +131,13 @@ export default function Novinka({
           site: '@banklesscz',
           cardType: 'summary_large_image',
         }}
+        additionalMetaTags={[
+          { property: 'twitter:domain', content: 'bankless.cz' },
+          { property: 'twitter:url', content: `https://bankless.cz/novinky/${articlePost?.slug}` || '' },
+          { name: 'twitter:title', content: articlePost?.meta_title || '' },
+          { name: 'twitter:description', content: articlePost?.meta_description || '' },
+          { name: 'twitter:image', content: articlePost?.og_image || 'https://bankless.cz/thumbnail.png' }
+        ]}
       />
       <Article
         articleData={articleData}
