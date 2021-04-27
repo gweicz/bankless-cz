@@ -41,6 +41,14 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
           slug: post.slug,
         }),
       ),
+      Ostatní: (apiPostsData?.ostatniPostsBegginer.slice(0,4) || []).map(
+        (post: PostOrPage) => ({
+          category: 'ostatni',
+          thumbnail: post.feature_image,
+          title: post.title,
+          slug: post.slug,
+        }),
+      ),
     }
   } else {
     tabs = {
@@ -61,7 +69,13 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
         thumbnail: post.feature_image,
         title: post.title,
         slug: post.slug,
-      })),
+        })),
+      Ostatní: (apiPostsData?.ostatniPosts.slice(0,4) || []).map((post: PostOrPage) => ({
+        category: 'ostatni',
+        thumbnail: post.feature_image,
+        title: post.title,
+        slug: post.slug,
+        })),
     }
   }
 
