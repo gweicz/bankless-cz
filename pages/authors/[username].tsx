@@ -13,6 +13,8 @@ import { useMenuData } from 'context/SessionContext'
 import Head from 'next/head'
 import MetaTags from "../../components/MetaTags/MetaTags";
 import {NextSeo} from "next-seo";
+import google from 'utils/google'
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -66,11 +68,13 @@ const AuthorDetailPage = ({
   posts,
   hashovky,
   menuPosts,
+  isCoockiesEnabled
 }: {
   author?: Author
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
+  isCoockiesEnabled: boolean
 }) => {
   if (!author) return null
   if (!posts) return null
@@ -99,17 +103,7 @@ const AuthorDetailPage = ({
         <link rel="icon" type="image/png" href="/favicon.png" />
 
         <base target="_blank"/>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
-        <script
-          async
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`
-          }}
-        />
+        {google(isCoockiesEnabled)}
       </Head>
 
       <NextSeo

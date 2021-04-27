@@ -7,7 +7,7 @@ import {PostOrPage} from '@tryghost/content-api'
 import {useMenuData} from 'context/SessionContext'
 import {NextSeo} from "next-seo";
 import style from 'components/Article/Article.module.scss'
-
+import google from 'utils/google'
 
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -28,9 +28,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 const Podminky = ({
-  menuPosts
+  menuPosts, 
+  isCoockiesEnabled
 }: {
 menuPosts?: PostOrPage[]
+isCoockiesEnabled: boolean
 }) => {
   useMenuData({menuPosts})
 
@@ -40,17 +42,7 @@ menuPosts?: PostOrPage[]
         <title>Bankless | Kodex</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
-        <script
-          async
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`
-          }}
-        />
+        {google(isCoockiesEnabled)}
       </Head>
       <NextSeo
         title="Bankless | Podmínky"

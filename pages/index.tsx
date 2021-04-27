@@ -12,6 +12,7 @@ import styles from 'styles/Home.module.scss'
 import {useMenuData} from 'context/SessionContext'
 import MetaTags from "../components/MetaTags/MetaTags";
 import { NextSeo } from 'next-seo';
+import google from 'utils/google'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -52,13 +53,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 const Home = ({
-                posts,
-                hashovky,
-                menuPosts,
+  posts,
+  hashovky,
+  menuPosts,
+  isCoockiesEnabled
               }: {
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
+  isCoockiesEnabled: boolean
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
@@ -77,7 +80,7 @@ const Home = ({
     if (!hashovky) return
     setHashovkyState([...hashovkyState, ...hashovky])
   }, [hashovky])
-
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -85,17 +88,7 @@ const Home = ({
         <link rel="icon" type="image/png" href="/favicon.png"/>
 
         <base target="_blank"/>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
-        <script
-          async
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`
-          }}
-        />
+        {google(isCoockiesEnabled)}
       </Head>
       <NextSeo
         title="Bankless | Novinkový a vzdělávací web o kryptoměnách"
