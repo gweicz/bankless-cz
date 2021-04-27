@@ -1,10 +1,22 @@
 import { useState } from 'react'
 import style from './Cookies.module.scss'
 import Link from 'next/link'
+import { useCookies } from 'react-cookie';
+
+function CookieSet(State: boolean, setCookie: any) {
+    setCookie('IsEnabled', State, { path: '/' });
+}
 
 export default function Cookies (props: any) {
+    const [cookies, setCookie] = useCookies(['IsEnabled']);
     const [show, setShow] = useState(true)
-    if(!show) {return (<div/>)}
+
+    if(cookies.IsEnabled){return (<div/>)}
+    if(!show) {
+        CookieSet(true, setCookie)
+    return (
+        <div/>
+    )}
 
     return (
     <div className='fixed-bottom'>
