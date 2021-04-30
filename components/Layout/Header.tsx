@@ -4,8 +4,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Megamenu from 'components/Megamenu/Megamenu'
 import style from './Header.module.scss'
+import { useSessionContext } from 'context/SessionContext'
 
 const Header: React.FC = () => {
+
   const hamburgerOnClick = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
     mobilePopupMenu?.classList.toggle('popup-mobile-menu-show')
@@ -15,6 +17,8 @@ const Header: React.FC = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
     mobilePopupMenu?.classList.toggle('popup-mobile-menu-show')
   }
+
+  const { apiPostsData } = useSessionContext() //apiPostsData?.searchPosts
 
   const _logo = () => (
     <div className="col-xl-3 d-none d-xl-block">
@@ -132,6 +136,19 @@ const Header: React.FC = () => {
     </div>
   )
 
+  const _SearchBarDesktop = () => {
+    return (
+      <div style={{float: 'right'}}>
+      <form className="header-search-form">
+      <div className="axil-search form-group">
+        <button type="submit" className="search-button"><FontAwesomeIcon icon="search" /></button>
+        <input type="text" className="form-control" placeholder="Hledat"/>
+      </div>
+    </form>
+    </div>
+    )
+  }
+
   return (
     <>
       <header className="header axil-header  header-light header-sticky position-relative">
@@ -141,7 +158,7 @@ const Header: React.FC = () => {
             {_logoMobile()}
 
             <div className="col-xl-6 d-none d-xl-block">{_mainMenu()}</div>
-
+            <div className="col-xl-3 d-none d-xl-block">{_SearchBarDesktop()}</div>
             <div className="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
               <div className="header-search text-right d-flex align-items-center justify-content-end">
                 <CryptoPrices isMobile={true} />

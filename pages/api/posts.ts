@@ -1,3 +1,4 @@
+import { createCipher } from 'node:crypto'
 import { GhostContentAPIOptions, Params } from 'tryghost__content-api'
 
 import { api } from './init'
@@ -39,4 +40,19 @@ export async function getSinglePost(postSlug: string) {
     console.error('getSinglePost error', error)
     return null;
   }
+}
+
+export async function getSearchPost() {
+  try{
+    const SearchPost = await api.posts.browse({
+      limit: 'all',
+      include: 'tags',
+      filter: 'tag:-hashovka'
+    });
+    return SearchPost
+  }catch (error) {
+    console.error('SearchPost Api error', error)
+    return null
+  }
+  
 }

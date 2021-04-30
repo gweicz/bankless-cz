@@ -17,7 +17,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
   let tabs: { [key: string]: { [key: string]: string }[] }
   if (isBeginner) {
     tabs = {
-      Ethereum: (apiPostsData?.ethPostsBegginer.slice(0,4) || []).map(
+      Ethereum: (apiPostsData?.menuPosts.ethPostsBegginer.slice(0,4) || []).map(
         (post: PostOrPage) => ({
           category: 'ethereum',
           thumbnail: post.feature_image,
@@ -25,7 +25,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
           slug: post.slug,
         }),
       ),
-      Bitcoin: (apiPostsData?.btcPostsBegginer.slice(0,4) || []).map(
+      Bitcoin: (apiPostsData?.menuPosts.btcPostsBegginer.slice(0,4) || []).map(
         (post: PostOrPage) => ({
           category: 'bitcoin',
           thumbnail: post.feature_image,
@@ -33,7 +33,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
           slug: post.slug,
         }),
       ),
-      Polkadot: (apiPostsData?.dotPostsBegginer.slice(0,4) || []).map(
+      Polkadot: (apiPostsData?.menuPosts.dotPostsBegginer.slice(0,4) || []).map(
         (post: PostOrPage) => ({
           category: 'polkadot',
           thumbnail: post.feature_image,
@@ -44,19 +44,19 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
     }
   } else {
     tabs = {
-      Ethereum: (apiPostsData?.ethPosts.slice(0,4) || []).map((post: PostOrPage) => ({
+      Ethereum: (apiPostsData?.menuPosts.ethPosts.slice(0,4) || []).map((post: PostOrPage) => ({
         category: 'ethereum',
         thumbnail: post.feature_image,
         title: post.title,
         slug: post.slug,
       })),
-      Bitcoin: (apiPostsData?.btcPosts.slice(0,4) || []).map((post: PostOrPage) => ({
+      Bitcoin: (apiPostsData?.menuPosts.btcPosts.slice(0,4) || []).map((post: PostOrPage) => ({
         category: 'bitcoin',
         thumbnail: post.feature_image,
         title: post.title,
         slug: post.slug,
       })),
-      Polkadot: (apiPostsData?.dotPosts.slice(0,4) || []).map((post: PostOrPage) => ({
+      Polkadot: (apiPostsData?.menuPosts.dotPosts.slice(0,4) || []).map((post: PostOrPage) => ({
         category: 'polkadot',
         thumbnail: post.feature_image,
         title: post.title,

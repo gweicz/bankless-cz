@@ -9,6 +9,7 @@ interface IContext {
 
 const defaultValues = {
   apiPostsData: null,
+  searchPosts: null,
   setApiPostsData: () => {},
 }
 
@@ -18,11 +19,11 @@ export function useSessionContext() {
   return useContext(SessionContext)
 }
 
-export function useMenuData({ menuPosts }: { menuPosts?: PostOrPage[] }) {
+export function useMenuData({ menuPosts, searchPosts }: { menuPosts?: PostOrPage[], searchPosts?: PostOrPage[]}) {
   const { setApiPostsData } = useSessionContext()
   useEffect(() => {
-    setApiPostsData(menuPosts)
-  }, [menuPosts])
+    setApiPostsData({menuPosts, searchPosts})
+  }, [menuPosts, searchPosts])
 }
 
 export const SessionContextProvider = ({
