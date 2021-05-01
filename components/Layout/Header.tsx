@@ -5,6 +5,9 @@ import Link from 'next/link'
 import Megamenu from 'components/Megamenu/Megamenu'
 import style from './Header.module.scss'
 import { useSessionContext } from 'context/SessionContext'
+import {useState} from 'react'
+import searchForArticles from 'components/helpers/searchForArticle'
+import { useCookies } from 'react-cookie';
 
 const Header: React.FC = () => {
 
@@ -18,7 +21,9 @@ const Header: React.FC = () => {
     mobilePopupMenu?.classList.toggle('popup-mobile-menu-show')
   }
 
-  const { apiPostsData } = useSessionContext() //apiPostsData?.searchPosts
+  const { apiPostsData } = useSessionContext()
+  const [search, setSearch] = useState('')
+  const [cookies, setCookie, get] = useCookies(['search']);
 
   const _logo = () => (
     <div className="col-xl-3 d-none d-xl-block">
@@ -141,8 +146,13 @@ const Header: React.FC = () => {
       <div style={{float: 'right'}}>
       <form className="header-search-form">
       <div className="axil-search form-group">
-        <button type="submit" className="search-button"><FontAwesomeIcon icon="search" /></button>
-        <input type="text" className="form-control" placeholder="Hledat"/>
+        <Link href='/search' ><button type="submit" className="search-button"><FontAwesomeIcon icon="search" href='#' onClick={(event) => {
+          let cookie: string[] | null = searchForArticles(search, apiPostsData.searchPosts)
+          setCookie('search', cookie, { path: '/search' })
+        }}/></button></Link>
+        <input type="text" className="form-control" placeholder="Hledat" onChange={(event) => {
+            setSearch(event.target.value)
+        }}/>
       </div>
     </form>
     </div>
