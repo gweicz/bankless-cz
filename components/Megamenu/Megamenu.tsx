@@ -104,7 +104,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
 
   return (
     <li className="menu-item-has-children megamenu-wrapper">
-      <Link href={categoryLink} shallow={true}>
+      <Link href={categoryLink}>
         <a>{menuTitle}</a>
       </Link>
       <ul className="col-xl-6 megamenu-sub-menu">
@@ -119,7 +119,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
                     className={`vertical-nav-item ${id === 0 ? 'active' : ''}`}
                     onMouseEnter={(e) => onTabHover(e, category)}
                   >
-                    <Link href={`/${categoryName}/${category.toLowerCase()}`} shallow={true}>
+                    <Link href={`/${categoryName}/${category.toLowerCase()}`}>
                       <a className="hover-flip-item-wrapper">
                         <span className="hover-flip-item">
                           <span data-text={category}>{category}</span>
@@ -148,7 +148,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
                         <div key={id} className="col-lg-3">
                           <div className="content-block image-rounded">
                             <div className="post-thumbnail mb--20">
-                              <Link href={`/${categoryName}/${post.slug}`} shallow={true}>
+                              <Link href={`/${categoryName}/${post.slug}`}>
                                 <a>
                                   <img
                                     className={`w-100 ${style.previewImg}`}
@@ -167,7 +167,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
                                 </div>
                               </div>
                               <h5 className="title">
-                                <Link href={`/${categoryName}/${post.slug}`} shallow={true}>
+                                <Link href={`/${categoryName}/${post.slug}`}>
                                   <a>{post.title}</a>
                                 </Link>
                               </h5>
