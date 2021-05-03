@@ -1,13 +1,37 @@
-.ButtonContainer {
-    max-width: 150px;
-    float: right;
-    padding: 10px 50px 10px 0px;
+.cookiesWrapper {
+  max-width: 1500px;
+  width: 85%;
+  bottom: 10px;
+  margin: 0 auto;
+  padding: 2rem 1rem 1rem 1rem;
+  border-radius: 10px;
+  background-color: #ffffff !important;
+  box-shadow: 0px -2px 20px 5px #c8c8c840;
+  justify-content: space-evenly;
+
+  flex-direction: column;
+  text-align: center;
+}
+
+.buttonContainer {
+  max-width: 150px;
+  float: right;
+  padding: 10px 50px 10px 0px;
 }
 
 .textContainer {
-    padding: 10px 0px 10px 50px;
+  margin: 0;
 }
 
-.WarningContainer {
-    background-color: #bfbfbf !important;
+.linkText {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 720px) {
+  .cookiesWrapper {
+    flex-direction: row;
+    text-align: left;
+    padding: 0.5rem 1rem;
+  }
 }
