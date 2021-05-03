@@ -1,28 +1,33 @@
 import { Author, PostOrPage } from '@tryghost/content-api'
-import { getAuthorInfo, getAuthorPosts } from 'pages/api/authorPosts'
 import React, { useEffect, useState } from 'react'
+import { getAuthorInfo, getAuthorPosts } from 'pages/api/authorPosts'
 
 import AuthorDetail from 'components/AuthorDetail/AuthorDetail'
 import { GetServerSideProps } from 'next'
-import { POSTS_ON_PAGE_LIMIT } from '../novinky/polkadot'
+import Head from 'next/head'
+import MetaTags from '../../components/MetaTags/MetaTags'
+import { NextSeo } from 'next-seo'
+import { POSTS_ON_PAGE_LIMIT } from '../../constants'
 import PostList from '../../components/HomePage/PostList/PostList'
 import SideBar from 'components/Layout/SideBar'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
-import Head from 'next/head'
-import MetaTags from "../../components/MetaTags/MetaTags";
-import {NextSeo} from "next-seo";
-import google from 'utils/google'
-
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
   let username: any = query.username
-  const page: number = 1
-  const author: any = await getAuthorInfo(username)
-  const posts_notFiltered: any = await getAuthorPosts(username)
-  const hashovky: any = await getPosts({
+  const page = Number(query?.page) || 1
+  const author = await getAuthorInfo(username)
+
+  const author_posts = await getPosts({
+    limit: POSTS_ON_PAGE_LIMIT,
+    page,
+    include: ['tags', 'authors'],
+    filter: `primary_author:${username}+tag:-hashovka`,
+  })
+
+  const hashovky = await getPosts({
     limit: 5,
     page,
     include: ['tags'],
@@ -31,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const menuPosts = await fetchMenuPosts()
 
-  if (!posts_notFiltered) {
+  if (!author_posts) {
     return {
       redirect: {
         destination: '/404Error',
@@ -48,19 +53,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
-  let posts = posts_notFiltered.filter(function (
-    element: any,
-    index: number,
-    arr: any,
-  ) {
-    let isHashovka = element.primary_tag.slug === 'hashovka'
-    if (!isHashovka) {
-      isHashovka = element.primary_tag.slug === 'hashovka-important'
-    }
-    return !isHashovka
-  })
+  const posts = author_posts
+  const postsPagination = posts.meta.pagination
 
-  return { props: { author, posts, hashovky, menuPosts } }
+  return { props: { author, posts, hashovky, menuPosts, postsPagination } }
 }
 
 const AuthorDetailPage = ({
@@ -68,13 +64,13 @@ const AuthorDetailPage = ({
   posts,
   hashovky,
   menuPosts,
-  isCoockiesEnabled
+  postsPagination,
 }: {
   author?: Author
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
-  isCoockiesEnabled: boolean
+  postsPagination?: { [key: string]: number | null }
 }) => {
   if (!author) return null
   if (!posts) return null
@@ -102,8 +98,21 @@ const AuthorDetailPage = ({
         <title>Bankless | @{author.name}</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <base target="_blank"/>
-        {google(isCoockiesEnabled)}
+        <base target="_blank" />
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}
+        ></script>
+        <script
+          async
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`,
+          }}
+        />
       </Head>
 
       <NextSeo
@@ -120,7 +129,7 @@ const AuthorDetailPage = ({
               width: 960,
               height: 540,
               alt: 'BanklessCZ',
-            }
+            },
           ],
           site_name: 'Bankless',
         }}
@@ -139,7 +148,7 @@ const AuthorDetailPage = ({
             <PostList
               posts={postsState}
               nextPage={nextPage}
-              isLastPage={posts?.length !== POSTS_ON_PAGE_LIMIT}
+              isLastPage={postsState?.length === postsPagination?.total}
             />
             <SideBar hashovky={hashovkyState} />
           </div>

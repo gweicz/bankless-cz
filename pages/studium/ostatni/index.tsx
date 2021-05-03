@@ -5,6 +5,8 @@ import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import MainBanner from '../../../components/HomePage/MainBanner'
 import MetaTags from '../../../components/MetaTags/MetaTags'
+import { NextSeo } from 'next-seo'
+import { POSTS_ON_PAGE_LIMIT } from '../../../constants'
 import PostList from '../../../components/HomePage/PostList/PostList'
 import { PostOrPage } from '@tryghost/content-api'
 import SideBar from '../../../components/Layout/SideBar'
@@ -12,10 +14,6 @@ import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from '../../api/posts'
 import styles from '../../../styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
-import {NextSeo} from "next-seo";
-import google from 'utils/google'
-
-export const POSTS_ON_PAGE_LIMIT = 15
 
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -48,8 +46,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
+  const postsPagination = posts.meta.pagination
+
   return {
-    props: { posts, hashovky, menuPosts }, // will be passed to the page component as props
+    props: { posts, hashovky, menuPosts, postsPagination }, // will be passed to the page component as props
   }
 }
 
@@ -57,12 +57,12 @@ const ZacatecniciOstatni = ({
   posts,
   hashovky,
   menuPosts,
-  isCoockiesEnabled
+  postsPagination,
 }: {
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
-  isCoockiesEnabled: boolean
+  postsPagination?: { [key: string]: number | null }
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
@@ -89,7 +89,20 @@ const ZacatecniciOstatni = ({
         <link rel="icon" type="image/png" href="/favicon.png" />
 
         <base target="_blank" />
-        {google(isCoockiesEnabled)}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}
+        ></script>
+        <script
+          async
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`,
+          }}
+        />
       </Head>
       <NextSeo
         title="Bankless | Kryptoměny pro začátečníky"
@@ -97,15 +110,16 @@ const ZacatecniciOstatni = ({
         canonical="https://bankless.cz/studium/ostatni"
         openGraph={{
           url: 'https://bankless.cz/studium/studium/ostatni',
-          title: "Bankless | Kryptoměny pro začátečníky",
-          description: "Pochopte teoretické základy kryptoměn s našimi studijními články",
+          title: 'Bankless | Kryptoměny pro začátečníky',
+          description:
+            'Pochopte teoretické základy kryptoměn s našimi studijními články',
           images: [
             {
-              url: "https://bankless.cz/thumbnail.png",
+              url: 'https://bankless.cz/thumbnail.png',
               width: 960,
               height: 540,
               alt: 'BanklessCZ',
-            }
+            },
           ],
           site_name: 'Bankless',
         }}
@@ -123,7 +137,7 @@ const ZacatecniciOstatni = ({
               <PostList
                 posts={postsState}
                 nextPage={nextPage}
-                isLastPage={posts?.length !== POSTS_ON_PAGE_LIMIT}
+                isLastPage={postsState?.length === postsPagination?.total}
               />
               <SideBar hashovky={hashovkyState} topTab="studium" />
             </div>
