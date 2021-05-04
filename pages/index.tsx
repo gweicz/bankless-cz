@@ -7,7 +7,7 @@ import PostList from 'components/HomePage/PostList/PostList'
 import {PostOrPage} from '@tryghost/content-api'
 import SideBar from 'components/Layout/SideBar'
 import {fetchMenuPosts} from 'utils/fetchMenuPosts'
-import {getPosts} from './api/posts'
+import {getPosts, getSearchPost} from './api/posts'
 import styles from 'styles/Home.module.scss'
 import {useMenuData} from 'context/SessionContext'
 import MetaTags from "../components/MetaTags/MetaTags";
@@ -35,6 +35,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     filter: 'tag:hashovka',
   })
 
+  const searchPosts = await getSearchPost()
+
   const menuPosts = await fetchMenuPosts()
 
   if (!posts) {
@@ -47,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: {posts, hashovky, menuPosts}, // will be passed to the page component as props
+    props: {posts, hashovky, menuPosts, searchPosts}, // will be passed to the page component as props
   }
 }
 
@@ -55,17 +57,19 @@ const Home = ({
                 posts,
                 hashovky,
                 menuPosts,
+                searchPosts
               }: {
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
+  searchPosts?: PostOrPage[]
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
 
   const [nextPage, setNextPage] = useState(1)
 
-  useMenuData({menuPosts})
+  useMenuData({menuPosts, searchPosts})
 
   useEffect(() => {
     if (!posts) return

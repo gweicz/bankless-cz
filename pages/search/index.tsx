@@ -49,7 +49,6 @@ export default function Novinka({
 
   useMenuData({menuPosts, searchPosts})
   const [cookies, setCookie, get] = useCookies(['search']);
-  //cookies.search -> array of strings. The string are slugs of articles.
 
   useEffect(() => {
     if (!hashovky) return
