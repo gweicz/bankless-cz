@@ -5,19 +5,24 @@ import { useSessionContext } from 'context/SessionContext'
 import { useState } from 'react'
 
 type MegaMenuProps = {
-  menuTitle: string,
-  categoryLink: string,
-  categoryName: string,
-  isBeginner: boolean,
+  menuTitle: string
+  categoryLink: string
+  categoryName: string
+  isBeginner: boolean
 }
 
-const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMenuProps) => {
+const Megamenu = ({
+  menuTitle,
+  categoryLink,
+  categoryName,
+  isBeginner,
+}: MegaMenuProps) => {
   const { apiPostsData } = useSessionContext()
 
   let tabs: { [key: string]: { [key: string]: string }[] }
   if (isBeginner) {
     tabs = {
-      Ethereum: (apiPostsData?.ethPostsBegginer.slice(0,4) || []).map(
+      Ethereum: (apiPostsData?.ethPostsBegginer.slice(0, 4) || []).map(
         (post: PostOrPage) => ({
           category: 'ethereum',
           thumbnail: post.feature_image,
@@ -25,7 +30,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
           slug: post.slug,
         }),
       ),
-      Bitcoin: (apiPostsData?.btcPostsBegginer.slice(0,4) || []).map(
+      Bitcoin: (apiPostsData?.btcPostsBegginer.slice(0, 4) || []).map(
         (post: PostOrPage) => ({
           category: 'bitcoin',
           thumbnail: post.feature_image,
@@ -33,7 +38,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
           slug: post.slug,
         }),
       ),
-      Polkadot: (apiPostsData?.dotPostsBegginer.slice(0,4) || []).map(
+      Polkadot: (apiPostsData?.dotPostsBegginer.slice(0, 4) || []).map(
         (post: PostOrPage) => ({
           category: 'polkadot',
           thumbnail: post.feature_image,
@@ -41,7 +46,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
           slug: post.slug,
         }),
       ),
-      Ostatní: (apiPostsData?.ostatniPostsBegginer.slice(0,4) || []).map(
+      Ostatní: (apiPostsData?.ostatniPostsBegginer.slice(0, 4) || []).map(
         (post: PostOrPage) => ({
           category: 'ostatni',
           thumbnail: post.feature_image,
@@ -52,30 +57,38 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
     }
   } else {
     tabs = {
-      Ethereum: (apiPostsData?.ethPosts.slice(0,4) || []).map((post: PostOrPage) => ({
-        category: 'ethereum',
-        thumbnail: post.feature_image,
-        title: post.title,
-        slug: post.slug,
-      })),
-      Bitcoin: (apiPostsData?.btcPosts.slice(0,4) || []).map((post: PostOrPage) => ({
-        category: 'bitcoin',
-        thumbnail: post.feature_image,
-        title: post.title,
-        slug: post.slug,
-      })),
-      Polkadot: (apiPostsData?.dotPosts.slice(0,4) || []).map((post: PostOrPage) => ({
-        category: 'polkadot',
-        thumbnail: post.feature_image,
-        title: post.title,
-        slug: post.slug,
-        })),
-      Ostatní: (apiPostsData?.ostatniPosts.slice(0,4) || []).map((post: PostOrPage) => ({
-        category: 'ostatni',
-        thumbnail: post.feature_image,
-        title: post.title,
-        slug: post.slug,
-        })),
+      Ethereum: (apiPostsData?.ethPosts.slice(0, 4) || []).map(
+        (post: PostOrPage) => ({
+          category: 'ethereum',
+          thumbnail: post.feature_image,
+          title: post.title,
+          slug: post.slug,
+        }),
+      ),
+      Bitcoin: (apiPostsData?.btcPosts.slice(0, 4) || []).map(
+        (post: PostOrPage) => ({
+          category: 'bitcoin',
+          thumbnail: post.feature_image,
+          title: post.title,
+          slug: post.slug,
+        }),
+      ),
+      Polkadot: (apiPostsData?.dotPosts.slice(0, 4) || []).map(
+        (post: PostOrPage) => ({
+          category: 'polkadot',
+          thumbnail: post.feature_image,
+          title: post.title,
+          slug: post.slug,
+        }),
+      ),
+      Ostatní: (apiPostsData?.ostatniPosts.slice(0, 4) || []).map(
+        (post: PostOrPage) => ({
+          category: 'ostatni',
+          thumbnail: post.feature_image,
+          title: post.title,
+          slug: post.slug,
+        }),
+      ),
     }
   }
 
@@ -104,7 +117,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
 
   return (
     <li className="menu-item-has-children megamenu-wrapper">
-      <Link href={categoryLink}>
+      <Link href={categoryLink} shallow={true}>
         <a>{menuTitle}</a>
       </Link>
       <ul className="col-xl-6 megamenu-sub-menu">
@@ -119,7 +132,10 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
                     className={`vertical-nav-item ${id === 0 ? 'active' : ''}`}
                     onMouseEnter={(e) => onTabHover(e, category)}
                   >
-                    <Link href={`/${categoryName}/${category.toLowerCase()}`}>
+                    <Link
+                      href={`/${categoryName}/${category.toLowerCase()}`}
+                      shallow={true}
+                    >
                       <a className="hover-flip-item-wrapper">
                         <span className="hover-flip-item">
                           <span data-text={category}>{category}</span>
