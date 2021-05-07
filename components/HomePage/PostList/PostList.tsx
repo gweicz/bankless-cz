@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Post from './Post'
 import { PostOrPage } from '@tryghost/content-api'
+import { useRouter } from 'next/router'
 
 const PostList = ({
   posts,
@@ -11,6 +12,7 @@ const PostList = ({
   nextPage: number
   isLastPage: boolean
 }) => {
+  const router = useRouter()
   return (
     <div className="col-lg-8 col-xl-8">
       {(posts || []).map((postData, index) => (
@@ -19,7 +21,11 @@ const PostList = ({
 
       {!isLastPage && (
         <div className="d-flex justify-content-center">
-          <Link scroll={false} href={`/?page=${nextPage}`} as={'/'}>
+          <Link
+            scroll={false}
+            href={`${router.asPath}?page=${nextPage}`}
+            as={router.asPath}
+          >
             <button
               className="w-auto axil-button button-rounded hover-flip-item-wrapper m-t-5"
               disabled={isLastPage}

@@ -10,6 +10,7 @@ import {fetchMenuPosts} from 'utils/fetchMenuPosts'
 import {useMenuData} from 'context/SessionContext'
 import MetaTags from "../../components/MetaTags/MetaTags";
 import {NextSeo} from "next-seo";
+import google from 'utils/google'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const {query} = context
@@ -67,15 +68,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 export default function Novinka({
-                                  articlePost,
-                                  moreStories,
-                                  hashovky,
-                                  menuPosts,
-                                }: {
+  articlePost,
+  moreStories,
+  hashovky,
+  menuPosts,
+  isCoockiesEnabled
+}: {
   articlePost?: PostOrPage
   moreStories?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
+  isCoockiesEnabled: boolean
 }) {
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
   const articleData = articlePost
@@ -96,17 +99,7 @@ export default function Novinka({
         <link rel="icon" type="image/png" href="/favicon.png"/>
 
         <base target="_blank"/>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
-        <script
-          async
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`
-          }}
-        />
+        {google(isCoockiesEnabled)}
       </Head>
       <NextSeo
         title={articlePost?.meta_title || ''}

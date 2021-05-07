@@ -1,23 +1,22 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
-import {GetServerSideProps} from 'next'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import MainBanner from 'components/HomePage/MainBanner'
+import MetaTags from '../components/MetaTags/MetaTags'
+import { NextSeo } from 'next-seo'
+import { POSTS_ON_PAGE_LIMIT } from '../constants'
 import PostList from 'components/HomePage/PostList/PostList'
-import {PostOrPage} from '@tryghost/content-api'
+import { PostOrPage } from '@tryghost/content-api'
 import SideBar from 'components/Layout/SideBar'
 import {fetchMenuPosts} from 'utils/fetchMenuPosts'
 import {getPosts, getSearchPost} from './api/posts'
 import styles from 'styles/Home.module.scss'
-import {useMenuData} from 'context/SessionContext'
-import MetaTags from "../components/MetaTags/MetaTags";
-import { NextSeo } from 'next-seo';
-
-export const POSTS_ON_PAGE_LIMIT = 15
+import { useMenuData } from 'context/SessionContext'
 
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const {query} = context
+  const { query } = context
 
   const page = Number(query?.page) || 1
 
@@ -48,20 +47,24 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
+  const postsPagination = posts.meta.pagination
+
   return {
-    props: {posts, hashovky, menuPosts, searchPosts}, // will be passed to the page component as props
+    props: { posts, hashovky, menuPosts, postsPagination, searchPosts }, // will be passed to the page component as props
   }
 }
 
 const Home = ({
-                posts,
-                hashovky,
-                menuPosts,
-                searchPosts
-              }: {
-  posts?: PostOrPage[]
+  posts,
+  hashovky,
+  menuPosts,
+  postsPagination,
+  searchPosts
+}: {
+  posts?: PostOrPage[] | any
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
+  postsPagination?: { [key: string]: number | null }
   searchPosts?: PostOrPage[]
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
@@ -86,10 +89,13 @@ const Home = ({
     <div className={styles.container}>
       <Head>
         <title>Bankless | Novinkový a vzdělávací web o kryptoměnách</title>
-        <link rel="icon" type="image/png" href="/favicon.png"/>
+        <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <base target="_blank"/>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
+        <base target="_blank" />
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}
+        ></script>
         <script
           async
           dangerouslySetInnerHTML={{
@@ -97,7 +103,7 @@ const Home = ({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
             
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`
+              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`,
           }}
         />
       </Head>
@@ -107,15 +113,16 @@ const Home = ({
         canonical="https://bankless.cz"
         openGraph={{
           url: 'https://bankless.cz',
-          title: "Bankless | Novinkový a vzdělávací web o kryptoměnách",
-          description: "Novinkový a vzdělávací web o kryptoměnách, který vám každý den přináší zajímavosti z krypto světa.",
+          title: 'Bankless | Novinkový a vzdělávací web o kryptoměnách',
+          description:
+            'Novinkový a vzdělávací web o kryptoměnách, který vám každý den přináší zajímavosti z krypto světa.',
           images: [
             {
-              url: "https://bankless.cz/thumbnail.png",
+              url: 'https://bankless.cz/thumbnail.png',
               width: 960,
               height: 540,
               alt: 'BanklessCZ',
-            }
+            },
           ],
           site_name: 'Bankless',
         }}
@@ -127,9 +134,19 @@ const Home = ({
         additionalMetaTags={[
           { property: 'twitter:domain', content: 'bankless.cz' },
           { property: 'twitter:url', content: 'https://bankless.cz/' },
-          { name: 'twitter:title', content: 'Bankless | Novinkový a vzdělávací web o kryptoměnách' },
-          { name: 'twitter:description', content: 'Novinkový a vzdělávací web o kryptoměnách, který vám každý den přináší zajímavosti z krypto světa.' },
-          { name: 'twitter:image', content: 'https://bankless.cz/thumbnail.png' }
+          {
+            name: 'twitter:title',
+            content: 'Bankless | Novinkový a vzdělávací web o kryptoměnách',
+          },
+          {
+            name: 'twitter:description',
+            content:
+              'Novinkový a vzdělávací web o kryptoměnách, který vám každý den přináší zajímavosti z krypto světa.',
+          },
+          {
+            name: 'twitter:image',
+            content: 'https://bankless.cz/thumbnail.png',
+          },
         ]}
       />
       <main className={styles.main}>
@@ -140,9 +157,9 @@ const Home = ({
               <PostList
                 posts={postsState}
                 nextPage={nextPage}
-                isLastPage={posts?.length !== POSTS_ON_PAGE_LIMIT}
+                isLastPage={postsState?.length === postsPagination?.total}
               />
-              <SideBar hashovky={hashovkyState}/>
+              <SideBar hashovky={hashovkyState} />
             </div>
           </div>
         </div>

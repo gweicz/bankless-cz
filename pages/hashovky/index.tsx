@@ -10,6 +10,7 @@ import { getPosts } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
 import MetaTags from "../../components/MetaTags/MetaTags";
 import {NextSeo} from "next-seo";
+import google from 'utils/google'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -86,9 +87,11 @@ const _topHashovky = (hashovky?: PostOrPage[]) => (
 const Hashovky = ({
   posts,
   menuPosts,
+  isCoockiesEnabled
 }: {
   posts?: PostOrPage[]
   menuPosts: PostOrPage[]
+  isCoockiesEnabled: boolean
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [nextPage, setNextPage] = useState(1)
@@ -108,17 +111,7 @@ const Hashovky = ({
         <link rel="icon" type="image/png" href="/favicon.png" />
 
         <base target="_blank"/>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
-        <script
-          async
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`
-          }}
-        />
+        {google(isCoockiesEnabled)}
       </Head>
       <NextSeo
         title="Bankless | Hashovky"

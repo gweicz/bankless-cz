@@ -23,9 +23,11 @@ import { AppProps } from 'next/dist/next-server/lib/router/router'
 import BackToTop from 'components/Layout/BackToTop'
 import Footer from 'components/Layout/Footer'
 import Header from 'components/Layout/Header'
+import Cookies from 'components/Layout/Cookies'
 import { SessionContextProvider } from 'context/SessionContext'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { useState } from 'react'
 
 library.add(
   faSearch,
@@ -49,13 +51,15 @@ export interface ICryptoPrices {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [isCoockiesEnabled, setIsCoockiesEnabled] = useState(false)
   return (
     <SessionContextProvider>
       <SimpleReactLightbox>
         <div id="mobile-menu-show">
           <Header />
-          <Component {...pageProps} />
+          <Component {...pageProps} isCoockiesEnabled={isCoockiesEnabled}/>
           <Footer />
+          <Cookies setIsCoockiesEnabled={setIsCoockiesEnabled}/>
           <BackToTop />
         </div>
       </SimpleReactLightbox>

@@ -5,6 +5,8 @@ import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import MainBanner from '../../../components/HomePage/MainBanner'
 import MetaTags from '../../../components/MetaTags/MetaTags'
+import { NextSeo } from 'next-seo'
+import { POSTS_ON_PAGE_LIMIT } from '../../../constants'
 import PostList from '../../../components/HomePage/PostList/PostList'
 import { PostOrPage } from '@tryghost/content-api'
 import SideBar from '../../../components/Layout/SideBar'
@@ -12,9 +14,6 @@ import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from '../../api/posts'
 import styles from '../../../styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
-import {NextSeo} from "next-seo";
-
-export const POSTS_ON_PAGE_LIMIT = 15
 
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -46,9 +45,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     }
   }
+  const postsPagination = posts.meta.pagination
 
   return {
-    props: { posts, hashovky, menuPosts }, // will be passed to the page component as props
+    props: { posts, hashovky, menuPosts, postsPagination }, // will be passed to the page component as props
   }
 }
 
@@ -56,10 +56,12 @@ const ZacatecniciBitcoin = ({
   posts,
   hashovky,
   menuPosts,
+  postsPagination,
 }: {
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
+  postsPagination?: { [key: string]: number | null }
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
@@ -107,15 +109,16 @@ const ZacatecniciBitcoin = ({
         canonical="https://bankless.cz/studium/polkadot"
         openGraph={{
           url: 'https://bankless.cz/studium/studium/polkadot',
-          title: "Bankless | Polkadot pro začátečníky",
-          description: "Pochopte teoretické základy Polkadot s našimi studijními články",
+          title: 'Bankless | Polkadot pro začátečníky',
+          description:
+            'Pochopte teoretické základy Polkadot s našimi studijními články',
           images: [
             {
-              url: "https://bankless.cz/thumbnail.png",
+              url: 'https://bankless.cz/thumbnail.png',
               width: 960,
               height: 540,
               alt: 'BanklessCZ',
-            }
+            },
           ],
           site_name: 'Bankless',
         }}
@@ -133,7 +136,7 @@ const ZacatecniciBitcoin = ({
               <PostList
                 posts={postsState}
                 nextPage={nextPage}
-                isLastPage={posts?.length !== POSTS_ON_PAGE_LIMIT}
+                isLastPage={postsState?.length === postsPagination?.total}
               />
               <SideBar hashovky={hashovkyState} topTab="studium" />
             </div>

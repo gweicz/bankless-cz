@@ -35,10 +35,10 @@ export async function getSinglePost(postSlug: string) {
       },
       { include: ['count.posts', 'authors'] },
     )
-    return post;
+    return post
   } catch (error) {
     console.error('getSinglePost error', error)
-    return null;
+    return null
   }
 }
 
