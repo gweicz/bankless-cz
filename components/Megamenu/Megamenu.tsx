@@ -41,7 +41,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
           slug: post.slug,
         }),
       ),
-      Ostatní: (apiPostsData?.ostatniPostsBegginer.slice(0,4) || []).map(
+      Ostatní: (apiPostsData?.menuPosts.ostatniPostsBegginer.slice(0,4) || []).map(
         (post: PostOrPage) => ({
           category: 'ostatni',
           thumbnail: post.feature_image,
@@ -70,7 +70,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
         title: post.title,
         slug: post.slug,
         })),
-      Ostatní: (apiPostsData?.ostatniPosts.slice(0,4) || []).map((post: PostOrPage) => ({
+      Ostatní: (apiPostsData?.menuPosts.ostatniPosts.slice(0,4) || []).map((post: PostOrPage) => ({
         category: 'ostatni',
         thumbnail: post.feature_image,
         title: post.title,
