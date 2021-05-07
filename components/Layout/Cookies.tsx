@@ -15,10 +15,8 @@ export default function Cookies(props: any) {
     return (<div/>)
   }
   if (!show) {
-    CookieSet(true, setCookie)
-    return (
-      <div/>
-    )
+    if(cookies.IsEnabled) { CookieSet(true, setCookie) }
+    return (<div/>)
   }
 
   const onAgreeClick = () => {
