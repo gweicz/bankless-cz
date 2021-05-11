@@ -117,7 +117,7 @@ const Megamenu = ({
 
   return (
     <li className="menu-item-has-children megamenu-wrapper">
-      <Link href={categoryLink}>
+      <Link href={categoryLink} shallow={true}>
         <a>{menuTitle}</a>
       </Link>
       <ul className="col-xl-6 megamenu-sub-menu">
@@ -134,6 +134,7 @@ const Megamenu = ({
                   >
                     <Link
                       href={`/${categoryName}/${tabs[category][0]?.category}`}
+                      shallow={true}
                     >
                       <a className="hover-flip-item-wrapper">
                         <span className="hover-flip-item">
