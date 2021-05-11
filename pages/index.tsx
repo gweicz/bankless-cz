@@ -13,6 +13,7 @@ import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from './api/posts'
 import styles from 'styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
+import google from 'utils/google'
 
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -57,11 +58,13 @@ const Home = ({
   hashovky,
   menuPosts,
   postsPagination,
+  isCoockiesEnabled
 }: {
   posts?: PostOrPage[] | any
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
   postsPagination?: { [key: string]: number | null }
+  isCoockiesEnabled: boolean
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
@@ -88,20 +91,7 @@ const Home = ({
         <link rel="icon" type="image/png" href="/favicon.png" />
 
         <base target="_blank" />
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}
-        ></script>
-        <script
-          async
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`,
-          }}
-        />
+        {google(isCoockiesEnabled)}
       </Head>
       <NextSeo
         title="Bankless | Novinkový a vzdělávací web o kryptoměnách"
