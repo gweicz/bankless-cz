@@ -133,7 +133,7 @@ const Megamenu = ({
                     onMouseEnter={(e) => onTabHover(e, category)}
                   >
                     <Link
-                      href={`/${categoryName}/${category.toLowerCase()}`}
+                      href={`/${categoryName}/${tabs[category][0]?.category}`}
                       shallow={true}
                     >
                       <a className="hover-flip-item-wrapper">
