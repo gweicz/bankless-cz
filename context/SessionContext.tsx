@@ -32,10 +32,12 @@ export const SessionContextProvider = ({
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
-    if (window?.document.body.classList.contains('active-dark-mode')) {
-      setIsDarkMode(true)
-    } else {
-      setIsDarkMode(false)
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches &&
+      !isDarkMode
+    ) {
+      switchTheme()
     }
   }, [])
 
