@@ -9,6 +9,7 @@
   justify-content: space-evenly;
   flex-direction: column;
   text-align: center;
+  padding: 0 0.5rem;
 }
 
 .buttonContainer {
@@ -19,11 +20,15 @@
 
 .textContainer {
   margin: 0;
+  color: black !important;
+  padding-right: 0.5rem;
 }
 
 .linkText {
   font-weight: 500;
   text-decoration: underline;
+  color: black;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 720px) {

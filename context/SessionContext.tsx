@@ -5,14 +5,12 @@ import { PostOrPage } from '@tryghost/content-api'
 interface IContext {
   apiPostsData: any
   setApiPostsData: React.Dispatch<React.SetStateAction<any>>
+  isDarkMode: boolean
+  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+  switchTheme: () => void
 }
 
-const defaultValues = {
-  apiPostsData: null,
-  setApiPostsData: () => {},
-}
-
-const SessionContext = React.createContext(defaultValues as IContext)
+const SessionContext = React.createContext({} as IContext)
 
 export function useSessionContext() {
   return useContext(SessionContext)
@@ -31,10 +29,31 @@ export const SessionContextProvider = ({
   children: JSX.Element
 }) => {
   const [apiPostsData, setApiPostsData] = useState()
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useEffect(() => {
+    if (window?.document.body.classList.contains('active-dark-mode')) {
+      setIsDarkMode(true)
+    } else {
+      setIsDarkMode(false)
+    }
+  }, [])
+
+  const switchTheme = () => {
+    window?.document.body.classList.toggle('active-dark-mode')
+    if (window?.document.body.classList.contains('active-dark-mode')) {
+      setIsDarkMode(true)
+    } else {
+      setIsDarkMode(false)
+    }
+  }
 
   const values = {
     apiPostsData,
     setApiPostsData,
+    isDarkMode,
+    setIsDarkMode,
+    switchTheme,
   }
 
   return (

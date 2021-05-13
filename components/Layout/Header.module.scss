@@ -5,3 +5,47 @@
   position: absolute;
   top: 0;
 }
+
+.switchThemeBtnDesktop {
+  right: 0;
+}
+
+.switchThemeBtnMobile {
+  margin: 2rem;
+}
+
+.switchThemeBtn {
+  position: absolute;
+  cursor: pointer;
+  background-color: #e9ecef;
+  padding: 0 11px 0 12px;
+  border-radius: 16px;
+}
+
+.darkThemeBtn {
+  color: #65676b;
+  background: #333333;
+
+  &:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+  transition: all 0.3s;
+}
+
+.lightThemeBtn {
+  color: var(--color-gray);
+  background: var(--color-lightest);
+
+  &:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+  transition: all 0.3s;
+}
+
+@media only screen and (max-width: 1200px) {
+  .hideOn1200 {
+    display: none;
+  }
+}
