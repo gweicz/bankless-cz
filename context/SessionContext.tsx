@@ -5,12 +5,15 @@ import { PostOrPage } from '@tryghost/content-api'
 interface IContext {
   apiPostsData: any
   setApiPostsData: React.Dispatch<React.SetStateAction<any>>
+  searchSlugs: any
+  setSearchSlugs: React.Dispatch<React.SetStateAction<any>>
 }
 
 const defaultValues = {
   apiPostsData: null,
-  searchPosts: null,
   setApiPostsData: () => {},
+  searchSlugs: null,
+  setSearchSlugs: () => {},
 }
 
 const SessionContext = React.createContext(defaultValues as IContext)
@@ -32,10 +35,13 @@ export const SessionContextProvider = ({
   children: JSX.Element
 }) => {
   const [apiPostsData, setApiPostsData] = useState()
+  const [searchSlugs, setSearchSlugs] = useState([])
 
   const values = {
     apiPostsData,
     setApiPostsData,
+    searchSlugs,
+    setSearchSlugs
   }
 
   return (

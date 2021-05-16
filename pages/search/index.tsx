@@ -7,10 +7,10 @@ import {PostOrPage} from '@tryghost/content-api'
 import React from 'react'
 import {fetchMenuPosts} from 'utils/fetchMenuPosts'
 import {useMenuData} from 'context/SessionContext'
-import { useCookies } from 'react-cookie';
 import PostList from 'components/HomePage/PostList/PostList'
 import SideBar from 'components/Layout/SideBar'
 import google from 'utils/google'
+import { useSessionContext } from 'context/SessionContext'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -50,8 +50,9 @@ export default function Search({
   const [nextPage, setNextPage] = useState(1)
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
 
+  const { searchSlugs, setSearchSlugs } = useSessionContext()
+
   useMenuData({menuPosts, searchPosts})
-  const [cookies, setCookie, get] = useCookies(['search']);
 
   useEffect(() => {
     if (!hashovky) return
@@ -65,9 +66,9 @@ export default function Search({
   }, [searchPosts])
 
   let PostsFiltered: PostOrPage[] = [];
-  if(!(cookies.search == 'null' || undefined)) { 
+  if(!(searchSlugs == 'null' || undefined)) { 
     postsState.forEach((post)=> {
-      cookies.search.forEach((slug: string) => {
+      searchSlugs.forEach((slug: string) => {
         if(slug == post.slug) {
           PostsFiltered.push(post)
         }
