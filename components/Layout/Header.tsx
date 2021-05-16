@@ -146,7 +146,7 @@ const Header: React.FC = () => {
       <div style={{float: 'right'}}>
       <form className="header-search-form">
       <div className="axil-search form-group">
-        <Link href='/search' ><button type="submit" className="search-button"><FontAwesomeIcon icon="search" href='#' onClick={(event) => {
+        <Link href='/search' shallow={true}><button type="submit" className="search-button"><FontAwesomeIcon icon="search" href='#' onClick={(event) => {
           let cookie: string[] | null = searchForArticles(search, apiPostsData.searchPosts)
           setCookie('search', cookie, { path: '/search' })
         }}/></button></Link>

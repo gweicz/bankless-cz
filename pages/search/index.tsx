@@ -10,6 +10,7 @@ import {useMenuData} from 'context/SessionContext'
 import { useCookies } from 'react-cookie';
 import PostList from 'components/HomePage/PostList/PostList'
 import SideBar from 'components/Layout/SideBar'
+import google from 'utils/google'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -34,14 +35,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-export default function Novinka({
+export default function Search({
     hashovky,
     menuPosts,
-    searchPosts
-                                }: {
+    searchPosts,
+    isCoockiesEnabled
+}: {
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
   searchPosts?: PostOrPage[]
+  isCoockiesEnabled: boolean
 }) {
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
   const [nextPage, setNextPage] = useState(1)
@@ -62,7 +65,7 @@ export default function Novinka({
   }, [searchPosts])
 
   let PostsFiltered: PostOrPage[] = [];
-  if(!(cookies.search == 'null')) { 
+  if(!(cookies.search == 'null' || undefined)) { 
     postsState.forEach((post)=> {
       cookies.search.forEach((slug: string) => {
         if(slug == post.slug) {
@@ -78,17 +81,7 @@ export default function Novinka({
         <link rel="icon" type="image/png" href="/favicon.png"/>
 
         <base target="_blank"/>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}></script>
-        <script
-          async
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`
-          }}
-        />
+        {google(isCoockiesEnabled)}
       </Head>
       <div className='container'>
       <h1>Výsledky vyhledávání</h1>
