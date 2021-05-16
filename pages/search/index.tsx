@@ -11,8 +11,7 @@ import PostList from 'components/HomePage/PostList/PostList'
 import SideBar from 'components/Layout/SideBar'
 import google from 'utils/google'
 import { useSessionContext } from 'context/SessionContext'
-
-export const POSTS_ON_PAGE_LIMIT = 15
+import { POSTS_ON_PAGE_LIMIT } from '../../constants'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const {query} = context

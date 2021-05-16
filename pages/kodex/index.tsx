@@ -1,16 +1,18 @@
 import React from "react";
 import Head from "next/head";
 import MetaTags from "../../components/MetaTags/MetaTags";
-import {GetServerSideProps} from 'next'
-import {fetchMenuPosts} from 'utils/fetchMenuPosts'
-import {PostOrPage} from '@tryghost/content-api'
-import {useMenuData} from 'context/SessionContext'
-import {NextSeo} from "next-seo";
+import { GetServerSideProps } from 'next'
+import { fetchMenuPosts } from 'utils/fetchMenuPosts'
+import { PostOrPage } from '@tryghost/content-api'
+import { useMenuData } from 'context/SessionContext'
+import { NextSeo } from "next-seo";
 import google from 'utils/google'
+import { getSearchPost } from '../api/posts'
 
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const menuPosts = await fetchMenuPosts()
+  const searchPosts = await getSearchPost()
 
   if (!menuPosts) {
     return {
@@ -22,18 +24,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: {menuPosts}, // will be passed to the page component as props
+    props: { menuPosts, searchPosts }, // will be passed to the page component as props
   }
 }
 
 const Kodex = ({
   menuPosts,
-  isCoockiesEnabled
+  isCoockiesEnabled,
+  searchPosts
 }: {
 menuPosts?: PostOrPage[]
 isCoockiesEnabled: boolean
+searchPosts?: PostOrPage[]
 }) => {
-  useMenuData({menuPosts})
+
+  useMenuData({menuPosts, searchPosts})
 
   return (
     <>

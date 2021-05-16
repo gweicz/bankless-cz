@@ -1,6 +1,6 @@
 import { Author, PostOrPage } from '@tryghost/content-api'
 import React, { useEffect, useState } from 'react'
-import { getAuthorInfo, getAuthorPosts } from 'pages/api/authorPosts'
+import { getAuthorInfo } from 'pages/api/authorPosts'
 
 import AuthorDetail from 'components/AuthorDetail/AuthorDetail'
 import { GetServerSideProps } from 'next'
@@ -11,7 +11,7 @@ import { POSTS_ON_PAGE_LIMIT } from '../../constants'
 import PostList from '../../components/HomePage/PostList/PostList'
 import SideBar from 'components/Layout/SideBar'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
-import { getPosts } from 'pages/api/posts'
+import { getPosts, getSearchPost } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -35,6 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   })
 
   const menuPosts = await fetchMenuPosts()
+  const searchPosts = await getSearchPost()
 
   if (!author_posts) {
     return {
@@ -56,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const posts = author_posts
   const postsPagination = posts.meta.pagination
 
-  return { props: { author, posts, hashovky, menuPosts, postsPagination } }
+  return { props: { author, posts, hashovky, menuPosts, postsPagination, searchPosts } }
 }
 
 const AuthorDetailPage = ({
@@ -65,12 +66,14 @@ const AuthorDetailPage = ({
   hashovky,
   menuPosts,
   postsPagination,
+  searchPosts
 }: {
   author?: Author
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
   postsPagination?: { [key: string]: number | null }
+  searchPosts?: PostOrPage[]
 }) => {
   if (!author) return null
   if (!posts) return null
@@ -79,7 +82,7 @@ const AuthorDetailPage = ({
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
   const [nextPage, setNextPage] = useState(1)
 
-  useMenuData({ menuPosts })
+  useMenuData({ menuPosts, searchPosts })
 
   useEffect(() => {
     if (!posts) return

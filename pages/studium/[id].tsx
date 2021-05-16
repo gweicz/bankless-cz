@@ -10,6 +10,7 @@ import { useMenuData } from 'context/SessionContext'
 import MetaTags from "../../components/MetaTags/MetaTags";
 import {NextSeo} from "next-seo";
 import google from 'utils/google'
+import { getSearchPost } from '../api/posts'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -29,6 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   })
 
   const menuPosts = await fetchMenuPosts()
+  const searchPosts = await getSearchPost()
 
   if (!postId) {
     return {
@@ -62,6 +64,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       moreStories: moreStories || null,
       hashovky,
       menuPosts,
+      searchPosts
     }, // will be passed to the page component as props
   }
 }
@@ -71,18 +74,20 @@ export default function ZacatecniciArticleDetail({
   moreStories,
   hashovky,
   menuPosts,
-  isCoockiesEnabled
+  isCoockiesEnabled,
+  searchPosts
 }: {
   articlePost?: PostOrPage
   moreStories?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
   isCoockiesEnabled: boolean
+  searchPosts?: PostOrPage[]
 }) {
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
   const articleData = articlePost
 
-  useMenuData({ menuPosts })
+  useMenuData({menuPosts, searchPosts})
 
   useEffect(() => {
     if (!hashovky) return

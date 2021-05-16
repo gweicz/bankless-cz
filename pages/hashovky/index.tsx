@@ -6,7 +6,7 @@ import Head from 'next/head'
 import ImportantHashPost from 'components/Hashovky/ImportantHashPost'
 import { PostOrPage } from '@tryghost/content-api'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
-import { getPosts } from 'pages/api/posts'
+import { getPosts, getSearchPost } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
 import MetaTags from "../../components/MetaTags/MetaTags";
 import {NextSeo} from "next-seo";
@@ -28,6 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   })
 
   const menuPosts = await fetchMenuPosts()
+  const searchPosts = await getSearchPost()
 
   if (!posts) {
     return {
@@ -39,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: { posts, menuPosts }, // will be passed to the page component as props
+    props: { posts, menuPosts, searchPosts }, // will be passed to the page component as props
   }
 }
 
@@ -87,16 +88,18 @@ const _topHashovky = (hashovky?: PostOrPage[]) => (
 const Hashovky = ({
   posts,
   menuPosts,
-  isCoockiesEnabled
+  isCoockiesEnabled,
+  searchPosts
 }: {
   posts?: PostOrPage[]
   menuPosts: PostOrPage[]
   isCoockiesEnabled: boolean
+  searchPosts?: PostOrPage[]
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [nextPage, setNextPage] = useState(1)
 
-  useMenuData({ menuPosts })
+  useMenuData({menuPosts, searchPosts})
 
   useEffect(() => {
     if (!posts) return

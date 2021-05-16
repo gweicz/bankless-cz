@@ -9,8 +9,8 @@ import { POSTS_ON_PAGE_LIMIT } from '../constants'
 import PostList from 'components/HomePage/PostList/PostList'
 import { PostOrPage } from '@tryghost/content-api'
 import SideBar from 'components/Layout/SideBar'
-import {fetchMenuPosts} from 'utils/fetchMenuPosts'
-import {getPosts, getSearchPost} from './api/posts'
+import { fetchMenuPosts } from 'utils/fetchMenuPosts'
+import { getPosts, getSearchPost } from './api/posts'
 import styles from 'styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
 
@@ -35,7 +35,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   })
 
   const searchPosts = await getSearchPost()
-
   const menuPosts = await fetchMenuPosts()
 
   if (!posts) {

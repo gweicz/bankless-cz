@@ -11,7 +11,7 @@ import PostList from '../../../components/HomePage/PostList/PostList'
 import { PostOrPage } from '@tryghost/content-api'
 import SideBar from '../../../components/Layout/SideBar'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
-import { getPosts } from '../../api/posts'
+import { getPosts, getSearchPost } from '../../api/posts'
 import styles from '../../../styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
 
@@ -29,6 +29,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   })
 
   const menuPosts = await fetchMenuPosts()
+  const searchPosts = await getSearchPost()
 
   const hashovky = await getPosts({
     limit: 5,
@@ -49,7 +50,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const postsPagination = posts.meta.pagination
 
   return {
-    props: { posts, hashovky, menuPosts, postsPagination }, // will be passed to the page component as props
+    props: { posts, hashovky, menuPosts, postsPagination, searchPosts }, // will be passed to the page component as props
   }
 }
 
@@ -58,18 +59,20 @@ const NovinkyBitcoin = ({
   hashovky,
   menuPosts,
   postsPagination,
+  searchPosts
 }: {
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
   postsPagination?: { [key: string]: number | null }
+  searchPosts?: PostOrPage[]
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
 
   const [nextPage, setNextPage] = useState(1)
 
-  useMenuData({ menuPosts })
+  useMenuData({menuPosts, searchPosts})
 
   useEffect(() => {
     if (!posts) return
