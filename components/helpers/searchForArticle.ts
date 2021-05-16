@@ -1,7 +1,7 @@
 import { PostOrPage } from '@tryghost/content-api'
 
 export default function searchForArticles (SearchWord: string, PostData: PostOrPage[]) {  
-    if(SearchWord == "") {return null}
+    if(SearchWord == "") {return []}
 
     let FilteredPosts: string[] = [];
     PostData.filter((post)=> {

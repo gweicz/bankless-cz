@@ -12,6 +12,7 @@ import SideBar from 'components/Layout/SideBar'
 import google from 'utils/google'
 import { useSessionContext } from 'context/SessionContext'
 import { POSTS_ON_PAGE_LIMIT } from '../../constants'
+import style from './search.module.scss'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const {query} = context
@@ -32,6 +33,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       searchPosts
     }, // will be passed to the page component as props
   }
+}
+
+function _SearchedPosts (PostsFiltered: PostOrPage[] , nextPage: number, searchPosts: PostOrPage[] | undefined) {
+  if(PostsFiltered.length === 0){
+    return (
+    <div className="col-lg-8 col-xl-8">
+      <h2 className={style.text}>Nic nenalezeno</h2>
+    </div>  
+    )
+  }
+  return (
+    <PostList
+          posts={PostsFiltered}
+          nextPage={nextPage}
+          isLastPage={searchPosts?.length !== POSTS_ON_PAGE_LIMIT}
+    />)
 }
 
 export default function Search({
@@ -65,7 +82,7 @@ export default function Search({
   }, [searchPosts])
 
   let PostsFiltered: PostOrPage[] = [];
-  if(!(searchSlugs == 'null' || undefined)) { 
+  if(!(searchSlugs.length === 0)) { 
     postsState.forEach((post)=> {
       searchSlugs.forEach((slug: string) => {
         if(slug == post.slug) {
@@ -84,16 +101,12 @@ export default function Search({
         {google(isCoockiesEnabled)}
       </Head>
       <div className='container'>
-      <h1>Výsledky vyhledávání</h1>
+      <h1 className={style.textMain}>Výsledky vyhledávání</h1>
       <div className="axil-post-list-area post-listview-visible-color bg-color-white">
-            <div className="row">
-          <PostList
-          posts={PostsFiltered}
-          nextPage={nextPage}
-          isLastPage={searchPosts?.length !== POSTS_ON_PAGE_LIMIT}
-          />
+        <div className="row">
+          {_SearchedPosts(PostsFiltered, nextPage, searchPosts)}
           <SideBar hashovky={hashovkyState}/>
-    </div>
+        </div>
   </div>
   </div>
   </div>
