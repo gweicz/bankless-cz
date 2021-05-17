@@ -12,13 +12,12 @@ export default function Cookies(props: any) {
   const [show, setShow] = useState(true)
 
   if (cookies.IsEnabled) {
+    if(!props.IsCoockiesEnabled) { props.setIsCoockiesEnabled(true) }
     return (<div/>)
   }
   if (!show) {
-    CookieSet(true, setCookie)
-    return (
-      <div/>
-    )
+    if(cookies.IsEnabled) { CookieSet(true, setCookie) }
+    return (<div/>)
   }
 
   const onAgreeClick = () => {

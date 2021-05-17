@@ -14,6 +14,7 @@ import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import {getPosts, getSearchPost} from '../../api/posts'
 import styles from '../../../styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
+import google from 'utils/google'
 
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -58,13 +59,15 @@ const ZacatecniciBitcoin = ({
   hashovky,
   menuPosts,
   postsPagination,
-  searchPosts
+  searchPosts,
+  isCoockiesEnabled,
 }: {
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
   postsPagination?: { [key: string]: number | null }
   searchPosts?: PostOrPage[]
+  isCoockiesEnabled: boolean
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
@@ -89,22 +92,8 @@ const ZacatecniciBitcoin = ({
       <Head>
         <title>Bankless | Bitcoin pro začátečníky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
-
         <base target="_blank" />
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}
-        ></script>
-        <script
-          async
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`,
-          }}
-        />
+        {google(isCoockiesEnabled)}
       </Head>
       <NextSeo
         title="Bankless | Bitcoin pro začátečníky"

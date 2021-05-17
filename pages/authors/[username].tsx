@@ -13,6 +13,8 @@ import SideBar from 'components/Layout/SideBar'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts, getSearchPost } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
+import google from 'utils/google'
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
@@ -66,7 +68,8 @@ const AuthorDetailPage = ({
   hashovky,
   menuPosts,
   postsPagination,
-  searchPosts
+  searchPosts,
+  isCoockiesEnabled,
 }: {
   author?: Author
   posts?: PostOrPage[]
@@ -74,6 +77,7 @@ const AuthorDetailPage = ({
   menuPosts?: PostOrPage[]
   postsPagination?: { [key: string]: number | null }
   searchPosts?: PostOrPage[]
+  isCoockiesEnabled: boolean
 }) => {
   if (!author) return null
   if (!posts) return null
@@ -102,20 +106,7 @@ const AuthorDetailPage = ({
         <link rel="icon" type="image/png" href="/favicon.png" />
 
         <base target="_blank" />
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`}
-        ></script>
-        <script
-          async
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_KEY}');`,
-          }}
-        />
+        {google(isCoockiesEnabled)}
       </Head>
 
       <NextSeo
