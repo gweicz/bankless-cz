@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Header />
           <Component {...pageProps} isCoockiesEnabled={isCoockiesEnabled}/>
           <Footer />
-          <Cookies setIsCoockiesEnabled={setIsCoockiesEnabled}/>
+          <Cookies setIsCoockiesEnabled={setIsCoockiesEnabled} IsCoockiesEnabled={isCoockiesEnabled}/>
           <BackToTop />
         </div>
       </SimpleReactLightbox>

@@ -5,13 +5,18 @@ import { useSessionContext } from 'context/SessionContext'
 import { useState } from 'react'
 
 type MegaMenuProps = {
-  menuTitle: string,
-  categoryLink: string,
-  categoryName: string,
-  isBeginner: boolean,
+  menuTitle: string
+  categoryLink: string
+  categoryName: string
+  isBeginner: boolean
 }
 
-const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMenuProps) => {
+const Megamenu = ({
+  menuTitle,
+  categoryLink,
+  categoryName,
+  isBeginner,
+}: MegaMenuProps) => {
   const { apiPostsData } = useSessionContext()
 
   let tabs: { [key: string]: { [key: string]: string }[] }
@@ -104,7 +109,7 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
 
   return (
     <li className="menu-item-has-children megamenu-wrapper">
-      <Link href={categoryLink}>
+      <Link href={categoryLink} shallow={true}>
         <a>{menuTitle}</a>
       </Link>
       <ul className="col-xl-6 megamenu-sub-menu">
@@ -119,7 +124,10 @@ const Megamenu = ({ menuTitle, categoryLink, categoryName, isBeginner }: MegaMen
                     className={`vertical-nav-item ${id === 0 ? 'active' : ''}`}
                     onMouseEnter={(e) => onTabHover(e, category)}
                   >
-                    <Link href={`/${categoryName}/${category.toLowerCase()}`}>
+                    <Link
+                      href={`/${categoryName}/${tabs[category][0]?.category}`}
+                      shallow={true}
+                    >
                       <a className="hover-flip-item-wrapper">
                         <span className="hover-flip-item">
                           <span data-text={category}>{category}</span>
