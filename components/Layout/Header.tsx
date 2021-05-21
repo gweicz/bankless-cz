@@ -5,10 +5,14 @@ import Link from 'next/link'
 import Megamenu from 'components/Megamenu/Megamenu'
 import style from './Header.module.scss'
 import { useSessionContext } from 'context/SessionContext'
-import {useState} from 'react'
+import { useState } from 'react'
 import searchForArticles from 'components/helpers/searchForArticle'
+import Modal from "react-bootstrap/Modal";
 
 const Header: React.FC = () => {
+
+  const [SearchModal, setSearchModal] = useState(false);
+  const HideModal = () => {setSearchModal(false)}
 
   const hamburgerOnClick = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
@@ -104,11 +108,38 @@ const Header: React.FC = () => {
               <a>Studium</a>
             </li>
           </Link>
+
+          <li onClick={(event) => {
+            closeMobileMenu()
+            setSearchModal(true)
+          }}>
+              <a>Vyhledávání</a>
+          </li>
+
         </ul>
       </div>
       <div className={style.closeMobileMenu} onClick={closeMobileMenu} />
     </div>
   )
+
+  const PopupSearchModal = () => (
+    <Modal show={SearchModal} onHide={HideModal}>
+      <Modal.Body>
+        <form className="header-search-form">
+          <div className="axil-search form-group">
+            <Link href='/search' shallow={true}><button type="submit" className="search-button" onClick={(event) => {
+              setSearchSlugs(searchForArticles(search, apiPostsData.searchPosts))
+              HideModal()
+            }}><FontAwesomeIcon icon="search" href='#'/></button></Link>
+            <input type="text" className="form-control" placeholder="Hledat" style={{width: '100%'}} onChange={(event) => {
+              setSearch(event.target.value)
+            }}/>
+        </div>
+        </form>
+    </Modal.Body> 
+    </Modal>
+  )
+
 
   const _hamburgerMenu = () => (
     <div
@@ -141,8 +172,7 @@ const Header: React.FC = () => {
     </div>
   )
 
-  const _SearchBarDesktop = () => {
-    return (
+  const _SearchBarDesktop = () => (
       <div style={{float: 'right'}}>
       <form className="header-search-form">
       <div className="axil-search form-group">
@@ -155,8 +185,7 @@ const Header: React.FC = () => {
       </div>
     </form>
     </div>
-    )
-  }
+  )
 
   return (
     <>
@@ -181,6 +210,7 @@ const Header: React.FC = () => {
         </div>
       </header>
       {_mobilePopupMenu()}
+      {PopupSearchModal()}
     </>
   )
 }
