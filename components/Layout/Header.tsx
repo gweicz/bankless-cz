@@ -156,11 +156,14 @@ const Header: React.FC = () => {
         isHideOnMobile && style.hideOn1200
       } ${isDarkMode ? style.darkThemeBtn : style.lightThemeBtn}`}
     >
-      {isDarkMode ? (
-        <FontAwesomeIcon icon="sun" />
-      ) : (
-        <FontAwesomeIcon icon="moon" />
-      )}
+      <div className={style.switchThemeBtnInner} />
+      <FontAwesomeIcon icon="sun" className={!isDarkMode ? style.lightActive : ''}/>
+      <FontAwesomeIcon icon="moon" className={isDarkMode ? style.darkActive : ''}/>
+      {/*{isDarkMode ? (*/}
+      {/*  <FontAwesomeIcon icon="sun" />*/}
+      {/*) : (*/}
+      {/*  <FontAwesomeIcon icon="moon" />*/}
+      {/*)}*/}
     </div>
   )
 

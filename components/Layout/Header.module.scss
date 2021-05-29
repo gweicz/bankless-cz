@@ -15,36 +15,49 @@
 }
 
 .switchThemeBtn {
-  position: absolute;
+  position: relative;
   cursor: pointer;
   background-color: #e9ecef;
-  padding: 0 11px 0 12px;
-  border-radius: 16px;
+  padding: .85rem 1.25rem;
+  border-radius: 25px;
+  font-size: 16px;
+  max-width: 70px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.switchThemeBtnInner {
+  position: absolute;
+  background-color: #1a1a1a;
+  border-radius: 15px;
+}
+
+.darkActive {
+  color: #ffffff !important;
 }
 
 .darkThemeBtn {
   color: #65676b;
   background: #333333;
-
-  &:hover {
-    background: var(--color-primary);
-    color: var(--color-white);
-  }
   transition: all 0.3s;
 }
 
-.lightThemeBtn {
-  color: var(--color-gray);
-  background: var(--color-lightest);
+.lightActive {
+  color: var(--color-darkgray);
+}
 
-  &:hover {
-    background: var(--color-primary);
-    color: var(--color-white);
-  }
+.lightThemeBtn {
+  color: var(--color-lighter);
+  background: var(--color-lightest);
   transition: all 0.3s;
 }
 
 @media only screen and (max-width: 1200px) {
+  .switchThemeBtn {
+    margin: 2rem auto 0 auto;
+  }
   .hideOn1200 {
     display: none;
   }
