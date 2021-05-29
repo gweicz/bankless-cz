@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react'
-
 import CryptoPrices from './CryptoPrices'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import Link from 'next/link'
 import Megamenu from 'components/Megamenu/Megamenu'
+import dynamic from 'next/dynamic'
 import style from './Header.module.scss'
 import { useSessionContext } from 'context/SessionContext'
+const SwitchThemeBtn = dynamic(() => import('./SwitchThemeBtn'), { ssr: false })
 
 const Header: React.FC = () => {
-  const { isDarkMode, switchTheme } = useSessionContext()
+  const { isDarkMode, setIsDarkMode } = useSessionContext()
 
   const hamburgerOnClick = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
@@ -74,7 +74,7 @@ const Header: React.FC = () => {
         <div className="mobile-menu-top">
           <div className="logo w-50">
             <Link href="/" shallow={true}>
-              {_banklessLogo()}
+              <div>{_banklessLogo()}</div>
             </Link>
           </div>
           <div className="mobile-close" onClick={closeMobileMenu}>
@@ -99,7 +99,7 @@ const Header: React.FC = () => {
             </li>
           </Link>
         </ul>
-        {_switchThemeBtn({})}
+        <SwitchThemeBtn />
       </div>
       <div className={style.closeMobileMenu} onClick={closeMobileMenu} />
     </div>
@@ -146,27 +146,6 @@ const Header: React.FC = () => {
     </div>
   )
 
-  const _switchThemeBtn = ({
-    isHideOnMobile = false,
-    customStyle = style.switchThemeBtnMobile,
-  }) => (
-    <div
-      onClick={switchTheme}
-      className={` ${style.switchThemeBtn} ${customStyle} ${
-        isHideOnMobile && style.hideOn1200
-      } ${isDarkMode ? style.darkThemeBtn : style.lightThemeBtn}`}
-    >
-      <div className={style.switchThemeBtnInner} />
-      <FontAwesomeIcon icon="sun" className={!isDarkMode ? style.lightActive : ''}/>
-      <FontAwesomeIcon icon="moon" className={isDarkMode ? style.darkActive : ''}/>
-      {/*{isDarkMode ? (*/}
-      {/*  <FontAwesomeIcon icon="sun" />*/}
-      {/*) : (*/}
-      {/*  <FontAwesomeIcon icon="moon" />*/}
-      {/*)}*/}
-    </div>
-  )
-
   return (
     <>
       <header className="header axil-header  header-light header-sticky position-relative">
@@ -182,10 +161,7 @@ const Header: React.FC = () => {
                 <CryptoPrices isMobile={true} />
                 {_hamburgerMenu()}
               </div>
-              {_switchThemeBtn({
-                isHideOnMobile: true,
-                customStyle: style.switchThemeBtnDesktop,
-              })}
+              <SwitchThemeBtn isHideOnMobile={true} />
             </div>
           </div>
           <div className="row justify-content-center align-items-center">
