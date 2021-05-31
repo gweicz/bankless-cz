@@ -66,12 +66,14 @@ const Header: React.FC = () => {
         <div className="mobile-menu-top">
           <div className="logo w-50">
             <Link href="/" shallow={true}>
-              <Image
-                src="/images/logo/banklessczWhite.svg"
-                alt="Bankless logo"
-                width={188}
-                height={65}
-              />
+              <div>
+                <Image
+                  src="/images/logo/banklessczWhite.svg"
+                  alt="Bankless logo"
+                  width={188}
+                  height={65}
+                />
+              </div>
             </Link>
           </div>
           <div className="mobile-close" onClick={closeMobileMenu}>
@@ -118,7 +120,12 @@ const Header: React.FC = () => {
     <div className="mainmenu-wrapper">
       <nav className="mainmenu-nav">
         <ul className="mainmenu">
-          <Megamenu menuTitle="Novinky" categoryLink="/" categoryName="novinky" isBeginner={false} />
+          <Megamenu
+            menuTitle="Novinky"
+            categoryLink="/"
+            categoryName="novinky"
+            isBeginner={false}
+          />
 
           <li>
             <Link href="/hashovky/" shallow={true}>
@@ -126,7 +133,12 @@ const Header: React.FC = () => {
             </Link>
           </li>
 
-          <Megamenu menuTitle="Studium" categoryLink="/studium" categoryName="studium" isBeginner={true} />
+          <Megamenu
+            menuTitle="Studium"
+            categoryLink="/studium"
+            categoryName="studium"
+            isBeginner={true}
+          />
         </ul>
       </nav>
     </div>
