@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import EditorialSelectionStripe from 'components/HomePage/EditorialSelectionStripe'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import MainBanner from 'components/HomePage/MainBanner'
@@ -34,6 +35,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     filter: 'tag:hashovka',
   })
 
+  const selectedPosts = await getPosts({
+    limit: 5,
+    page,
+    include: ['tags', 'authors'],
+    filter: 'tag:vyber-redakce',
+  })
+
   const menuPosts = await fetchMenuPosts()
 
   if (!posts) {
@@ -48,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const postsPagination = posts.meta.pagination
 
   return {
-    props: { posts, hashovky, menuPosts, postsPagination }, // will be passed to the page component as props
+    props: { posts, hashovky, menuPosts, postsPagination, selectedPosts }, // will be passed to the page component as props
   }
 }
 
@@ -58,15 +66,18 @@ const Home = ({
   menuPosts,
   postsPagination,
   isCoockiesEnabled,
+  selectedPosts,
 }: {
   posts?: PostOrPage[] | any
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
   postsPagination?: { [key: string]: number | null }
   isCoockiesEnabled: boolean
+  selectedPosts?: PostOrPage[]
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
+  const [isScriptsLoaded, setIsScriptsLoaded] = useState(false)
 
   const [nextPage, setNextPage] = useState(1)
 
@@ -84,13 +95,31 @@ const Home = ({
   }, [hashovky])
 
   useEffect(() => {
+    const jquery = document.createElement('script')
+    const slick = document.createElement('script')
     const main_blogger = document.createElement('script')
-    main_blogger.src = '/static/main_blogger.js'
-    main_blogger.async = true
-    document.body.appendChild(main_blogger)
+
+    jquery.src = '/static/jquery.js'
+    jquery.async = true
+    document.body.appendChild(jquery)
+
+    jquery.onload = () => {
+      slick.src = '/static/slick.min.js'
+      slick.async = true
+      document.body.appendChild(slick)
+    }
+
+    slick.onload = () => {
+      main_blogger.src = '/static/main_blogger.js'
+      main_blogger.async = true
+      document.body.appendChild(main_blogger)
+      setIsScriptsLoaded(true)
+    }
 
     return () => {
       document.body.removeChild(main_blogger)
+      document.body.removeChild(slick)
+      document.body.removeChild(jquery)
     }
   }, [])
 
@@ -100,8 +129,6 @@ const Home = ({
         <Head>
           <title>Bankless | Novinkový a vzdělávací web o kryptoměnách</title>
           <link rel="icon" type="image/png" href="/favicon.png" />
-          <script type="text/javascript" src="/static/jquery.js"></script>
-          <script type="text/javascript" src="/static/slick.min.js"></script>
           <base target="_blank" />
           {google(isCoockiesEnabled)}
         </Head>
@@ -155,174 +182,18 @@ const Home = ({
                 <PostList
                   posts={postsState}
                   nextPage={nextPage}
+                  isEditorialSelectionStripe
                   isLastPage={postsState?.length === postsPagination?.total}
-                />
-
+                >
+                  {isScriptsLoaded && selectedPosts && (
+                    <EditorialSelectionStripe articlesData={selectedPosts} />
+                  )}
+                </PostList>
                 <SideBar hashovky={hashovkyState} />
               </div>
             </div>
           </div>
         </main>
-
-        {/* <!-- Start Tab Area  --> */}
-        <div className="axil-tab-area axil-section-gap bg-color-white">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="section-title">
-                  <h2 className="title">Innovation &#38; Tech</h2>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-lg-12">
-                {/* <!-- Start Tab Content Wrapper  --> */}
-                <div className="tab-content" id="axilTabContent">
-                  <div
-                    className="single-tab-content tab-pane fade show active"
-                    id="tabone"
-                    role="tabpanel"
-                    aria-labelledby="tab-one"
-                  >
-                    <div className="modern-post-activation slick-layout-wrapper axil-slick-arrow arrow-between-side">
-                      {/* <!-- Start Single Post  --> */}
-                      <div className="slick-single-layout">
-                        <div className="content-block modern-post-style text-center content-block-column">
-                          <div className="post-content">
-                            <div className="post-cat">
-                              <div className="post-cat-list">
-                                <a className="hover-flip-item-wrapper" href="#">
-                                  <span className="hover-flip-item">
-                                    <span data-text="ACCESSIBILITY">
-                                      ACCESSIBILITY
-                                    </span>
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-                            <h4 className="title">
-                              <a href="post-details.html">
-                                Lightweight, grippable, and ready to go.
-                              </a>
-                            </h4>
-                          </div>
-                          <div className="post-thumbnail">
-                            <a href="post-details.html">
-                              {/* <!--<img
-                              src="assets/images/post-images/post-column-01.jpg"
-                              alt="Post Images"
-                            />--> */}
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      {/* <!-- End Single Post  --> */}
-
-                      {/* <!-- Start Single Post  --> */}
-                      <div className="slick-single-layout">
-                        <div className="content-block modern-post-style text-center content-block-column">
-                          <div className="post-content">
-                            <div className="post-cat">
-                              <div className="post-cat-list">
-                                <a className="hover-flip-item-wrapper" href="#">
-                                  <span className="hover-flip-item">
-                                    <span data-text="APPLE DESIGN">
-                                      APPLE DESIGN
-                                    </span>
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-                            <h4 className="title">
-                              <a href="post-details.html">
-                                Bold new experience. Same Mac magic.
-                              </a>
-                            </h4>
-                          </div>
-                          <div className="post-thumbnail">
-                            <a href="post-details.html">
-                              <img
-                                src="/images/others/maintenence.png"
-                                alt="Post Images"
-                              />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      {/* <!-- End Single Post  --> */}
-
-                      {/* <!-- Start Single Post  --> */}
-                      <div className="slick-single-layout">
-                        <div className="content-block modern-post-style text-center content-block-column">
-                          <div className="post-content">
-                            <div className="post-cat">
-                              <div className="post-cat-list">
-                                <a className="hover-flip-item-wrapper" href="#">
-                                  <span className="hover-flip-item">
-                                    <span data-text="GADGETS">GADGETS</span>
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-                            <h4 className="title">
-                              <a href="post-details.html">
-                                Creative Game With The New DJI Mavic Air 2
-                              </a>
-                            </h4>
-                          </div>
-                          <div className="post-thumbnail">
-                            <a href="post-details.html">
-                              {/* <!-- <img
-                              src="assets/images/post-images/post-column-05.jpg"
-                              alt="Post Images"
-                            />--> */}
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      {/* <!-- End Single Post  --> */}
-
-                      {/* <!-- Start Single Post  --> */}
-                      <div className="slick-single-layout">
-                        <div className="content-block modern-post-style text-center content-block-column">
-                          <div className="post-content">
-                            <div className="post-cat">
-                              <div className="post-cat-list">
-                                <a className="hover-flip-item-wrapper" href="#">
-                                  <span className="hover-flip-item">
-                                    <span data-text="ACCESSIBILITY">
-                                      ACCESSIBILITY
-                                    </span>
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-                            <h4 className="title">
-                              <a href="post-details.html">
-                                Lightweight, grippable, and ready to go.
-                              </a>
-                            </h4>
-                          </div>
-                          <div className="post-thumbnail">
-                            <a href="post-details.html">
-                              {/* <!-- <img
-                              src="assets/images/post-images/post-column-06.jpg"
-                              alt="Post Images"
-                            /> --> */}
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      {/* <!-- End Single Post  --> */}
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- End Tab Content Wrapper  --> */}
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* <!-- End Tab Area  --> */}
       </div>
     </>
   )
