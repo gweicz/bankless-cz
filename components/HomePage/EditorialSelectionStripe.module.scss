@@ -1,0 +1,20 @@
+.wrapper {
+  position: absolute;
+  width: 80vw;
+  max-width: 1110px;
+  z-index: 1000;
+}
+
+.spacer {
+  margin-bottom: 45rem;
+}
+
+.previewTitle {
+  height: 9rem;
+  padding-bottom: -1rem;
+  margin-bottom: -1rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
