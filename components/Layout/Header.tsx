@@ -6,7 +6,6 @@ import Megamenu from 'components/Megamenu/Megamenu'
 import style from './Header.module.scss'
 import { useSessionContext } from 'context/SessionContext'
 import { useState } from 'react'
-import searchForArticles from 'components/helpers/searchForArticle'
 import Modal from "react-bootstrap/Modal";
 
 const Header: React.FC = () => {
@@ -25,7 +24,7 @@ const Header: React.FC = () => {
   }
 
   const { apiPostsData } = useSessionContext()
-  const { setSearchSlugs } = useSessionContext()
+  const { setSearchSlug } = useSessionContext()
 
   const [search, setSearch] = useState('')
 
@@ -128,7 +127,7 @@ const Header: React.FC = () => {
         <form className="header-search-form">
           <div className="axil-search form-group">
             <Link href='/search' shallow={true}><button type="submit" className="search-button" onClick={(event) => {
-              setSearchSlugs(searchForArticles(search, apiPostsData.searchPosts))
+              setSearchSlug(search)
               HideModal()
             }}><FontAwesomeIcon icon="search" href='#'/></button></Link>
             <input type="text" className="form-control" placeholder="Hledat" style={{width: '100%'}} onChange={(event) => {
@@ -177,7 +176,7 @@ const Header: React.FC = () => {
       <form className="header-search-form">
       <div className="axil-search form-group">
         <Link href='/search' shallow={true}><button type="submit" className="search-button" onClick={(event) => {
-          setSearchSlugs(searchForArticles(search, apiPostsData.searchPosts))
+          setSearchSlug(search)
         }}><FontAwesomeIcon icon="search" href='#'/></button></Link>
         <input type="text" className="form-control" placeholder="Hledat" onChange={(event) => {
             setSearch(event.target.value)

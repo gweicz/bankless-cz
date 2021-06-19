@@ -1,4 +1,3 @@
-import {getPosts, getSearchPost} from 'pages/api/posts'
 import {useEffect, useState} from 'react'
 
 import {GetServerSideProps} from 'next'
@@ -13,9 +12,11 @@ import google from 'utils/google'
 import { useSessionContext } from 'context/SessionContext'
 import { POSTS_ON_PAGE_LIMIT } from '../../constants'
 import style from './search.module.scss'
+import {getPosts, getSinglePost} from 'pages/api/posts'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const {query} = context
+
   const hashovky = await getPosts({
     limit: 5,
     page: 1,
@@ -23,52 +24,37 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     filter: 'tag:hashovka',
   })
 
-  const menuPosts = await fetchMenuPosts()
-  const searchPosts = await getSearchPost()
+  const menuPosts = await fetchMenuPosts()  
+  let ArticleSlugsTitles = await fetch('http://localhost:3001/api/ArticleSlugsTitles')
+  ArticleSlugsTitles = await ArticleSlugsTitles.json()
 
   return {
     props: {
       hashovky,
       menuPosts,
-      searchPosts
+      ArticleSlugsTitles
     }, // will be passed to the page component as props
   }
-}
-
-function _SearchedPosts (PostsFiltered: PostOrPage[] , nextPage: number, searchPosts: PostOrPage[] | undefined) {
-  if(PostsFiltered.length === 0){
-    return (
-    <div className="col-lg-8 col-xl-8">
-      <h2 className={style.text}>Nic nenalezeno</h2>
-    </div>  
-    )
-  }
-  return (
-    <PostList
-          posts={PostsFiltered}
-          nextPage={nextPage}
-          isLastPage={searchPosts?.length !== POSTS_ON_PAGE_LIMIT}
-    />)
 }
 
 export default function Search({
     hashovky,
     menuPosts,
-    searchPosts,
+    ArticleSlugsTitles = [],
     isCoockiesEnabled
 }: {
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
-  searchPosts?: PostOrPage[]
+  ArticleSlugsTitles?: any
   isCoockiesEnabled: boolean
 }) {
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
-  const [nextPage, setNextPage] = useState(1)
-  const [postsState, setPostsState] = useState<PostOrPage[]>([])
+  const [nextPage, setNextPage] = useState(0)   //todo implement next page feature
+  const [PostsFiltered, setPostsFiltered] = useState<PostOrPage[]>([])
+  const { searchSlug } = useSessionContext()
+  const [, setState] = useState(null)
 
-  const { searchSlugs, setSearchSlugs } = useSessionContext()
-
-  useMenuData({menuPosts, searchPosts})
+  useMenuData({menuPosts})
 
   useEffect(() => {
     if (!hashovky) return
@@ -76,20 +62,19 @@ export default function Search({
   }, [hashovky])
 
   useEffect(() => {
-    if (!searchPosts) return
-    setPostsState([...postsState, ...searchPosts])
-    setNextPage(nextPage + 1)
-  }, [searchPosts])
-
-  let PostsFiltered: PostOrPage[] = [];
-  if(!(searchSlugs.length === 0)) { 
-    postsState.forEach((post)=> {
-      searchSlugs.forEach((slug: string) => {
-        if(slug == post.slug) {
-          PostsFiltered.push(post)
+    const getSearchPosts = async () => {
+      if(searchSlug == null) {return}
+      let Posts: any[] = []
+    
+      ArticleSlugsTitles.ArticleTitles.forEach( async (Title: string, id: number) => {
+        if(Title.toLocaleLowerCase().includes(searchSlug.toLowerCase())) {
+            Posts.push(await getSinglePost(ArticleSlugsTitles.ArticleSlugs[id]))
         }
-     })
-   })}
+      })
+        setPostsFiltered(Posts)
+    }
+    getSearchPosts()
+  }, [searchSlug])
 
   return (
     <div>
@@ -104,7 +89,11 @@ export default function Search({
       <h1 className={style.textMain}>Výsledky vyhledávání</h1>
       <div className="axil-post-list-area post-listview-visible-color bg-color-white">
         <div className="row">
-          {_SearchedPosts(PostsFiltered, nextPage, searchPosts)}
+            <PostList
+            posts={PostsFiltered}
+            nextPage={nextPage}
+            isLastPage={PostsFiltered?.length !== POSTS_ON_PAGE_LIMIT}
+          />
           <SideBar hashovky={hashovkyState}/>
         </div>
   </div>

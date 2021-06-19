@@ -33,7 +33,10 @@ export async function getSinglePost(postSlug: string) {
       {
         slug: postSlug,
       },
-      { include: ['count.posts', 'authors'] },
+      { 
+      include: ['count.posts', 'authors', 'tags'],
+      filter: 'tag:-hashovka',
+      },      
     )
     return post
   } catch (error) {
