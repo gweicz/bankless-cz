@@ -7,7 +7,9 @@ import {
   faBars,
   faGlobe,
   faLink,
+  faMoon,
   faSearch,
+  faSun,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -21,9 +23,9 @@ import {
 
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import BackToTop from 'components/Layout/BackToTop'
+import Cookies from 'components/Layout/Cookies'
 import Footer from 'components/Layout/Footer'
 import Header from 'components/Layout/Header'
-import Cookies from 'components/Layout/Cookies'
 import { SessionContextProvider } from 'context/SessionContext'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -42,6 +44,8 @@ library.add(
   faDiscord,
   faReddit,
   faTimes,
+  faMoon,
+  faSun,
 )
 
 export interface ICryptoPrices {
@@ -57,9 +61,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       <SimpleReactLightbox>
         <div id="mobile-menu-show">
           <Header />
-          <Component {...pageProps} isCoockiesEnabled={isCoockiesEnabled}/>
+          <Component {...pageProps} isCoockiesEnabled={isCoockiesEnabled} />
           <Footer />
-          <Cookies setIsCoockiesEnabled={setIsCoockiesEnabled} IsCoockiesEnabled={isCoockiesEnabled}/>
+          <Cookies
+            setIsCoockiesEnabled={setIsCoockiesEnabled}
+            IsCoockiesEnabled={isCoockiesEnabled}
+          />
           <BackToTop />
         </div>
       </SimpleReactLightbox>

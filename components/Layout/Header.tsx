@@ -3,9 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import Link from 'next/link'
 import Megamenu from 'components/Megamenu/Megamenu'
+import dynamic from 'next/dynamic'
 import style from './Header.module.scss'
+import { useSessionContext } from 'context/SessionContext'
+const SwitchThemeBtn = dynamic(() => import('./SwitchThemeBtn'), { ssr: false })
 
 const Header: React.FC = () => {
+  const { isDarkMode, setIsDarkMode } = useSessionContext()
+
   const hamburgerOnClick = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')
     mobilePopupMenu?.classList.toggle('popup-mobile-menu-show')
@@ -16,17 +21,25 @@ const Header: React.FC = () => {
     mobilePopupMenu?.classList.toggle('popup-mobile-menu-show')
   }
 
+  const _banklessLogo = () => (
+    <Image
+      src={`${
+        isDarkMode
+          ? '/images/logo/banklessczBlack.svg'
+          : '/images/logo/banklessczWhite.svg'
+      }`}
+      alt="Bankless logo"
+      width={188}
+      height={65}
+    />
+  )
+
   const _logo = () => (
     <div className="col-xl-3 d-none d-xl-block">
       <Link href="/" shallow={true}>
         <div className="logo" style={{ paddingTop: '30px' }}>
           <div style={{ cursor: 'pointer', height: '65px', width: '188px' }}>
-            <Image
-              src="/images/logo/banklessczWhite.svg"
-              alt="Bankless logo"
-              width={188}
-              height={65}
-            />
+            {_banklessLogo()}
           </div>
         </div>
       </Link>
@@ -48,12 +61,7 @@ const Header: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            <Image
-              src="/images/logo/banklessczWhite.svg"
-              alt="Bankless logo"
-              width={188}
-              height={65}
-            />
+            {_banklessLogo()}
           </div>
         </div>
       </Link>
@@ -66,12 +74,7 @@ const Header: React.FC = () => {
         <div className="mobile-menu-top">
           <div className="logo w-50">
             <Link href="/" shallow={true}>
-              <Image
-                src="/images/logo/banklessczWhite.svg"
-                alt="Bankless logo"
-                width={188}
-                height={65}
-              />
+              <div>{_banklessLogo()}</div>
             </Link>
           </div>
           <div className="mobile-close" onClick={closeMobileMenu}>
@@ -96,6 +99,7 @@ const Header: React.FC = () => {
             </li>
           </Link>
         </ul>
+        <SwitchThemeBtn />
       </div>
       <div className={style.closeMobileMenu} onClick={closeMobileMenu} />
     </div>
@@ -118,7 +122,12 @@ const Header: React.FC = () => {
     <div className="mainmenu-wrapper">
       <nav className="mainmenu-nav">
         <ul className="mainmenu">
-          <Megamenu menuTitle="Novinky" categoryLink="/" categoryName="novinky" isBeginner={false} />
+          <Megamenu
+            menuTitle="Novinky"
+            categoryLink="/"
+            categoryName="novinky"
+            isBeginner={false}
+          />
 
           <li>
             <Link href="/hashovky/" shallow={true}>
@@ -126,7 +135,12 @@ const Header: React.FC = () => {
             </Link>
           </li>
 
-          <Megamenu menuTitle="Studium" categoryLink="/studium" categoryName="studium" isBeginner={true} />
+          <Megamenu
+            menuTitle="Studium"
+            categoryLink="/studium"
+            categoryName="studium"
+            isBeginner={true}
+          />
         </ul>
       </nav>
     </div>
@@ -147,6 +161,7 @@ const Header: React.FC = () => {
                 <CryptoPrices isMobile={true} />
                 {_hamburgerMenu()}
               </div>
+              <SwitchThemeBtn isHideOnMobile={true} />
             </div>
           </div>
           <div className="row justify-content-center align-items-center">
