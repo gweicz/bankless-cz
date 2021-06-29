@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Post from './Post'
 import { PostOrPage } from '@tryghost/content-api'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const PostList = ({
   posts,
@@ -12,10 +13,18 @@ const PostList = ({
   nextPage: number
   isLastPage: boolean
 }) => {
+
+  const [postsToRender, setpostsToRender] = useState(posts)
+
+  useEffect(() => {
+    setpostsToRender(posts)
+  }, [posts])
+
   const router = useRouter()
-  return (
-    <div className="col-lg-8 col-xl-8">
-      {(posts || []).map((postData, index) => (
+
+  return (    
+  <div className="col-lg-8 col-xl-8">
+      {(postsToRender || []).map((postData, index) => (
         <Post data={postData} key={index} />
       ))}
 
