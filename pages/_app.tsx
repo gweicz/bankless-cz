@@ -51,15 +51,15 @@ export interface ICryptoPrices {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isCoockiesEnabled, setIsCoockiesEnabled] = useState(false)
+  const [isCookiesEnabled, setIsCookiesEnabled] = useState(false)
   return (
     <SessionContextProvider>
       <SimpleReactLightbox>
         <div id="mobile-menu-show">
           <Header />
-          <Component {...pageProps} isCoockiesEnabled={isCoockiesEnabled}/>
+          <Component {...pageProps} isCoockiesEnabled={isCookiesEnabled}/>
           <Footer />
-          <Cookies setIsCoockiesEnabled={setIsCoockiesEnabled} IsCoockiesEnabled={isCoockiesEnabled}/>
+          <Cookies setIsCookiesEnabled={setIsCookiesEnabled} IsCookiesEnabled={isCookiesEnabled}/>
           <BackToTop />
         </div>
       </SimpleReactLightbox>

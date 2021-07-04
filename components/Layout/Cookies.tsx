@@ -1,28 +1,19 @@
 import {useState} from 'react'
 import style from './Cookies.module.scss'
 import Link from 'next/link'
-import {useCookies} from 'react-cookie';
-
-function CookieSet(State: boolean, setCookie: any) {
-  setCookie('IsEnabled', State, {path: '/'});
-}
+import useCookie, {setCookie} from 'react-use-cookie';
+import getCookie from 'react-use-cookie';
 
 export default function Cookies(props: any) {
-  const [cookies, setCookie] = useCookies(['IsEnabled']);
-  const [show, setShow] = useState(true)
+  const [cookie, setCookie] = useCookie('IsEnabled', 'false');
 
-  if (cookies.IsEnabled) {
-    if(!props.IsCoockiesEnabled) { props.setIsCoockiesEnabled(true) }
+  if (cookie == 'true') {
     return (<div/>)
   }
-  if (!show) {
-    if(cookies.IsEnabled) { CookieSet(true, setCookie) }
-    return (<div/>)
-  }
-
+  
   const onAgreeClick = () => {
-    setShow(false)
-    props.setIsCoockiesEnabled(true)
+    props.setIsCookiesEnabled(true)
+    setCookie('true');
   }
 
   return (
