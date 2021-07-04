@@ -1,6 +1,10 @@
 /*--------------------------
 Navigation Css  
 ---------------------------*/
+.active-dark-mode .mainmenu-nav ul.mainmenu > li > a::after {
+  background: #ffffff;
+}
+
 .mainmenu-nav {
     ul {
         &.mainmenu {

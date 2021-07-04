@@ -1,16 +1,17 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import SocInvite from 'components/SocInvite'
-import useCopyToClipboard from 'components/helpers/useCopyToClipboard'
-import { useState } from 'react'
 import style from './Footer.module.scss'
-
+import useCopyToClipboard from 'components/helpers/useCopyToClipboard'
+import { useSessionContext } from 'context/SessionContext'
+import { useState } from 'react'
 
 const Footer = () => {
   const redactionEmailAdsress = 'redakce@bankless.cz'
   let [EmailText, setEmailText] = useState(redactionEmailAdsress)
 
   const { copyLink, isCopiedTooltip } = useCopyToClipboard()
+  const { isDarkMode } = useSessionContext()
 
   return (
     <div className="axil-footer-area axil-footer-style-1 footer-variation-2">
@@ -24,7 +25,11 @@ const Footer = () => {
               <Link href="/" shallow={true}>
                 <div style={{ cursor: 'pointer', height: '65px' }}>
                   <Image
-                    src="/images/logo/banklessczWhite.svg"
+                    src={`${
+                      isDarkMode
+                        ? '/images/logo/banklessczBlack.svg'
+                        : '/images/logo/banklessczWhite.svg'
+                    }`}
                     alt="Bankless logo"
                     width={188}
                     height={65}
