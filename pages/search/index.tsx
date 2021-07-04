@@ -61,18 +61,20 @@ export default function Search({
 
   useEffect(() => {
     let Posts: any[] = []
+    setPostsFiltered([])
     const getSearchPosts = async () => {
       if(searchSlug == null) {return}    
       ArticleSlugsTitles.ArticleTitles.forEach( async (Title: string, id: number) => {
         if(Title.toLocaleLowerCase().includes(searchSlug.toLowerCase())) {
-            Posts.push(await getSinglePost(ArticleSlugsTitles.ArticleSlugs[id]))
+            let post: any = await getSinglePost(ArticleSlugsTitles.ArticleSlugs[id])
+            Posts.push(post)
+            setPostsFiltered([...PostsFiltered, post])
+            console.log(PostsFiltered)
         }
       })
     }
 
-    getSearchPosts().then(() => {
-      setPostsFiltered(Posts)
-    })
+    getSearchPosts()
   }, [searchSlug])
 
   return (
