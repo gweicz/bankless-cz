@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import useCookie, {setCookie} from 'react-use-cookie';
+import useCookie from 'react-use-cookie';
+import style from './Cookies.module.scss'
 
 export default function Cookies(props: any) {
   const [cookie, setCookie] = useCookie('IsEnabled', 'false');
