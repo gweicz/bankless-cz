@@ -9,7 +9,7 @@ import { useSessionContext } from 'context/SessionContext'
 const SwitchThemeBtn = dynamic(() => import('./SwitchThemeBtn'), { ssr: false })
 
 const Header: React.FC = () => {
-  const { isDarkMode, setIsDarkMode } = useSessionContext()
+  const { isDarkMode } = useSessionContext()
 
   const hamburgerOnClick = () => {
     const mobilePopupMenu = document.getElementById('mobile-menu-show')

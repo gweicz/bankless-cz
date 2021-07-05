@@ -12,6 +12,20 @@
   padding: 0 0.5rem;
 }
 
+.cookiesWrapperDark {
+  max-width: 1500px;
+  width: 85%;
+  bottom: 10px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: #181818 !important;
+  box-shadow: 0px -2px 20px 5px #c8c8c840;
+  justify-content: space-evenly;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
 .buttonContainer {
   max-width: 150px;
   float: right;
@@ -24,10 +38,23 @@
   padding-right: 0.5rem;
 }
 
+.textContainerDark {
+  margin: 0;
+  color: #c7c5c5 !important;
+  padding-right: 0.5rem;
+}
+
 .linkText {
   font-weight: 500;
   text-decoration: underline;
   color: black;
+  cursor: pointer;
+}
+
+.linkTextDark {
+  font-weight: 500;
+  text-decoration: underline;
+  color: #c7c5c5;
   cursor: pointer;
 }
 

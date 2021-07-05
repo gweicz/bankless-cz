@@ -11,6 +11,7 @@ function CookieSet(State: boolean, setCookie: any) {
 export default function Cookies(props: any) {
   const [cookies, setCookie] = useCookies(['IsEnabled'])
   const [show, setShow] = useState(true)
+  const { isDarkMode } = useSessionContext()
 
   if (cookies.IsEnabled) {
     if (!props.IsCoockiesEnabled) {
@@ -32,12 +33,18 @@ export default function Cookies(props: any) {
 
   return (
     <div
-      className={`fixed-bottom d-flex align-items-center ${style.cookiesWrapper}`}
+      className={`fixed-bottom d-flex align-items-center ${
+        isDarkMode ? style.cookiesWrapperDark : style.cookiesWrapper
+      }`}
     >
-      <p className={style.textContainer}>
+      <p className={isDarkMode ? style.textContainerDark : style.textContainer}>
         Používáním těchto stránek vyjadřujete souhlas s&nbsp;
         <Link href="/podminky">
-          <a className={`${style.linkText} cookies-link`}>
+          <a
+            className={`${
+              isDarkMode ? style.linkTextDark : style.linkText
+            } cookies-link`}
+          >
             podmínkami použití webových stránek, ochranou osobních údajů a
             využívaním souborů cookies.
           </a>
