@@ -1,34 +1,19 @@
 import Link from 'next/link'
 import style from './Cookies.module.scss'
-import { useCookies } from 'react-cookie'
+import useCookie from 'react-use-cookie'
 import { useSessionContext } from 'context/SessionContext'
-import { useState } from 'react'
-
-function CookieSet(State: boolean, setCookie: any) {
-  setCookie('IsEnabled', State, { path: '/' })
-}
 
 export default function Cookies(props: any) {
-  const [cookies, setCookie] = useCookies(['IsEnabled'])
-  const [show, setShow] = useState(true)
+  const [cookie, setCookie] = useCookie('IsEnabled', 'false')
   const { isDarkMode } = useSessionContext()
 
-  if (cookies.IsEnabled) {
-    if (!props.IsCoockiesEnabled) {
-      props.setIsCoockiesEnabled(true)
-    }
-    return <div />
-  }
-  if (!show) {
-    if (cookies.IsEnabled) {
-      CookieSet(true, setCookie)
-    }
+  if (cookie == 'true') {
     return <div />
   }
 
   const onAgreeClick = () => {
-    setShow(false)
-    props.setIsCoockiesEnabled(true)
+    props.setIsCookiesEnabled(true)
+    setCookie('true')
   }
 
   return (
