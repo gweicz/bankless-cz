@@ -21,6 +21,7 @@
     "react": "17.0.1",
     "react-cookie": "^4.0.3",
     "react-dom": "17.0.1",
+    "react-use-cookie": "^1.2.1",
     "sass": "^1.32.5",
     "simple-react-lightbox": "^3.6.3",
     "sitemap": "^6.4.0"
