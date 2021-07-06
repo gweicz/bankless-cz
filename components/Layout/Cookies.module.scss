@@ -4,26 +4,20 @@
   bottom: 10px;
   margin: 0 auto;
   border-radius: 10px;
-  background-color: #ffffff !important;
-  box-shadow: 0px -2px 20px 5px #c8c8c840;
   justify-content: space-evenly;
   flex-direction: column;
   text-align: center;
-  padding: 0 0.5rem;
+  padding: 0.5rem 1rem;
 }
 
-.cookiesWrapperDark {
-  max-width: 1500px;
-  width: 85%;
-  bottom: 10px;
-  margin: 0 auto;
-  border-radius: 10px;
+.darkWrapper {
   background-color: #181818 !important;
   box-shadow: 0px -2px 20px 5px #c8c8c840;
-  justify-content: space-evenly;
-  flex-direction: column;
-  text-align: center;
-  padding: 0 0.5rem;
+}
+
+.lightWrapper {
+  background-color: #ffffff !important;
+  box-shadow: 0px -2px 20px 5px #c8c8c840;
 }
 
 .buttonContainer {
@@ -60,10 +54,6 @@
 
 @media screen and (min-width: 720px) {
   .cookiesWrapper {
-    flex-direction: row;
-    text-align: left;
-  }
-  .cookiesWrapperDark {
     flex-direction: row;
     text-align: left;
   }

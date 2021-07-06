@@ -4,12 +4,9 @@ import useCookie from 'react-use-cookie'
 import { useSessionContext } from 'context/SessionContext'
 
 export default function Cookies(props: any) {
-  const [cookie, setCookie] = useCookie('IsEnabled', 'false')
+  console.log('Cookies: ')
+  const [, setCookie] = useCookie('IsEnabled', 'false')
   const { isDarkMode } = useSessionContext()
-
-  if (cookie == 'true') {
-    return <div />
-  }
 
   const onAgreeClick = () => {
     props.setIsCookiesEnabled(true)
@@ -19,8 +16,8 @@ export default function Cookies(props: any) {
   return (
     <div
       className={`fixed-bottom d-flex align-items-center ${
-        isDarkMode ? style.cookiesWrapperDark : style.cookiesWrapper
-      }`}
+        style.cookiesWrapper
+      } ${isDarkMode ? style.darkWrapper : style.lightWrapper}`}
     >
       <p className={isDarkMode ? style.textContainerDark : style.textContainer}>
         Používáním těchto stránek vyjadřujete souhlas s&nbsp;

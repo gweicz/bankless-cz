@@ -20,6 +20,7 @@ import {
   faTwitter,
   fab,
 } from '@fortawesome/free-brands-svg-icons'
+import { useEffect, useState } from 'react'
 
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import BackToTop from 'components/Layout/BackToTop'
@@ -29,7 +30,7 @@ import Header from 'components/Layout/Header'
 import { SessionContextProvider } from 'context/SessionContext'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { useState } from 'react'
+import useCookie from 'react-use-cookie'
 
 library.add(
   faSearch,
@@ -55,15 +56,32 @@ export interface ICryptoPrices {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isCookiesEnabled, setIsCookiesEnabled] = useState(false)
+  const [isCookiesEnabled, setIsCookiesEnabled] = useState<boolean | null>(null)
+  const [cookie] = useCookie('IsEnabled', 'false')
+  console.log('cookie: ', cookie)
+  console.log('isCookiesEnabled: ', isCookiesEnabled)
+
+  useEffect(() => {
+    if (cookie === 'true') {
+      setIsCookiesEnabled(true)
+    } else {
+      setIsCookiesEnabled(false)
+    }
+  }, [cookie])
+
   return (
     <SessionContextProvider>
       <SimpleReactLightbox>
         <div id="mobile-menu-show">
           <Header />
-          <Component {...pageProps} isCoockiesEnabled={isCookiesEnabled}/>
+          <Component {...pageProps} isCoockiesEnabled={isCookiesEnabled} />
           <Footer />
-          <Cookies setIsCookiesEnabled={setIsCookiesEnabled} IsCookiesEnabled={isCookiesEnabled}/>
+          {isCookiesEnabled === false && (
+            <Cookies
+              setIsCookiesEnabled={setIsCookiesEnabled}
+              IsCookiesEnabled={isCookiesEnabled}
+            />
+          )}
           <BackToTop />
         </div>
       </SimpleReactLightbox>
