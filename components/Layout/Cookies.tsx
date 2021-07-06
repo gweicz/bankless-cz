@@ -1,10 +1,16 @@
+import { Dispatch } from 'react'
 import Link from 'next/link'
+import { SetStateAction } from 'react'
 import style from './Cookies.module.scss'
 import useCookie from 'react-use-cookie'
 import { useSessionContext } from 'context/SessionContext'
 
-export default function Cookies(props: any) {
-  console.log('Cookies: ')
+type Props = {
+  setIsCookiesEnabled: Dispatch<SetStateAction<boolean | null>>
+  IsCookiesEnabled: boolean | null
+}
+
+export default function Cookies(props: Props) {
   const [, setCookie] = useCookie('IsEnabled', 'false')
   const { isDarkMode } = useSessionContext()
 

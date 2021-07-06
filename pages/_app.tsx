@@ -58,8 +58,6 @@ export interface ICryptoPrices {
 function MyApp({ Component, pageProps }: AppProps) {
   const [isCookiesEnabled, setIsCookiesEnabled] = useState<boolean | null>(null)
   const [cookie] = useCookie('IsEnabled', 'false')
-  console.log('cookie: ', cookie)
-  console.log('isCookiesEnabled: ', isCookiesEnabled)
 
   useEffect(() => {
     if (cookie === 'true') {

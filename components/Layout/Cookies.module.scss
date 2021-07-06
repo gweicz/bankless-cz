@@ -8,16 +8,15 @@
   flex-direction: column;
   text-align: center;
   padding: 0.5rem 1rem;
+  box-shadow: 0px -2px 20px 5px #c8c8c840;
 }
 
 .darkWrapper {
-  background-color: #181818 !important;
-  box-shadow: 0px -2px 20px 5px #c8c8c840;
+  background-color: #181818;
 }
 
 .lightWrapper {
-  background-color: #ffffff !important;
-  box-shadow: 0px -2px 20px 5px #c8c8c840;
+  background-color: #ffffff;
 }
 
 .buttonContainer {
@@ -28,13 +27,13 @@
 
 .textContainer {
   margin: 0;
-  color: black !important;
+  color: black;
   padding-right: 0.5rem;
 }
 
 .textContainerDark {
   margin: 0;
-  color: #c7c5c5 !important;
+  color: #c7c5c5;
   padding-right: 0.5rem;
 }
 
