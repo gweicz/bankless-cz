@@ -1,27 +1,38 @@
+import { Dispatch } from 'react'
 import Link from 'next/link'
-import useCookie from 'react-use-cookie';
+import { SetStateAction } from 'react'
 import style from './Cookies.module.scss'
+import useCookie from 'react-use-cookie'
+import { useSessionContext } from 'context/SessionContext'
 
-export default function Cookies(props: any) {
-  const [cookie, setCookie] = useCookie('IsEnabled', 'false');
+type Props = {
+  setIsCookiesEnabled: Dispatch<SetStateAction<boolean | null>>
+  IsCookiesEnabled: boolean | null
+}
 
-  if (cookie == 'true') {
-    return (<div/>)
-  }
-  
+export default function Cookies(props: Props) {
+  const [, setCookie] = useCookie('IsEnabled', 'false')
+  const { isDarkMode } = useSessionContext()
+
   const onAgreeClick = () => {
     props.setIsCookiesEnabled(true)
-    setCookie('true');
+    setCookie('true')
   }
 
   return (
     <div
-      className={`fixed-bottom d-flex align-items-center ${style.cookiesWrapper}`}
+      className={`fixed-bottom d-flex align-items-center ${
+        style.cookiesWrapper
+      } ${isDarkMode ? style.darkWrapper : style.lightWrapper}`}
     >
-      <p className={style.textContainer}>
+      <p className={isDarkMode ? style.textContainerDark : style.textContainer}>
         Používáním těchto stránek vyjadřujete souhlas s&nbsp;
         <Link href="/podminky">
-          <a className={`${style.linkText} cookies-link`}>
+          <a
+            className={`${
+              isDarkMode ? style.linkTextDark : style.linkText
+            } cookies-link`}
+          >
             podmínkami použití webových stránek, ochranou osobních údajů a
             využívaním souborů cookies.
           </a>

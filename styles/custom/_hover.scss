@@ -17,12 +17,13 @@
 
   .cookies-link {
     text-decoration: underline;
-    color: black;
+    color: #c7c5c5;
     &:hover {
       text-decoration: none;
-      color: black !important;
+      color: #c7c5c5;
     }
   }
+
 
   .social-share-transparent a:hover {
     color: white !important;
