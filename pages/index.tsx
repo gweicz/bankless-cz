@@ -77,8 +77,6 @@ const Home = ({
 }) => {
   const [postsState, setPostsState] = useState<PostOrPage[]>([])
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
-  const [isScriptsLoaded, setIsScriptsLoaded] = useState(false)
-
   const [nextPage, setNextPage] = useState(1)
 
   useMenuData({ menuPosts })
@@ -93,35 +91,6 @@ const Home = ({
     if (!hashovky) return
     setHashovkyState([...hashovkyState, ...hashovky])
   }, [hashovky])
-
-  useEffect(() => {
-    const jquery = document.createElement('script')
-    const slick = document.createElement('script')
-    const main_blogger = document.createElement('script')
-
-    jquery.src = '/static/jquery.js'
-    jquery.async = true
-    document.body.appendChild(jquery)
-
-    jquery.onload = () => {
-      slick.src = '/static/slick.min.js'
-      slick.async = true
-      document.body.appendChild(slick)
-    }
-
-    slick.onload = () => {
-      main_blogger.src = '/static/main_blogger.js'
-      main_blogger.async = true
-      document.body.appendChild(main_blogger)
-      setIsScriptsLoaded(true)
-    }
-
-    return () => {
-      document.body.removeChild(main_blogger)
-      document.body.removeChild(slick)
-      document.body.removeChild(jquery)
-    }
-  }, [])
 
   return (
     <>
@@ -185,7 +154,7 @@ const Home = ({
                   isEditorialSelectionStripe
                   isLastPage={postsState?.length === postsPagination?.total}
                 >
-                  {isScriptsLoaded && selectedPosts && (
+                  {selectedPosts && (
                     <EditorialSelectionStripe articlesData={selectedPosts} />
                   )}
                 </PostList>

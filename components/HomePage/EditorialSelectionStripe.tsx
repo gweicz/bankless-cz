@@ -1,13 +1,47 @@
+import React, { useEffect, useRef, useState } from 'react'
+
 import Link from 'next/link'
 import { PostOrPage } from '@tryghost/content-api'
 import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
 import styles from './EditorialSelectionStripe.module.scss'
 
-export default function EditorialSelectionStripe({
+function EditorialSelectionStripe({
   articlesData,
 }: {
   articlesData: PostOrPage[]
 }) {
+  const [isScriptsLoaded, setIsScriptsLoaded] = useState(false)
+  useEffect(() => {
+    let jquery = document.createElement('script')
+    let slickScript = document.createElement('script')
+    let main_blogger = document.createElement('script')
+
+    jquery.src = '/static/jquery.js'
+    jquery.async = true
+    document.body.appendChild(jquery)
+
+    jquery.onload = () => {
+      slickScript.src = '/static/slick.js'
+      slickScript.async = true
+      document.body.appendChild(slickScript)
+    }
+
+    slickScript.onload = () => {
+      main_blogger.src = '/static/main_blogger.js'
+      main_blogger.async = true
+      document.body.appendChild(main_blogger)
+      setIsScriptsLoaded(true)
+    }
+
+    return () => {
+      document.body.removeChild(main_blogger)
+      document.body.removeChild(slickScript)
+      document.body.removeChild(jquery)
+    }
+  }, [])
+
+  if (!isScriptsLoaded) return null
+
   const _articlePreview = (article: PostOrPage) => {
     const {
       detailUrl,
@@ -67,7 +101,6 @@ export default function EditorialSelectionStripe({
   const Wrapper = ({ children }: { children: any }) => (
     <div className={`${styles.wrapper} row p-0`}>
       <div className="col-lg-12 p-0">
-        {/* <!-- Start Tab Content Wrapper  --> */}
         <div className="tab-content" id="axilTabContent">
           <div
             className="single-tab-content tab-pane fade show active"
@@ -80,7 +113,6 @@ export default function EditorialSelectionStripe({
             </div>
           </div>
         </div>
-        {/* <!-- End Tab Content Wrapper  --> */}
       </div>
     </div>
   )
@@ -100,3 +132,5 @@ export default function EditorialSelectionStripe({
     </>
   )
 }
+
+export default React.memo(EditorialSelectionStripe)
