@@ -12,16 +12,16 @@ function EditorialSelectionStripe({
 }) {
   const [isScriptsLoaded, setIsScriptsLoaded] = useState(false)
   useEffect(() => {
-    let jquery = document.createElement('script')
-    let slickScript = document.createElement('script')
-    let main_blogger = document.createElement('script')
+    const jquery = document.createElement('script')
+    const slickScript = document.createElement('script')
+    const main_blogger = document.createElement('script')
 
     jquery.src = '/static/jquery.js'
     jquery.async = true
     document.body.appendChild(jquery)
 
     jquery.onload = () => {
-      slickScript.src = '/static/slick.js'
+      slickScript.src = '/static/slick.min.js'
       slickScript.async = true
       document.body.appendChild(slickScript)
     }
