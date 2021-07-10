@@ -1,0 +1,56 @@
+.switchThemeBtnDesktop {
+  right: 0;
+}
+
+.switchThemeBtnMobile {
+  margin: 2rem;
+}
+
+.switchThemeBtn {
+  position: relative;
+  cursor: pointer;
+  background-color: #e9ecef;
+  padding: .85rem 1.25rem;
+  border-radius: 25px;
+  font-size: 16px;
+  max-width: 70px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.switchThemeBtnInner {
+  position: absolute;
+  background-color: #1a1a1a;
+  border-radius: 15px;
+}
+
+.darkActive {
+  color: #ffffff !important;
+}
+
+.darkThemeBtn {
+  color: #65676b;
+  background: #333333;
+  transition: all 0.3s;
+}
+
+.lightActive {
+  color: var(--color-darkgray);
+}
+
+.lightThemeBtn {
+  color: var(--color-lighter);
+  background: var(--color-lightest);
+  transition: all 0.3s;
+}
+
+@media only screen and (max-width: 1200px) {
+  .switchThemeBtn {
+    margin: 2rem auto 0 auto;
+  }
+  .hideOn1200 {
+    display: none;
+  }
+}

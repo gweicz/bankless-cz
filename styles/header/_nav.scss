@@ -1,6 +1,10 @@
 /*--------------------------
 Navigation Css  
 ---------------------------*/
+.active-dark-mode .mainmenu-nav ul.mainmenu > li > a::after {
+  background: #ffffff;
+}
+
 .mainmenu-nav {
     ul {
         &.mainmenu {
@@ -122,7 +126,7 @@ Navigation Css
                         min-width: 1230px;
                         left: 50%;
                         transform: translateX(-50%);
-                        border-radius: 0 0 10px 10px;
+                        border-radius: 10px;
                         box-shadow: var(--shadow-primary);
 
                         .megamenu-item {

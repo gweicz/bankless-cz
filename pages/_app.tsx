@@ -7,7 +7,9 @@ import {
   faBars,
   faGlobe,
   faLink,
+  faMoon,
   faSearch,
+  faSun,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -18,6 +20,7 @@ import {
   faTwitter,
   fab,
 } from '@fortawesome/free-brands-svg-icons'
+import { useEffect, useState } from 'react'
 
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import BackToTop from 'components/Layout/BackToTop'
@@ -27,7 +30,7 @@ import Header from 'components/Layout/Header'
 import { SessionContextProvider } from 'context/SessionContext'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { useState } from 'react'
+import useCookie from 'react-use-cookie'
 
 library.add(
   faSearch,
@@ -42,6 +45,8 @@ library.add(
   faDiscord,
   faReddit,
   faTimes,
+  faMoon,
+  faSun,
 )
 
 export interface ICryptoPrices {
@@ -51,18 +56,30 @@ export interface ICryptoPrices {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isCoockiesEnabled, setIsCoockiesEnabled] = useState(false)
+  const [isCookiesEnabled, setIsCookiesEnabled] = useState<boolean | null>(null)
+  const [cookie] = useCookie('IsEnabled', 'false')
+
+  useEffect(() => {
+    if (cookie === 'true') {
+      setIsCookiesEnabled(true)
+    } else {
+      setIsCookiesEnabled(false)
+    }
+  }, [cookie])
+
   return (
     <SessionContextProvider>
       <SimpleReactLightbox>
         <div id="mobile-menu-show">
           <Header />
-          <Component {...pageProps} isCoockiesEnabled={isCoockiesEnabled} />
+          <Component {...pageProps} isCoockiesEnabled={isCookiesEnabled} />
           <Footer />
-          <Cookies
-            setIsCoockiesEnabled={setIsCoockiesEnabled}
-            IsCoockiesEnabled={isCoockiesEnabled}
-          />
+          {isCookiesEnabled === false && (
+            <Cookies
+              setIsCookiesEnabled={setIsCookiesEnabled}
+              IsCookiesEnabled={isCookiesEnabled}
+            />
+          )}
           <BackToTop />
         </div>
       </SimpleReactLightbox>

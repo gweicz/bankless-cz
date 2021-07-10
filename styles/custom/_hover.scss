@@ -1,3 +1,35 @@
 .hover-text-black:hover {
   color: black !important;
 }
+
+.active-dark-mode {
+  a:hover {
+    color: white !important;
+  }
+
+  .hover-flip-item span:before {
+    color: var(--color-midgray) !important;
+  }
+
+  .hover-flip-item span:after {
+    color: white !important;
+  }
+
+  .cookies-link {
+    text-decoration: underline;
+    color: #c7c5c5;
+    &:hover {
+      text-decoration: none;
+      color: #c7c5c5;
+    }
+  }
+
+
+  .social-share-transparent a:hover {
+    color: white !important;
+  }
+
+  .mainmenu-nav ul.mainmenu > li:hover > a {
+    color: white !important;
+  }
+}

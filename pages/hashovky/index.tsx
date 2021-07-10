@@ -4,13 +4,13 @@ import { GetServerSideProps } from 'next'
 import HashPost from 'components/Hashovky/HashPost'
 import Head from 'next/head'
 import ImportantHashPost from 'components/Hashovky/ImportantHashPost'
+import MetaTags from '../../components/MetaTags/MetaTags'
+import { NextSeo } from 'next-seo'
 import { PostOrPage } from '@tryghost/content-api'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
 import { getPosts } from 'pages/api/posts'
-import { useMenuData } from 'context/SessionContext'
-import MetaTags from "../../components/MetaTags/MetaTags";
-import {NextSeo} from "next-seo";
 import google from 'utils/google'
+import { useMenuData } from 'context/SessionContext'
 
 export const POSTS_ON_PAGE_LIMIT = 15
 
@@ -87,7 +87,7 @@ const _topHashovky = (hashovky?: PostOrPage[]) => (
 const Hashovky = ({
   posts,
   menuPosts,
-  isCoockiesEnabled
+  isCoockiesEnabled,
 }: {
   posts?: PostOrPage[]
   menuPosts: PostOrPage[]
@@ -110,7 +110,7 @@ const Hashovky = ({
         <title>Bankless | Hashovky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <base target="_blank"/>
+        <base target="_blank" />
         {google(isCoockiesEnabled)}
       </Head>
       <NextSeo
@@ -119,15 +119,16 @@ const Hashovky = ({
         canonical="https://bankless.cz/hashovky"
         openGraph={{
           url: 'https://bankless.cz/studium',
-          title: "Bankless | Hashovky",
-          description: "Krátké novinky ze světa kryptoměn. Buďte o důležitých novinkách informováni jako první",
+          title: 'Bankless | Hashovky',
+          description:
+            'Krátké novinky ze světa kryptoměn. Buďte o důležitých novinkách informováni jako první',
           images: [
             {
-              url: "https://bankless.cz/thumbnail.png",
+              url: 'https://bankless.cz/thumbnail.png',
               width: 960,
               height: 540,
               alt: 'BanklessCZ',
-            }
+            },
           ],
           site_name: 'Bankless',
         }}
@@ -137,7 +138,7 @@ const Hashovky = ({
           cardType: 'summary_large_image',
         }}
       />
-      <main className="mt--150">
+      <main className="pt--150">
         <div className="container">
           <h1>#Hashovky</h1>
           <p>
