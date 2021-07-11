@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { PostOrPage } from '@tryghost/content-api'
 import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
-import styles from './EditorialSelectionStripe.module.scss'
+import s from './EditorialSelectionStripe.module.scss'
 
 function EditorialSelectionStripe({
   articlesData,
@@ -68,7 +68,7 @@ function EditorialSelectionStripe({
                 </a>
               </div>
             </div>
-            <h4 className={` ${styles.previewTitle} title`}>
+            <h4 className={` ${s.previewTitle} title`}>
               <Link href={`/${detailUrl}`}>
                 <a>{title}</a>
               </Link>
@@ -78,7 +78,11 @@ function EditorialSelectionStripe({
             <Link href={`/${detailUrl}`}>
               <a>
                 {frontImg?.url && (
-                  <img src={frontImg.url} alt={frontImg?.alt} />
+                  <img
+                    src={frontImg.url}
+                    alt={frontImg?.alt}
+                    className={s.postThumbnailImg}
+                  />
                 )}
               </a>
             </Link>
@@ -99,7 +103,7 @@ function EditorialSelectionStripe({
   )
 
   const Wrapper = ({ children }: { children: any }) => (
-    <div className={`${styles.wrapper} row p-0`}>
+    <div className={`${s.wrapper} row p-0`}>
       <div className="col-lg-12 p-0">
         <div className="tab-content" id="axilTabContent">
           <div
@@ -120,7 +124,7 @@ function EditorialSelectionStripe({
   return (
     <>
       <div className="axil-tab-area axil-section-gap bg-color-white">
-        <div className={`${styles.spacer} container`}>
+        <div className={`${s.spacer} container`}>
           {_mainTitle()}
           <Wrapper>
             {articlesData.map((article: PostOrPage) =>

@@ -18,3 +18,14 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+@media only screen and (max-width: 650px) { 
+  .previewTitle {
+    height: 7.5rem;
+  }
+}
+
+.postThumbnailImg {
+  height: 193px;
+  object-fit: cover;
+}
