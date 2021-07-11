@@ -1,3 +1,9 @@
 .active-dark-mode main {
   background: #1a1a1a;
 }
+
+.active-dark-mode { 
+  .modal-body {
+  background-color: #666666 !important;
+  }
+}

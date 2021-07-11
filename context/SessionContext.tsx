@@ -8,6 +8,8 @@ interface IContext {
   setApiPostsData: React.Dispatch<React.SetStateAction<any>>
   isDarkMode: boolean
   setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+  searchSlug: any
+  setSearchSlug: React.Dispatch<React.SetStateAction<any>>
 }
 
 const SessionContext = React.createContext({} as IContext)
@@ -29,6 +31,7 @@ export const SessionContextProvider = ({
   children: JSX.Element
 }) => {
   const [apiPostsData, setApiPostsData] = useState()
+  const [searchSlug, setSearchSlug] = useState(null)
   const [isDarkMode, setIsDarkMode] = useLocalStorage('theme', null)
 
   useEffect(() => {
@@ -57,6 +60,8 @@ export const SessionContextProvider = ({
     setApiPostsData,
     isDarkMode,
     setIsDarkMode,
+    searchSlug,
+    setSearchSlug
   }
 
   return (
