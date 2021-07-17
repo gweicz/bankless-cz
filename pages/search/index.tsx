@@ -6,25 +6,25 @@ import PostList from 'components/HomePage/PostList/PostList'
 import { PostOrPage } from '@tryghost/content-api'
 import SideBar from 'components/Layout/SideBar'
 import { fetchMenuPosts } from 'utils/fetchMenuPosts'
-import {getPosts, getSinglePost} from 'pages/api/posts'
+import { getPosts } from 'pages/api/posts'
 import { useMenuData } from 'context/SessionContext'
 import google from 'utils/google'
 import { useSessionContext } from 'context/SessionContext'
 import { POSTS_ON_PAGE_LIMIT } from '../../constants'
 
-
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
-
-    const hashovky = await getPosts({
-        limit: 5,
-        page: 1,
-        include: ['tags'],
-        filter: 'tag:hashovka',
-      })
+  const hashovky = await getPosts({
+    limit: 5,
+    page: 1,
+    include: ['tags'],
+    filter: 'tag:hashovka',
+  })
 
   const menuPosts = await fetchMenuPosts()
-  let ArticleSlugsTitles = await fetch('http://localhost:3001/api/ArticleSlugsTitles') //has to change
+  let ArticleSlugsTitles = await fetch(
+    'http://localhost:3001/api/ArticleSlugsTitles',
+  ) //have to change url
   ArticleSlugsTitles = await ArticleSlugsTitles.json()
 
   if (!hashovky) {
@@ -36,7 +36,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
-
   return {
     props: { hashovky, menuPosts, ArticleSlugsTitles }, // will be passed to the page component as props
   }
@@ -46,17 +45,17 @@ const Home = ({
   hashovky,
   menuPosts,
   isCoockiesEnabled,
-  ArticleSlugsTitles
+  ArticleSlugsTitles,
 }: {
   hashovky?: PostOrPage[]
   menuPosts?: PostOrPage[]
   isCoockiesEnabled: boolean
-  ArticleSlugsTitles?: {ArticleSlugs: string[], ArticleTitles: string[]}
+  ArticleSlugsTitles?: { ArticleSlugs: string[]; ArticleTitles: string[] }
 }) => {
-
   const [hashovkyState, setHashovkyState] = useState<PostOrPage[]>([])
   const { searchSlug } = useSessionContext()
-  const [PostsFiltered, setPostsFiltered] = useState<PostOrPage[] | null[]>([])
+  const [postsToFilter, setPostsToFilter] = useState<string[]>([])
+  const [PostsFiltered, setPostsFiltered] = useState<PostOrPage[]>([])
 
   const [nextPage, setNextPage] = useState(1) //needs implementation
 
@@ -68,22 +67,40 @@ const Home = ({
   }, [hashovky])
 
   useEffect(() => {
-    let Posts: Promise<PostOrPage | null>[] = []
-    if(searchSlug == null) return
+    //need to fix types
+    if (searchSlug === null || searchSlug === '') {
+      return
+    }
+    let Posts: string[] = []
     ArticleSlugsTitles!.ArticleTitles.forEach((Title: string, id: number) => {
-        if(Title.toLocaleLowerCase().includes(searchSlug.toLowerCase())) {
-            Posts.push(getSinglePost(ArticleSlugsTitles!.ArticleSlugs[id]))
-        }
+      if (Title.toLocaleLowerCase().includes(searchSlug.toLowerCase())) {
+        Posts.push(ArticleSlugsTitles!.ArticleSlugs[id])
+      }
+    })
+    setPostsToFilter(Posts)
+  }, [searchSlug])
+
+  let Posts: any = []
+  if (postsToFilter.length > 0) {
+    postsToFilter.forEach((slug: string, id: number) => {
+      const data = fetch(`http://localhost:3001/api/getSinglePost/${slug}`) //need to change URL
+      Posts.push(data)
     })
     Promise.all(Posts).then((Posts) => {
+      if (PostsFiltered != Posts) {
         setPostsFiltered(Posts)
+      }
     })
-  }, [searchSlug])
+  } else {
+    if (PostsFiltered.length > 0) {
+      setPostsFiltered([])
+    }
+  }
 
   return (
     <div>
       <Head>
-        <title>Bankless | Vzhledávání</title>
+        <title>Bankless | Vyhledávání</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
 
         <base target="_blank" />
