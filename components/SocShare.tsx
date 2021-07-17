@@ -32,6 +32,7 @@ export default function SocShare({
         <a
           href={`https://www.facebook.com/sharer.php?u=${baseUrl}/${urlToShare}`}
           target="_blank"
+          rel="noreferrer"
         >
           <FontAwesomeIcon icon={['fab', 'facebook-f']} style={color ? {color: color} : {color: 'inherit'}}/>
         </a>
@@ -43,6 +44,7 @@ export default function SocShare({
           )}`}
           data-related="@gweicz"
           target="_blank"
+          rel="noreferrer"
           data-show-count="false"
         >
           <FontAwesomeIcon icon={['fab', 'twitter']} style={color ? {color: color} : {color: 'inherit'}}/>
