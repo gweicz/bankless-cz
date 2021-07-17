@@ -1,19 +1,26 @@
+import { LeftArrowSvg, RightArrowSvg } from '../Svgs/arrows'
+
+import CheckPost from 'components/helpers/CheckPost'
 import Link from 'next/link'
 import { PostOrPage } from '@tryghost/content-api'
 import SocShare from 'components/SocShare'
 import { formatGhostDataForArticlePost } from 'components/helpers/formatGhostDataForArticlePost'
 import style from './MainBanner.module.scss'
 import { useState } from 'react'
-import CheckPost from "components/helpers/CheckPost"
 
 const MainBanner = ({ data }: { data: PostOrPage[] }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
 
-  try{
-    if(!CheckPost(data[activeSlideIndex].tags![0].name, data[activeSlideIndex].feature_image)){
+  try {
+    if (
+      !CheckPost(
+        data[activeSlideIndex].tags![0].name,
+        data[activeSlideIndex].feature_image,
+      )
+    ) {
       data?.splice(activeSlideIndex, 1)
     }
-  }catch{
+  } catch {
     data?.splice(activeSlideIndex, 1)
   }
 
@@ -88,41 +95,19 @@ const MainBanner = ({ data }: { data: PostOrPage[] }) => {
     }
   }
 
-  const _leftArrowSvg = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-220 -30 900 520">
-      <g fill="#878787" stroke="#878787">
-        <path
-          d="M231.536 -27.5352c-4.68652 -4.68652 -12.2842 -4.68652 -16.9697 -0.000976562l-211.052 211.05c-4.68555 4.6875 -4.68555 12.2852 0 16.9717l211.052 211.05c4.68555 4.68555 12.2832 4.68555 16.9697 0l7.07129 -7.07031
-c4.68555 -4.68652 4.68555 -12.2852 0 -16.9707l-178.494 -178.494h375.887c6.62695 0 12 -5.37305 12 -12v-10c0 -6.62695 -5.37305 -12 -12 -12h-375.887l178.494 -178.494c4.68555 -4.68652 4.68555 -12.2852 0 -16.9707z"
-        />
-      </g>
-    </svg>
-  )
-
-  const _rightArrowSvg = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-220 -30 900 520">
-      <g fill="#878787" stroke="#878787">
-        <path
-          d="M216.464 411.535c4.68652 4.68652 12.2842 4.68652 16.9697 0l211.052 -211.049c4.68555 -4.6875 4.68555 -12.2852 0 -16.9717l-211.052 -211.05c-4.68555 -4.68555 -12.2832 -4.68555 -16.9697 0l-7.07129 7.07031c-4.68555 4.68652 -4.68555 12.2852 0 16.9707
-l178.494 178.494h-375.887c-6.62695 0 -12 5.37305 -12 12v10c0 6.62695 5.37305 12 12 12h375.887l-178.494 178.494c-4.68555 4.68652 -4.68555 12.2852 0 16.9707z"
-        />
-      </g>
-    </svg>
-  )
-
   const _sliderBtns = () => (
     <>
       <button
         onClick={() => changeSlide({ isNext: false })}
         className="slide-arrow prev-arrow slick-arrow"
       >
-        {_leftArrowSvg()}
+        <LeftArrowSvg />
       </button>
       <button
         onClick={() => changeSlide({ isNext: true })}
         className="slide-arrow next-arrow slick-arrow"
       >
-        {_rightArrowSvg()}
+        <RightArrowSvg />
       </button>
     </>
   )
