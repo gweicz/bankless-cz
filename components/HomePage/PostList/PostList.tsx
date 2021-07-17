@@ -7,17 +7,25 @@ const PostList = ({
   posts,
   nextPage,
   isLastPage,
+  isEditorialSelectionStripe,
+  children,
 }: {
   posts?: PostOrPage[]
   nextPage: number
   isLastPage: boolean
+  isEditorialSelectionStripe?: boolean
+  children?: any
 }) => {
   const router = useRouter()
   return (
     <div className="col-lg-8 col-xl-8">
-      {(posts || []).map((postData, index) => (
-        <Post data={postData} key={index} />
-      ))}
+      {(posts || []).map((postData, index) => {
+        if (isEditorialSelectionStripe && index === 9) {
+          return <div key={index}>{children}</div>
+        } else {
+          return <Post data={postData} key={index} />
+        }
+      })}
 
       {!isLastPage && (
         <div className="d-flex justify-content-center">
