@@ -5,7 +5,7 @@ const AuthorDetail = ({ author }: { author: Author }) => {
   const _profileImg = () => (
     <div className="thumbnail">
       {author.website ? (
-        <a href={author.website} target="_blank">
+        <a href={author.website} target="_blank" rel="noreferrer">
           {author.profile_image && (
             <img src={author.profile_image} alt="Author's Image" />
           )}
@@ -24,14 +24,14 @@ const AuthorDetail = ({ author }: { author: Author }) => {
     <ul className="social-share-transparent justify-content-centre">
       {author.facebook && (
         <li>
-          <a href={'http://facebook.com/' + author.facebook} target="_blank">
+          <a href={'http://facebook.com/' + author.facebook} target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={['fab', 'facebook-f']} />
           </a>
         </li>
       )}
       {author.twitter && (
         <li>
-          <a href={'http://twitter.com/' + author.twitter} target="_blank">
+          <a href={'http://twitter.com/' + author.twitter} target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={['fab', 'twitter']} />
           </a>
         </li>
