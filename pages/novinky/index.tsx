@@ -14,6 +14,7 @@ import { getPosts } from 'pages/api/posts'
 import styles from 'styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
 import google from 'utils/google'
+import Image from 'next/image'
 
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -25,7 +26,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     limit: POSTS_ON_PAGE_LIMIT,
     page,
     include: ['tags', 'authors'],
-    filter: 'tag:novinka',
   })
 
   const hashovky = await getPosts({
@@ -58,7 +58,7 @@ const NovinkyPolkadot = ({
   hashovky,
   menuPosts,
   postsPagination,
-  isCoockiesEnabled
+  isCoockiesEnabled,
 }: {
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
@@ -89,7 +89,7 @@ const NovinkyPolkadot = ({
       <Head>
         <title>Bankless | Novinky</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
-        
+
         {google(isCoockiesEnabled)}
       </Head>
       <NextSeo
@@ -117,9 +117,12 @@ const NovinkyPolkadot = ({
         }}
       />
       <main className={styles.main}>
-        {postsState.length > 0 && (
-          <MainBanner data={postsState?.slice(0, 3) || []} />
-        )}
+        <Image
+          src="/images/banner/Novinky/novinky.svg"
+          width={500}
+          height={180}
+          layout="responsive"
+        />
         <div className="container">
           <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
             <div className="row">

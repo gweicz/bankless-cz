@@ -82,7 +82,7 @@ const Header: React.FC = () => {
           </div>
         </div>
         <ul className="mainmenu list-unstyled">
-          <Link href="/" shallow={true}>
+          <Link href="/novinky" shallow={true}>
             <li onClick={closeMobileMenu}>
               <a>Novinky</a>
             </li>
@@ -124,7 +124,7 @@ const Header: React.FC = () => {
         <ul className="mainmenu">
           <Megamenu
             menuTitle="Novinky"
-            categoryLink="/"
+            categoryLink="/novinky"
             categoryName="novinky"
             isBeginner={false}
           />

@@ -15,6 +15,7 @@ import { getPosts } from '../../api/posts'
 import styles from '../../../styles/Home.module.scss'
 import { useMenuData } from 'context/SessionContext'
 import google from 'utils/google'
+import Image from 'next/image'
 
 // Fetch posts
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -59,7 +60,7 @@ const NovinkyBitcoin = ({
   hashovky,
   menuPosts,
   postsPagination,
-  isCoockiesEnabled
+  isCoockiesEnabled,
 }: {
   posts?: PostOrPage[]
   hashovky?: PostOrPage[]
@@ -119,7 +120,12 @@ const NovinkyBitcoin = ({
         }}
       />
       <main className={styles.main}>
-        {postsState && <MainBanner data={postsState?.slice(0, 3) || []} />}
+        <Image
+          src="/images/banner/Novinky/bitcoin.svg"
+          width={500}
+          height={180}
+          layout="responsive"
+        />
         <div className="container">
           <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
             <div className="row">
