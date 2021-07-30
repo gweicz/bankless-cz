@@ -122,7 +122,7 @@ const ZacatecniciBitcoin = ({
       <main className={styles.main}>
         <Image
           src="/images/banner/Studium/polkadot.svg"
-          width={500}
+          width={650}
           height={180}
           layout="responsive"
         />

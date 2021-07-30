@@ -119,10 +119,11 @@ const NovinkyPolkadot = ({
       <main className={styles.main}>
         <Image
           src="/images/banner/Novinky/novinky.svg"
-          width={500}
+          width={650}
           height={180}
           layout="responsive"
         />
+        <div/>
         <div className="container">
           <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
             <div className="row">
