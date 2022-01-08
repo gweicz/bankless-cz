@@ -242,6 +242,65 @@ Sidebar Styles
         font-size: 14px;
         line-height: 22px;
     }
+
+  .newsletter-input-wrapper {
+    display: flex;
+    align-items: center;
+    max-width: 360px;
+    margin: 0 auto;
+
+    .newsletter-input {
+      border-color: black;
+      padding: 0 45px 0 15px;
+      width: 100%;
+    }
+
+    .axil-button-small {
+      position: relative;
+      right: 4rem;
+      min-width: 100px;
+    }
+
+    @media screen and (min-width: 991px) {
+      margin: 0;
+
+      .newsletter-input {
+        width: 80%;
+        border-right: none;
+      }
+
+      .axil-button-small {
+        position: absolute;
+        right: 4rem;
+      }
+    }
+  }
+
+  .newsletter-text {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .newsletter-description {
+    @extend .newsletter-text;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-subscribe-success {
+    @extend .newsletter-text;
+    font-size: 14px;
+    margin-top: 16px;
+    font-weight: 600;
+    color: #3AB54A;
+  }
+
+  .newsletter-subscribe-error {
+    @extend .newsletter-text;
+    font-size: 14px;
+    margin-top: 16px;
+    font-weight: 600;
+    color: #DE1A1B;
+  }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {

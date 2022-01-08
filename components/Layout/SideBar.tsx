@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import HashPost from '../Hashovky/HashPost'
 import Link from 'next/link'
 import { PostOrPage } from '@tryghost/content-api'
 import SocInvite from 'components/SocInvite'
+import NewsletterSideBar from "components/NewsletterSideBar/NewsletterSideBar"
 
 const SideBar = ({
   hashovky,
@@ -150,6 +150,13 @@ const SideBar = ({
     </div>
   )
 
+  const _newsletter = () => (
+    <div className="axil-single-widget widget widget_instagram mb--30">
+      <h5 className="widget-title">Newsletter</h5>
+      <NewsletterSideBar />
+    </div>
+  )
+
   const _socFollow = () => (
     <div className="axil-single-widget widget widget_social mb--30">
       <h5 className="widget-title">Sledujte nás</h5>
@@ -161,6 +168,8 @@ const SideBar = ({
     <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
       <div className="sidebar-inner">
         {_cryptoType()}
+
+        {_newsletter()}
 
         {_hashovky(hashovky)}
 
