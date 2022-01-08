@@ -18,7 +18,8 @@ Projekt je postavený na frameworku Next.js
     GHOST_URL=<ghost_url>
     GHOST_CONTENT_API_KEY=<ghost_api_content_key>
     GHOST_API_VERSION=<ghost_api_version>
-    GOOGLE_KEY=<google_analytics_key>
+    NEXT_PUBLIC_GOOGLE_KEY=<google_analytics_key>
+    NEXT_PUBLIC_BANKLESS_API_URL=<bankless_api_url>
     ```
 - Spuštění development serveru: `yarn dev`
 - Development server se spustí na [localhost:3000](http://localhost:3000)
@@ -47,6 +48,8 @@ Projekt je postavený na frameworku Next.js
   GHOST_URL=<ghost_url>
   GHOST_CONTENT_API_KEY=<ghost_api_content_key>
   GHOST_API_VERSION=<ghost_api_version>
+  NEXT_PUBLIC_GOOGLE_KEY=<google_analytics_key>
+  NEXT_PUBLIC_BANKLESS_API_URL=<bankless_api_url>
     ```
 - Nastavení execution práv deploy skriptu: `chmod +x deploy.sh`
 - Deployment: `./deploy.sh`
